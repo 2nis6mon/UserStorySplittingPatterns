@@ -814,15 +814,15 @@
     </div>
     <div class="content-body">
       <div class="patterns-grid" id="patterns-grid">
-        <div class="pattern-card" data-delay="0"><div class="p-icon">🔄</div><div class="p-num">Pattern 1</div><div class="p-name">Étapes du Workflow</div><div class="p-desc">Diviser un processus end-to-end en étapes séquentielles livrables</div></div>
-        <div class="pattern-card" data-delay="1"><div class="p-icon">⚙️</div><div class="p-num">Pattern 2</div><div class="p-name">Opérations CRUD</div><div class="p-desc">Séparer les opérations Créer / Lire / Modifier / Supprimer</div></div>
-        <div class="pattern-card" data-delay="2"><div class="p-icon">📋</div><div class="p-num">Pattern 3</div><div class="p-name">Règles Métier</div><div class="p-desc">Isoler chaque variation de règle métier dans sa propre story</div></div>
-        <div class="pattern-card" data-delay="3"><div class="p-icon">🗃️</div><div class="p-num">Pattern 4</div><div class="p-name">Variations de Données</div><div class="p-desc">Commencer simple, ajouter la complexité des données progressivement</div></div>
-        <div class="pattern-card" data-delay="4"><div class="p-icon">🖊️</div><div class="p-num">Pattern 5</div><div class="p-name">Méthodes de Saisie</div><div class="p-desc">Séparer la fonctionnalité de l'interface de saisie avancée</div></div>
-        <div class="pattern-card" data-delay="5"><div class="p-icon">💪</div><div class="p-num">Pattern 6</div><div class="p-name">Effort Concentré</div><div class="p-desc">Implémenter un cas simple en premier, ajouter les variantes ensuite</div></div>
-        <div class="pattern-card" data-delay="6"><div class="p-icon">🎯</div><div class="p-num">Pattern 7</div><div class="p-name">Simple / Complexe</div><div class="p-desc">Cœur fonctionnel d'abord, options avancées dans des stories séparées</div></div>
+        <div class="pattern-card" data-delay="0"><div class="p-icon">🔄</div><div class="p-num">Pattern 1</div><div class="p-name">Étapes du Workflow</div><div class="p-desc">Diviser un processus end-to-end en étapes séquentielles livrables indépendamment</div></div>
+        <div class="pattern-card" data-delay="1"><div class="p-icon">⚙️</div><div class="p-num">Pattern 2</div><div class="p-name">Opérations CRUD</div><div class="p-desc">Séparer les opérations Créer / Modifier / Supprimer / Vider</div></div>
+        <div class="pattern-card" data-delay="2"><div class="p-icon">📋</div><div class="p-num">Pattern 3</div><div class="p-name">Règles Métier</div><div class="p-desc">Isoler chaque variation de règle promotionnelle dans sa propre story</div></div>
+        <div class="pattern-card" data-delay="3"><div class="p-icon">🗃️</div><div class="p-num">Pattern 4</div><div class="p-name">Variations de Données</div><div class="p-desc">Commencer par la catégorie de données la plus simple, enrichir progressivement</div></div>
+        <div class="pattern-card" data-delay="4"><div class="p-icon">📱</div><div class="p-num">Pattern 5</div><div class="p-name">Variations d'Interface</div><div class="p-desc">Décliner la fonctionnalité par plateforme : Web, iOS, Android</div></div>
+        <div class="pattern-card" data-delay="5"><div class="p-icon">🎯</div><div class="p-num">Pattern 6</div><div class="p-name">Simple / Complexe</div><div class="p-desc">Version simple immédiatement utile, enrichissement progressif ensuite</div></div>
+        <div class="pattern-card" data-delay="6"><div class="p-icon">💪</div><div class="p-num">Pattern 7</div><div class="p-name">Effort Concentré</div><div class="p-desc">Le cas difficile pose l'infrastructure — les variantes réutilisent et coûtent moins</div></div>
         <div class="pattern-card" data-delay="7"><div class="p-icon">⚡</div><div class="p-num">Pattern 8</div><div class="p-name">Différer la Performance</div><div class="p-desc">Fonctionnel avant optimal — la perf s'optimise après validation</div></div>
-        <div class="pattern-card" data-delay="8"><div class="p-icon">🔬</div><div class="p-num">Pattern 9</div><div class="p-name">Spike d'Investigation</div><div class="p-desc">Exploration time-boxée quand l'implémentation est floue (dernier recours)</div></div>
+        <div class="pattern-card" data-delay="8"><div class="p-icon">🔬</div><div class="p-num">Pattern 9</div><div class="p-name">Spike d'Investigation</div><div class="p-desc">Exploration time-boxée quand la faisabilité est inconnue (dernier recours)</div></div>
       </div>
     </div>
   </div>
@@ -874,28 +874,28 @@
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story décrit un processus end-to-end avec plusieurs étapes distinctes qui peuvent chacune apporter de la valeur indépendamment.</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story décrit un processus end-to-end avec plusieurs étapes distinctes (commande, paiement, livraison…) qui peuvent chacune apporter de la valeur indépendamment.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p1">
           <div class="avant-header">✗ AVANT — Story trop large</div>
           <div class="avant-body">
             <div class="story-card">
               <div class="story-role">User Story — trop large</div>
-              <strong>En tant que</strong> rédacteur,<br/>
-              <strong>je veux</strong> publier un article avec révision éditoriale, juridique, vue staging et déploiement en production,<br/>
-              <strong>afin de</strong> le diffuser à nos lecteurs en toute conformité.<br/>
-              <br/>→ <em style="color:var(--red);">Impossible à livrer en 1 sprint</em>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> passer une commande complète,<br/>
+              <strong>afin de</strong> faire mes courses en ligne sans aller au magasin.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ Cache 6 étapes : Recherche · Panier · Créneau · Paiement · Confirmation · Suivi</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p1">
-          <div class="apres-header">✓ APRÈS — Stories découpées par étape</div>
+          <div class="apres-header">✓ APRÈS — Une étape = une story</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> publier directement <strong>afin de</strong> valider le workflow minimal</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> soumettre à révision éditoriale <strong>afin d'</strong>assurer la qualité du contenu</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> ajouter une révision juridique <strong>afin de</strong> garantir la conformité</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> prévisualiser en staging <strong>afin de</strong> valider le rendu avant publication</div>
-            <div class="story-card split" data-di="4">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> programmer le déploiement <strong>afin de</strong> choisir la date de diffusion</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> ajouter des produits à mon panier <strong>afin de</strong> préparer mes courses.</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> choisir un créneau de livraison <strong>afin de</strong> recevoir mes courses au bon moment.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer ma commande en ligne <strong>afin de</strong> finaliser mon achat.</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> recevoir une confirmation de commande <strong>afin d'</strong>être rassuré que ma commande est enregistrée.</div>
+            <div class="story-card split" data-di="4">✅ <strong>En tant que</strong> client, <strong>je veux</strong> suivre l'état de ma commande <strong>afin de</strong> savoir quand elle arrivera.</div>
           </div>
         </div>
       </div>
@@ -910,27 +910,27 @@
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story utilise des mots comme <em>"gérer"</em>, <em>"administrer"</em> ou <em>"maintenir"</em> — ils cachent souvent plusieurs opérations distinctes (Créer, Lire, Modifier, Supprimer).</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story utilise des mots comme <em>"gérer"</em> ou <em>"administrer"</em> — ils cachent plusieurs opérations distinctes. Chaque opération (Ajouter, Modifier, Supprimer…) peut être livrée séparément.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p2">
-          <div class="avant-header">✗ AVANT — Verbe "gérer" = piège</div>
+          <div class="avant-header">✗ AVANT — "Gérer" = piège</div>
           <div class="avant-body">
             <div class="story-card">
               <div class="story-role">User Story — verbe piège</div>
-              <strong>En tant qu'</strong>utilisateur,<br/>
-              <strong>je veux</strong> gérer mon compte,<br/>
-              <strong>afin de</strong> contrôler mes informations personnelles.<br/>
-              <br/>→ <em style="color:var(--red);">"Gérer" = 4 opérations cachées non estimables</em>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> gérer mon panier,<br/>
+              <strong>afin de</strong> modifier mes achats avant validation.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ "Gérer" = 4 opérations cachées non estimables</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p2">
           <div class="apres-header">✓ APRÈS — Une opération = une story</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> créer mon compte <strong>afin de</strong> commencer à utiliser le service</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> consulter mes informations <strong>afin de</strong> vérifier mes données</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> modifier mes paramètres <strong>afin de</strong> maintenir mes données à jour</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> supprimer mon compte <strong>afin de</strong> résilier le service</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> ajouter un produit au panier <strong>afin de</strong> préparer ma commande.</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> modifier la quantité d'un produit <strong>afin d'</strong>ajuster mes achats.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> supprimer un produit du panier <strong>afin de</strong> retirer un achat inutile.</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> vider entièrement mon panier <strong>afin de</strong> recommencer mes achats.</div>
           </div>
         </div>
       </div>
@@ -945,27 +945,27 @@
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story contient plusieurs <em>règles métier alternatives</em> dans ses critères d'acceptation. Chaque variation peut être un incrément de valeur distinct.</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story contient plusieurs <em>règles métier alternatives</em> dans ses critères d'acceptation. Chaque type de promotion ou règle de calcul peut être un incrément de valeur distinct.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p3">
           <div class="avant-header">✗ AVANT — Toutes les règles en même temps</div>
           <div class="avant-body">
             <div class="story-card">
               <div class="story-role">User Story — règles multiples</div>
-              <strong>En tant que</strong> voyageur,<br/>
-              <strong>je veux</strong> rechercher des vols avec dates flexibles (plage, weekend, ±X jours, mois complet),<br/>
-              <strong>afin de</strong> trouver les meilleures disponibilités et tarifs.<br/>
-              <br/>→ <em style="color:var(--red);">4 règles métier = effort imprévisible</em>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> utiliser des promotions,<br/>
+              <strong>afin de</strong> payer moins cher mes courses.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ 4 règles promo : Code · Catalogue auto · Fidélité · 2+1 offert</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p3">
-          <div class="apres-header">✓ APRÈS — Une règle métier = une story</div>
+          <div class="apres-header">✓ APRÈS — Une règle promo = une story</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> rechercher par plage de dates <strong>afin de</strong> comparer les prix sur un intervalle</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> filtrer les weekends uniquement <strong>afin de</strong> planifier des escapades courtes</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> rechercher ± X jours autour d'une date <strong>afin de</strong> trouver des tarifs flexibles</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> parcourir un mois complet <strong>afin de</strong> repérer les meilleures opportunités</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> appliquer un code promo <strong>afin d'</strong>obtenir une réduction sur ma commande.</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> bénéficier automatiquement des promotions catalogue <strong>afin de</strong> ne pas oublier les réductions.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> utiliser mes points fidélité <strong>afin de</strong> réduire le montant de ma commande.</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> bénéficier d'offres "2 achetés = 1 offert" <strong>afin d'</strong>économiser sur certains produits.</div>
           </div>
         </div>
       </div>
@@ -980,27 +980,27 @@
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La complexité vient de la <em>diversité ou du volume de données</em> à gérer. On commence avec le type de données le plus simple, et on ajoute les cas complexes progressivement.</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La complexité vient de la <em>diversité des catégories de données</em> à gérer. On commence avec la catégorie la plus simple (alimentaire de base) et on ajoute les types progressivement.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p4">
-          <div class="avant-header">✗ AVANT — Toutes les données d'un coup</div>
+          <div class="avant-header">✗ AVANT — Toutes les catégories d'un coup</div>
           <div class="avant-body">
             <div class="story-card">
               <div class="story-role">User Story — données multiples</div>
-              <strong>En tant qu'</strong>utilisateur,<br/>
-              <strong>je veux</strong> effectuer une recherche géographique (département, commune, arrondissement, quartier, code postal),<br/>
-              <strong>afin de</strong> trouver des offres dans ma zone.<br/>
-              <br/>→ <em style="color:var(--red);">5 types de données = complexité inestimable</em>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> rechercher tous les produits du supermarché,<br/>
+              <strong>afin de</strong> trouver rapidement ce que je veux acheter.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ 4 catégories : Alimentaire · Frais · Non-alimentaire · Boissons</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p4">
-          <div class="apres-header">✓ APRÈS — Données simples → complexes</div>
+          <div class="apres-header">✓ APRÈS — Une catégorie = une story</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> rechercher par département <strong>afin de</strong> cibler une grande zone géographique</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> affiner par commune <strong>afin de</strong> préciser ma zone de recherche</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> filtrer par arrondissement <strong>afin de</strong> cibler un secteur urbain précis</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> rechercher par quartier ou code postal <strong>afin de</strong> trouver des offres très localisées</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> rechercher des produits alimentaires <strong>afin de</strong> trouver mes courses quotidiennes.</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> rechercher des produits frais <strong>afin de</strong> trouver des fruits, légumes et viandes.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> rechercher des produits d'hygiène et d'entretien <strong>afin de</strong> compléter mes achats.</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> rechercher des boissons <strong>afin de</strong> préparer mes achats pour la semaine.</div>
           </div>
         </div>
       </div>
@@ -1011,31 +1011,30 @@
   <div class="slide slide-content" data-slide="14">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🖊️ Pattern 5</span> <em>Méthodes de Saisie</em></div>
+      <div class="content-title"><span class="pattern-badge">📱 Pattern 5</span> <em>Variations d'Interface</em></div>
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> Une interface de saisie <em>élaborée ou interactive</em> (datepicker, autocomplétion, carte interactive…) ajoute de la complexité UI indépendamment de la logique métier sous-jacente.</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La même fonctionnalité doit être disponible sur <em>plusieurs plateformes ou interfaces</em> (Web, iOS, Android). Chaque canal peut être livré comme un incrément indépendant.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p5">
-          <div class="avant-header">✗ AVANT — Fonctionnalité + UI complexe ensemble</div>
+          <div class="avant-header">✗ AVANT — Toutes les interfaces ensemble</div>
           <div class="avant-body">
             <div class="story-card">
-              <div class="story-role">User Story — UI complexe mêlée</div>
-              <strong>En tant qu'</strong>utilisateur,<br/>
-              <strong>je veux</strong> sélectionner une date de livraison via un calendrier interactif avec disponibilités temps réel et jours fériés bloqués,<br/>
-              <strong>afin de</strong> choisir le créneau qui me convient.<br/>
-              <br/>→ <em style="color:var(--red);">Calendrier riche = 3-4x plus d'effort UI</em>
+              <div class="story-role">User Story — multi-interface</div>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> consulter mes commandes sur Web, iOS et Android,<br/>
+              <strong>afin d'</strong>accéder à mon historique partout.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ 3 interfaces = 3 équipes / 3 efforts distincts non estimables ensemble</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p5">
-          <div class="apres-header">✓ APRÈS — Logique métier d'abord, UI ensuite</div>
+          <div class="apres-header">✓ APRÈS — Une interface = une story</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> saisir une date en texte libre (JJ/MM/AAAA) <strong>afin de</strong> choisir un créneau de livraison</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> utiliser un datepicker basique <strong>afin de</strong> sélectionner ma date sans erreur de format</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> voir les disponibilités en temps réel <strong>afin de</strong> choisir parmi les créneaux libres</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> que les jours fériés soient bloqués <strong>afin d'</strong>éviter de choisir une date impossible</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client Web, <strong>je veux</strong> consulter mon historique de commandes <strong>afin de</strong> retrouver mes anciens achats.</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client iOS, <strong>je veux</strong> consulter mon historique de commandes <strong>afin de</strong> retrouver mes anciens achats.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client Android, <strong>je veux</strong> consulter mon historique de commandes <strong>afin de</strong> retrouver mes anciens achats.</div>
           </div>
         </div>
       </div>
@@ -1046,31 +1045,30 @@
   <div class="slide slide-content" data-slide="15">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">💪 Pattern 6</span> <em>Effort Concentré</em></div>
+      <div class="content-title"><span class="pattern-badge">🎯 Pattern 6</span> <em>Simple / Complexe</em></div>
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'effort de développement se concentre dans le <em>premier cas implémenté</em>. Les cas suivants utilisent la même infrastructure et coûtent beaucoup moins cher — on peut les différer.</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story peut commencer avec une version <em>simple immédiatement utile</em>, puis être enrichie progressivement avec plus de sophistication technique ou métier.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p6">
-          <div class="avant-header">✗ AVANT — Tous les cas au même sprint</div>
+          <div class="avant-header">✗ AVANT — Personnalisation maximale d'emblée</div>
           <div class="avant-body">
             <div class="story-card">
-              <div class="story-role">User Story — effort concentré</div>
+              <div class="story-role">User Story — trop sophistiquée</div>
               <strong>En tant que</strong> client,<br/>
-              <strong>je veux</strong> payer avec VISA, MasterCard, American Express ou Diners Club,<br/>
-              <strong>afin de</strong> finaliser mes achats en ligne avec ma carte préférée.<br/>
-              <br/>→ <em style="color:var(--red);">4 intégrations en parallèle = risque et délai</em>
+              <strong>je veux</strong> recevoir des recommandations personnalisées,<br/>
+              <strong>afin de</strong> découvrir des produits adaptés à mes habitudes.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ IA, données, modèles ML = effort imprévisible dès le départ</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p6">
-          <div class="apres-header">✓ APRÈS — 1 cas difficile + les variantes</div>
+          <div class="apres-header">✓ APRÈS — Simple d'abord, enrichissement progressif</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par VISA <strong>afin de</strong> finaliser mon achat (pose l'infrastructure complète)</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par MasterCard <strong>afin d'</strong>avoir une alternative VISA</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par American Express <strong>afin d'</strong>utiliser ma carte professionnelle</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par Diners Club <strong>afin d'</strong>avoir toutes les options de paiement</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> voir les produits les plus achetés <strong>afin d'</strong>obtenir des suggestions simples.</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> voir des recommandations liées à mes achats précédents <strong>afin de</strong> gagner du temps.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> recevoir des recommandations IA selon mes habitudes <strong>afin de</strong> découvrir des produits pertinents.</div>
           </div>
         </div>
       </div>
@@ -1081,32 +1079,31 @@
   <div class="slide slide-content" data-slide="16">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🎯 Pattern 7</span> <em>Simple / Complexe</em></div>
+      <div class="content-title"><span class="pattern-badge">💪 Pattern 7</span> <em>Effort Concentré</em></div>
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story mélange un <em>cœur fonctionnel simple</em> et des <em>options avancées optionnelles</em>. On isole d'abord le cœur, puis chaque option devient sa propre story différable.</div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'effort de développement se concentre dans le <em>premier cas implémenté</em>. Les cas suivants réutilisent la même infrastructure et coûtent beaucoup moins cher — on peut les différer.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p7">
-          <div class="avant-header">✗ AVANT — Fonctionnalité surchargée</div>
+          <div class="avant-header">✗ AVANT — Tous les modes de paiement ensemble</div>
           <div class="avant-body">
             <div class="story-card">
-              <div class="story-role">User Story — surchargée</div>
-              <strong>En tant que</strong> voyageur,<br/>
-              <strong>je veux</strong> rechercher des vols avec filtres (escales, aéroports proches, dates ±3j, compagnies, bagages),<br/>
-              <strong>afin de</strong> planifier mon voyage selon mes préférences.<br/>
-              <br/>→ <em style="color:var(--red);">6 options avancées = story impossible à estimer</em>
+              <div class="story-role">User Story — effort concentré</div>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> payer avec plusieurs moyens de paiement,<br/>
+              <strong>afin de</strong> choisir celui qui me convient.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ 4 intégrations en parallèle = risque et délai</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p7">
-          <div class="apres-header">✓ APRÈS — Cœur simple + options différées</div>
+          <div class="apres-header">✓ APRÈS — 1 cas difficile + variantes</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> rechercher par origine, destination et date <strong>afin de</strong> trouver des vols disponibles</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> filtrer par nombre d'escales <strong>afin de</strong> choisir l'itinéraire le plus direct</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> inclure les aéroports proches <strong>afin d'</strong>élargir mes options de départ</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> activer la flexibilité ± jours <strong>afin de</strong> trouver les meilleurs tarifs</div>
-            <div class="story-card split" data-di="4">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> filtrer par compagnies et bagages <strong>afin de</strong> respecter mes préférences</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par carte bancaire <strong>afin de</strong> finaliser ma commande rapidement. <em style="font-size:12px; color:var(--gray);">(pose l'infra)</em></div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client iOS, <strong>je veux</strong> payer avec Apple Pay <strong>afin de</strong> payer plus rapidement.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client Android, <strong>je veux</strong> payer avec Google Pay <strong>afin de</strong> payer plus rapidement.</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer en plusieurs fois <strong>afin d'</strong>étaler mes dépenses.</div>
           </div>
         </div>
       </div>
@@ -1124,23 +1121,23 @@
       <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story inclut des exigences de <em>performance ou de rapidité</em>. On sépare "ça fonctionne" de "ça fonctionne vite" — on valide d'abord la logique, on optimise ensuite avec des données réelles.</div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p8">
-          <div class="avant-header">✗ AVANT — Fonctionnel + performant en même temps</div>
+          <div class="avant-header">✗ AVANT — Fonctionnel + instantané ensemble</div>
           <div class="avant-body">
             <div class="story-card">
               <div class="story-role">User Story — perf prématurée</div>
-              <strong>En tant qu'</strong>utilisateur,<br/>
-              <strong>je veux</strong> que le rapport de ventes se génère en moins de 2 secondes (même avec 10M d'enregistrements),<br/>
-              <strong>afin d'</strong>analyser les performances commerciales sans attente.<br/>
-              <br/>→ <em style="color:var(--red);">Optimiser sans données réelles = sur-engineering prématuré</em>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> que la recherche produit affiche des résultats instantanément,<br/>
+              <strong>afin de</strong> trouver rapidement mes articles.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ Optimiser sans données réelles = sur-engineering prématuré</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p8">
-          <div class="apres-header">✓ APRÈS — Fonctionnel d'abord, optimisation ensuite</div>
+          <div class="apres-header">✓ APRÈS — Fonctionnel d'abord, perf ensuite</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> générer le rapport de ventes <strong>afin d'</strong>analyser les données (performance non contrainte en v1)</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> que le rapport s'affiche en moins de 10 secondes <strong>afin de</strong> ne pas interrompre mon flux de travail</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> un rapport en moins de 2 secondes <strong>afin d'</strong>obtenir des réponses instantanées en production</div>
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> rechercher des produits <strong>afin de</strong> trouver les articles disponibles. <em style="font-size:12px; color:var(--gray);">(perf non contrainte)</em></div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> obtenir les résultats en moins d'une seconde <strong>afin d'</strong>avoir une expérience fluide.</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> voir des suggestions pendant ma saisie <strong>afin de</strong> gagner du temps.</div>
           </div>
         </div>
       </div>
@@ -1155,27 +1152,26 @@
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'implémentation est tellement <em>floue ou inconnue</em> qu'on ne peut pas estimer. On fait d'abord une exploration time-boxée. <span class="kw">Dernier recours — tenter les autres patterns d'abord.</span></div>
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La faisabilité est tellement <em>incertaine</em> qu'on ne peut pas estimer. On fait d'abord une exploration time-boxée pour lever les inconnues. <span class="kw">Dernier recours — tenter les autres patterns d'abord.</span></div>
       <div class="avant-apres">
         <div class="avant-box" id="av-p9">
-          <div class="avant-header">✗ AVANT — Implémentation floue</div>
+          <div class="avant-header">✗ AVANT — Faisabilité inconnue</div>
           <div class="avant-body">
             <div class="story-card">
-              <div class="story-role">User Story — implémentation floue</div>
-              <strong>En tant que</strong> développeur,<br/>
-              <strong>je veux</strong> intégrer l'API de paiement du nouveau partenaire (documentation, sécurité et modèles de données inconnus),<br/>
-              <strong>afin de</strong> proposer ce moyen de paiement à nos clients.<br/>
-              <br/>→ <em style="color:var(--red);">Inestimable = risque sprint entier bloqué</em>
+              <div class="story-role">User Story — inestimable</div>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> recevoir des recommandations ultra-personnalisées en temps réel,<br/>
+              <strong>afin d'</strong>avoir une expérience d'achat intelligente.<br/>
+              <br/><span style="font-size:13px; color:var(--gray);">→ IA ? · Temps réel ? · Données RGPD ? · Faisabilité mobile ? · Architecture ?</span>
             </div>
           </div>
         </div>
         <div class="apres-box" id="ap-p9">
           <div class="apres-header">✓ APRÈS — Spike puis implémentation</div>
           <div class="apres-body">
-            <div class="story-card split" data-di="0">🔬 <strong>En tant que</strong> développeur, <strong>je veux</strong> explorer l'API (2j max) <strong>afin de</strong> documenter les contraintes et rendre la story estimable</div>
-            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> développeur, <strong>je veux</strong> intégrer l'authentification OAuth <strong>afin de</strong> sécuriser la connexion avec le partenaire</div>
-            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer via le nouveau partenaire <strong>afin de</strong> bénéficier de ce mode de règlement</div>
-            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> que les erreurs de paiement soient gérées <strong>afin d'</strong>être informé en cas de problème</div>
+            <div class="story-card split" data-di="0">🔬 <strong>En tant qu'</strong>équipe produit, <strong>nous voulons</strong> évaluer les solutions de moteur de recommandation <strong>afin de</strong> choisir une architecture adaptée. <em style="font-size:12px; color:var(--gray);">(time-box : 3j)</em></div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> voir les produits populaires <strong>afin d'</strong>obtenir des suggestions simples. <em style="font-size:12px; color:var(--gray);">(MVP)</em></div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> voir des recommandations selon mes achats précédents <strong>afin de</strong> retrouver mes habitudes.</div>
           </div>
         </div>
       </div>
@@ -1243,15 +1239,15 @@
     </div>
     <div class="content-body" style="flex-direction:column; gap:14px;">
       <div class="conclusion-grid" id="concl-grid">
-        <div class="concl-card" data-delay="0"><div class="c-num">Pattern 1</div><div class="c-name">🔄 Étapes du Workflow</div><div class="c-desc">Diviser un processus en étapes séquentielles</div></div>
-        <div class="concl-card" data-delay="1"><div class="c-num">Pattern 2</div><div class="c-name">⚙️ Opérations CRUD</div><div class="c-desc">"Gérer" = Créer + Lire + Modifier + Supprimer</div></div>
-        <div class="concl-card" data-delay="2"><div class="c-num">Pattern 3</div><div class="c-name">📋 Règles Métier</div><div class="c-desc">Une règle = une story</div></div>
-        <div class="concl-card" data-delay="3"><div class="c-num">Pattern 4</div><div class="c-name">🗃️ Variations de Données</div><div class="c-desc">Simple → complexe, progressivement</div></div>
-        <div class="concl-card" data-delay="4"><div class="c-num">Pattern 5</div><div class="c-name">🖊️ Méthodes de Saisie</div><div class="c-desc">Logique métier d'abord, UI avancée ensuite</div></div>
-        <div class="concl-card" data-delay="5"><div class="c-num">Pattern 6</div><div class="c-name">💪 Effort Concentré</div><div class="c-desc">1 cas difficile + variantes séparées</div></div>
-        <div class="concl-card" data-delay="6"><div class="c-num">Pattern 7</div><div class="c-name">🎯 Simple / Complexe</div><div class="c-desc">Cœur fonctionnel + options différées</div></div>
-        <div class="concl-card" data-delay="7"><div class="c-num">Pattern 8</div><div class="c-name">⚡ Différer la Performance</div><div class="c-desc">Fonctionnel avant optimal</div></div>
-        <div class="concl-card" data-delay="8"><div class="c-num">Pattern 9</div><div class="c-name">🔬 Spike d'Investigation</div><div class="c-desc">Explorer time-boxé avant d'implémenter (dernier recours)</div></div>
+        <div class="concl-card" data-delay="0"><div class="c-num">Pattern 1</div><div class="c-name">🔄 Étapes du Workflow</div><div class="c-desc">Passer commande = Panier + Créneau + Paiement + Confirmation + Suivi</div></div>
+        <div class="concl-card" data-delay="1"><div class="c-num">Pattern 2</div><div class="c-name">⚙️ Opérations CRUD</div><div class="c-desc">"Gérer le panier" = Ajouter + Modifier + Supprimer + Vider</div></div>
+        <div class="concl-card" data-delay="2"><div class="c-num">Pattern 3</div><div class="c-name">📋 Règles Métier</div><div class="c-desc">Une règle promo = une story (code, auto, fidélité, 2+1)</div></div>
+        <div class="concl-card" data-delay="3"><div class="c-num">Pattern 4</div><div class="c-name">🗃️ Variations de Données</div><div class="c-desc">Alimentaire → Frais → Non-alimentaire → Boissons</div></div>
+        <div class="concl-card" data-delay="4"><div class="c-num">Pattern 5</div><div class="c-name">📱 Variations d'Interface</div><div class="c-desc">Une plateforme = une story (Web / iOS / Android)</div></div>
+        <div class="concl-card" data-delay="5"><div class="c-num">Pattern 6</div><div class="c-name">🎯 Simple / Complexe</div><div class="c-desc">Populaires → Historique → IA personnalisée</div></div>
+        <div class="concl-card" data-delay="6"><div class="c-num">Pattern 7</div><div class="c-name">💪 Effort Concentré</div><div class="c-desc">Carte bancaire (infra) puis Apple Pay / Google Pay / Plusieurs fois</div></div>
+        <div class="concl-card" data-delay="7"><div class="c-num">Pattern 8</div><div class="c-name">⚡ Différer la Performance</div><div class="c-desc">Recherche fonctionnelle → &lt; 1 sec → Suggestions temps réel</div></div>
+        <div class="concl-card" data-delay="8"><div class="c-num">Pattern 9</div><div class="c-name">🔬 Spike d'Investigation</div><div class="c-desc">Évaluer le moteur de reco avant d'implémenter (dernier recours)</div></div>
       </div>
       <div class="emph-box" style="font-size:clamp(15px,1.54vw,20px);">
         Le découpage est une compétence. Avec <strong>2-3 sessions de pratique structurée</strong>, votre équipe peut livrer de la valeur plus vite, obtenir des feedbacks plus tôt, et devenir <strong>plus prévisible</strong>.
