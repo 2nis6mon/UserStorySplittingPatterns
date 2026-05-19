@@ -23,11 +23,8 @@
     .slide.exit { opacity: 0; transform: translateX(-60px); }
 
     /* Logo */
-    .logo { position: absolute; top: 22px; right: 28px; display: flex; align-items: center; gap: 10px; z-index: 10; }
-    .logo svg { width: 44px; height: 44px; }
-    .logo-text { line-height: 1.1; }
-    .logo-text .logo-top { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--dark); text-transform: uppercase; }
-    .logo-text .logo-bot { font-size: 18px; font-weight: 700; color: var(--dark); }
+    .logo { position: absolute; top: 22px; right: 28px; z-index: 10; }
+    .logo-img { height: 46px; width: auto; display: block; }
 
     /* Title slide */
     .slide-title { background: var(--burgundy); flex-direction: row; align-items: stretch; }
@@ -36,10 +33,8 @@
     .title-main { font-size: clamp(39px, 5.32vw, 73px); font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
     .title-main span { color: rgba(255,255,255,0.65); font-weight: 300; }
     .title-sub { font-size: clamp(18px, 2.1vw, 25px); font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 480px; }
-    .title-logo-bl { position: absolute; bottom: 28px; left: 32px; display: flex; align-items: center; gap: 10px; }
-    .title-logo-bl svg { width: 52px; height: 52px; }
-    .title-logo-bl .logo-text .logo-top,
-    .title-logo-bl .logo-text .logo-bot { color: rgba(255,255,255,0.9); }
+    .title-logo-bl { position: absolute; bottom: 28px; left: 32px; }
+    .title-logo-bl .logo-img { height: 54px; width: auto; }
     .title-watermark { position: absolute; right: -60px; top: -60px; width: 70%; height: 130%; opacity: 0.06; pointer-events: none; }
 
     /* Section divider */
@@ -52,10 +47,7 @@
     .section-title { font-size: clamp(31px, 4.2vw, 59px); font-weight: 800; color: var(--dark); line-height: 1.2; }
     .section-title em { color: var(--burgundy); font-style: normal; }
     .section-desc { font-size: clamp(17px, 1.82vw, 22px); color: var(--gray); margin-top: 16px; line-height: 1.7; max-width: 400px; }
-    /* logo on section right panel */
-    .section-right .logo { top: 22px; right: 28px; }
-    .section-right .logo .logo-text .logo-top,
-    .section-right .logo .logo-text .logo-bot { color: var(--dark); }
+
 
     /* Content slide */
     .slide-content { flex-direction: column; background: var(--beige); }
@@ -227,17 +219,7 @@
     <div class="title-main">User Story<br/><span>Splitting</span><br/>Patterns</div>
     <div class="title-sub">Maîtriser l'art de découper les User Stories pour livrer de la valeur plus vite, mieux, et de façon plus prévisible.</div>
   </div>
-  <div class="title-logo-bl">
-    <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,18 Q29,6 38,14" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <circle cx="29" cy="21" r="5" fill="white"/>
-      <path d="M24,24 C16,25 8,33 5,44" stroke="white" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M34,24 C42,25 50,33 53,44" stroke="white" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="logo-text">
-      <div class="logo-top" style="color:rgba(255,255,255,0.85)">Groupement</div>
-      <div class="logo-bot" style="color:rgba(255,255,255,0.95)">Mousquetaires</div>
-    </div>
+  <div class="title-logo-bl"><img src="logo-white.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
   </div>
 </div>
 
@@ -245,14 +227,7 @@
 <div class="slide slide-section" data-slide="2">
   <div class="section-left"><div class="section-number">1</div></div>
   <div class="section-right">
-    <div class="logo">
-      <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-        <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-        <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-        <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      </svg>
-      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
     </div>
     <div class="section-label">Partie 1</div>
     <div class="section-title">Pourquoi<br/><em>découper</em> les<br/>User Stories ?</div>
@@ -262,14 +237,7 @@
 
 <!-- ─── 3. WHY SPLITTING ─── -->
 <div class="slide slide-content" data-slide="3">
-  <div class="logo">
-    <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-      <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
   </div>
   <div class="content-header">
     <div class="content-title">Pourquoi découper ? : <em>Le problème des équipes agiles</em></div>
@@ -306,14 +274,7 @@
 <div class="slide slide-section" data-slide="4">
   <div class="section-left"><div class="section-number">2</div></div>
   <div class="section-right">
-    <div class="logo">
-      <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-        <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-        <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-        <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      </svg>
-      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
     </div>
     <div class="section-label">Partie 2</div>
     <div class="section-title">Qu'est-ce qu'une<br/><em>bonne</em><br/>User Story ?</div>
@@ -323,14 +284,7 @@
 
 <!-- ─── 5. INVEST ─── -->
 <div class="slide slide-content" data-slide="5">
-  <div class="logo">
-    <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-      <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
   </div>
   <div class="content-header">
     <div class="content-title">Qu'est-ce qu'une bonne User Story ? : <em>Les critères INVEST</em></div>
@@ -353,14 +307,7 @@
 
 <!-- ─── 6. TRANCHES VERTICALES ─── -->
 <div class="slide slide-content" data-slide="6">
-  <div class="logo">
-    <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-      <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
   </div>
   <div class="content-header">
     <div class="content-title">Tranches verticales : <em>Découpage par couche</em> <strong>vs</strong> <em>Tranches de valeur</em></div>
@@ -401,14 +348,7 @@
 <div class="slide slide-section" data-slide="7">
   <div class="section-left"><div class="section-number">3</div></div>
   <div class="section-right">
-    <div class="logo">
-      <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-        <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-        <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-        <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      </svg>
-      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
     </div>
     <div class="section-label">Partie 3</div>
     <div class="section-title">L'Organigramme<br/>de <em>Découpage</em></div>
@@ -418,14 +358,7 @@
 
 <!-- ─── 8. FLOWCHART OVERVIEW ─── -->
 <div class="slide slide-content" data-slide="8">
-  <div class="logo">
-    <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-      <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
   </div>
   <div class="content-header">
     <div class="content-title">L'organigramme de découpage : <em>Les 9 patterns</em></div>
@@ -448,14 +381,7 @@
 
 <!-- ─── 9. META-PATTERN ─── -->
 <div class="slide slide-content" data-slide="9">
-  <div class="logo">
-    <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-      <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
   </div>
   <div class="content-header">
     <div class="content-title">Le <em>Méta-Pattern</em> : Trouver la complexité &amp; Réduire les variations</div>
@@ -475,7 +401,7 @@
 
 <!-- ─── 10. PATTERN 1 — Workflow ─── -->
 <div class="slide slide-content" data-slide="10">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">🔄 Pattern 1</span> <em>Étapes du Workflow</em></div>
     <hr class="content-rule"/>
@@ -510,7 +436,7 @@
 
 <!-- ─── 11. PATTERN 2 — CRUD ─── -->
 <div class="slide slide-content" data-slide="11">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">⚙️ Pattern 2</span> <em>Opérations CRUD</em></div>
     <hr class="content-rule"/>
@@ -544,7 +470,7 @@
 
 <!-- ─── 12. PATTERN 3 — Business Rules ─── -->
 <div class="slide slide-content" data-slide="12">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">📋 Pattern 3</span> <em>Variations de Règles Métier</em></div>
     <hr class="content-rule"/>
@@ -578,7 +504,7 @@
 
 <!-- ─── 13. PATTERN 4 — Data Variations ─── -->
 <div class="slide slide-content" data-slide="13">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">🗃️ Pattern 4</span> <em>Variations de Données</em></div>
     <hr class="content-rule"/>
@@ -612,7 +538,7 @@
 
 <!-- ─── 14. PATTERN 5 — Data Entry ─── -->
 <div class="slide slide-content" data-slide="14">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">🖊️ Pattern 5</span> <em>Méthodes de Saisie</em></div>
     <hr class="content-rule"/>
@@ -646,7 +572,7 @@
 
 <!-- ─── 15. PATTERN 6 — Major Effort ─── -->
 <div class="slide slide-content" data-slide="15">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">💪 Pattern 6</span> <em>Effort Concentré</em></div>
     <hr class="content-rule"/>
@@ -680,7 +606,7 @@
 
 <!-- ─── 16. PATTERN 7 — Simple/Complex ─── -->
 <div class="slide slide-content" data-slide="16">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">🎯 Pattern 7</span> <em>Simple / Complexe</em></div>
     <hr class="content-rule"/>
@@ -715,7 +641,7 @@
 
 <!-- ─── 17. PATTERN 8 — Defer Performance ─── -->
 <div class="slide slide-content" data-slide="17">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">⚡ Pattern 8</span> <em>Différer la Performance</em></div>
     <hr class="content-rule"/>
@@ -748,7 +674,7 @@
 
 <!-- ─── 18. PATTERN 9 — Spike ─── -->
 <div class="slide slide-content" data-slide="18">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title"><span class="pattern-badge">🔬 Pattern 9</span> <em>Spike d'Investigation</em></div>
     <hr class="content-rule"/>
@@ -784,14 +710,7 @@
 <div class="slide slide-section" data-slide="19">
   <div class="section-left"><div class="section-number">4</div></div>
   <div class="section-right">
-    <div class="logo">
-      <svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-        <circle cx="29" cy="21" r="5" fill="#E05A1E"/>
-        <path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-        <path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      </svg>
-      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div>
     </div>
     <div class="section-label">Partie 4</div>
     <div class="section-title">S'<em>améliorer</em><br/>dans le<br/>découpage</div>
@@ -801,7 +720,7 @@
 
 <!-- ─── 20. PRACTICE ─── -->
 <div class="slide slide-content" data-slide="20">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title">S'améliorer dans le découpage : <em>La méthode en 2-3 semaines</em></div>
     <hr class="content-rule"/>
@@ -823,7 +742,7 @@
 
 <!-- ─── 21. CONCLUSION ─── -->
 <div class="slide slide-content" data-slide="21">
-  <div class="logo"><svg viewBox="0 0 56 52" xmlns="http://www.w3.org/2000/svg"><path d="M20,18 Q29,6 38,14" stroke="#E05A1E" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="29" cy="21" r="5" fill="#E05A1E"/><path d="M24,24 C16,25 8,33 5,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="M34,24 C42,25 50,33 53,44" stroke="#E05A1E" stroke-width="5.5" stroke-linecap="round" fill="none"/></svg><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+  <div class="logo"><img src="logo.png" alt="Groupement Mousquetaires" class="logo-img"/></div></div>
   <div class="content-header">
     <div class="content-title">Récapitulatif : <em>Les 9 Patterns de découpage</em></div>
     <hr class="content-rule"/>
