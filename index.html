@@ -65,8 +65,8 @@
     }
     .logo-icon svg { width: 28px; height: 28px; }
     .logo-text { line-height: 1.1; }
-    .logo-text .logo-top { font-size: 7px; font-weight: 700; letter-spacing: 1.5px; color: var(--dark); text-transform: uppercase; }
-    .logo-text .logo-bot { font-size: 13px; font-weight: 700; color: var(--dark); }
+    .logo-text .logo-top { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--dark); text-transform: uppercase; }
+    .logo-text .logo-bot { font-size: 18px; font-weight: 700; color: var(--dark); }
     .logo-white .logo-text .logo-top,
     .logo-white .logo-text .logo-bot { color: var(--white); }
 
@@ -82,18 +82,18 @@
       width: 65%;
     }
     .title-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      font-size: 15px; font-weight: 700; letter-spacing: 4px;
       text-transform: uppercase; color: rgba(255,255,255,0.55);
       margin-bottom: 24px;
     }
     .title-main {
-      font-size: clamp(28px, 3.8vw, 52px);
+      font-size: clamp(39px, 5.32vw, 73px);
       font-weight: 800; color: var(--white); line-height: 1.15;
       margin-bottom: 20px;
     }
     .title-main span { color: rgba(255,255,255,0.65); font-weight: 300; }
     .title-sub {
-      font-size: clamp(13px, 1.5vw, 18px);
+      font-size: clamp(18px, 2.1vw, 25px);
       font-weight: 400; color: rgba(255,255,255,0.7);
       line-height: 1.6; max-width: 480px;
     }
@@ -124,7 +124,7 @@
       clip-path: ellipse(100% 50% at 0% 50%);
     }
     .section-number {
-      font-size: clamp(100px, 14vw, 180px);
+      font-size: clamp(140px, 19.6vw, 252px);
       font-weight: 800; color: var(--white);
       line-height: 1; position: relative;
     }
@@ -142,17 +142,17 @@
       padding: 0 8% 0 10%;
     }
     .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      font-size: 15px; font-weight: 700; letter-spacing: 4px;
       text-transform: uppercase; color: var(--burgundy);
       margin-bottom: 12px;
     }
     .section-title {
-      font-size: clamp(22px, 3vw, 42px);
+      font-size: clamp(31px, 4.2vw, 59px);
       font-weight: 800; color: var(--dark); line-height: 1.2;
     }
     .section-title em { color: var(--burgundy); font-style: normal; }
     .section-desc {
-      font-size: clamp(12px, 1.3vw, 16px);
+      font-size: clamp(17px, 1.82vw, 22px);
       color: var(--gray); margin-top: 16px; line-height: 1.7;
       max-width: 400px;
     }
@@ -167,7 +167,7 @@
       flex-shrink: 0;
     }
     .content-title {
-      font-size: clamp(15px, 1.8vw, 22px);
+      font-size: clamp(21px, 2.52vw, 31px);
       font-weight: 700; color: var(--dark);
     }
     .content-title em { color: var(--red); font-style: normal; }
@@ -192,16 +192,16 @@
       display: flex; align-items: center; gap: 10px;
       margin-bottom: 14px;
     }
-    .section-heading .icon { font-size: 22px; }
+    .section-heading .icon { font-size: 31px; }
     .section-heading h3 {
-      font-size: clamp(13px, 1.4vw, 17px);
+      font-size: clamp(18px, 1.96vw, 24px);
       font-weight: 700; color: var(--red);
     }
 
     /* ─── Bullet lists ─── */
     .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .check-list li {
-      font-size: clamp(11px, 1.15vw, 14px);
+      font-size: clamp(15px, 1.61vw, 20px);
       color: var(--dark); line-height: 1.55;
       display: flex; gap: 10px;
     }
@@ -214,7 +214,7 @@
 
     .arrow-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .arrow-list li {
-      font-size: clamp(11px, 1.1vw, 14px);
+      font-size: clamp(15px, 1.54vw, 20px);
       color: var(--dark); line-height: 1.5;
       display: flex; gap: 10px;
     }
@@ -239,15 +239,15 @@
     }
     .invest-card.visible { opacity: 1; transform: translateY(0); }
     .invest-card .letter {
-      font-size: 28px; font-weight: 800; color: var(--burgundy);
+      font-size: 39px; font-weight: 800; color: var(--burgundy);
       line-height: 1;
     }
     .invest-card .word {
-      font-size: 13px; font-weight: 700; color: var(--dark);
+      font-size: 18px; font-weight: 700; color: var(--dark);
       margin: 2px 0 6px;
     }
     .invest-card .desc {
-      font-size: 11px; color: var(--gray); line-height: 1.4;
+      font-size: 15px; color: var(--gray); line-height: 1.4;
     }
 
     /* ─── Vertical slice visual ─── */
@@ -257,7 +257,7 @@
     .layer-bar {
       height: 48px; border-radius: 6px;
       display: flex; align-items: center; padding: 0 16px;
-      font-size: 12px; font-weight: 600; color: var(--white);
+      font-size: 17px; font-weight: 600; color: var(--white);
       opacity: 0; transform: translateX(-20px);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
@@ -276,10 +276,10 @@
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
     .v-slice.visible { opacity: 1; transform: translateY(0); }
-    .v-slice-ui   { background: rgba(142,68,173,0.15); height: 30%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #8E44AD; font-weight: 600; }
-    .v-slice-biz  { background: rgba(41,128,185,0.15); flex: 1; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #2980B9; font-weight: 600; }
-    .v-slice-data { background: rgba(39,174,96,0.15); height: 25%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #27AE60; font-weight: 600; }
-    .v-slice-label { background: var(--burgundy); color: white; font-size: 9px; font-weight: 700; text-align: center; padding: 4px; }
+    .v-slice-ui   { background: rgba(142,68,173,0.15); height: 30%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #8E44AD; font-weight: 600; }
+    .v-slice-biz  { background: rgba(41,128,185,0.15); flex: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #2980B9; font-weight: 600; }
+    .v-slice-data { background: rgba(39,174,96,0.15); height: 25%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #27AE60; font-weight: 600; }
+    .v-slice-label { background: var(--burgundy); color: white; font-size: 13px; font-weight: 700; text-align: center; padding: 6px; }
 
     /* ─── AVANT / APRÈS layout ─── */
     .avant-apres {
@@ -296,12 +296,12 @@
 
     .avant-header {
       background: var(--red); color: var(--white);
-      font-size: 13px; font-weight: 800; letter-spacing: 2px;
+      font-size: 18px; font-weight: 800; letter-spacing: 3px;
       text-transform: uppercase; padding: 10px 18px;
     }
     .apres-header {
       background: var(--green); color: var(--white);
-      font-size: 13px; font-weight: 800; letter-spacing: 2px;
+      font-size: 18px; font-weight: 800; letter-spacing: 3px;
       text-transform: uppercase; padding: 10px 18px;
     }
     .avant-body, .apres-body {
@@ -315,7 +315,7 @@
       border-left: 4px solid #D4A017;
       border-radius: 6px;
       padding: 10px 14px;
-      font-size: clamp(10px, 1.05vw, 13px);
+      font-size: clamp(14px, 1.47vw, 18px);
       line-height: 1.5;
       color: var(--dark);
       opacity: 0; transform: translateX(10px);
@@ -329,11 +329,11 @@
       border-left-color: var(--green);
     }
     .story-card.split strong { color: var(--green); }
-    .story-card .story-role { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+    .story-card .story-role { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
 
     /* Tag AVANT/APRÈS small */
     .tag-avant, .tag-apres {
-      display: inline-block; font-size: 9px; font-weight: 800;
+      display: inline-block; font-size: 13px; font-weight: 800;
       letter-spacing: 1.5px; text-transform: uppercase;
       padding: 3px 10px; border-radius: 3px;
     }
@@ -359,23 +359,23 @@
     .pattern-card:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(125,16,40,0.15); }
     .pattern-card.visible { opacity: 1; transform: translateY(0); }
     .pattern-card .p-num {
-      font-size: 9px; font-weight: 700; letter-spacing: 2px;
+      font-size: 13px; font-weight: 700; letter-spacing: 3px;
       text-transform: uppercase; color: var(--burgundy);
     }
     .pattern-card .p-name {
-      font-size: clamp(11px, 1.1vw, 14px); font-weight: 700; color: var(--dark);
+      font-size: clamp(15px, 1.54vw, 20px); font-weight: 700; color: var(--dark);
     }
     .pattern-card .p-desc {
-      font-size: clamp(9px, 0.9vw, 11px); color: var(--gray); line-height: 1.45;
+      font-size: clamp(13px, 1.26vw, 15px); color: var(--gray); line-height: 1.45;
     }
-    .pattern-card .p-icon { font-size: 22px; }
+    .pattern-card .p-icon { font-size: 31px; }
 
     /* ─── Pattern detail slide ─── */
     .pattern-badge {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--burgundy); color: var(--white);
       padding: 6px 16px; border-radius: 20px;
-      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      font-size: 15px; font-weight: 700; letter-spacing: 1px;
       margin-bottom: 6px;
     }
     .when-to-use {
@@ -383,7 +383,7 @@
       border-left: 3px solid var(--burgundy);
       border-radius: 0 6px 6px 0;
       padding: 10px 14px;
-      font-size: clamp(10px, 1.05vw, 13px);
+      font-size: clamp(14px, 1.47vw, 18px);
       color: var(--dark); line-height: 1.55;
     }
     .when-to-use strong { color: var(--burgundy); }
@@ -408,17 +408,17 @@
     .meta-step:not(:last-child)::after {
       content: '→';
       position: absolute; right: -12px; top: 28px;
-      font-size: 22px; color: var(--burgundy); font-weight: 700;
+      font-size: 31px; color: var(--burgundy); font-weight: 700;
     }
     .meta-step .step-num {
       width: 52px; height: 52px; border-radius: 50%;
       background: var(--burgundy); color: white;
-      font-size: 20px; font-weight: 800;
+      font-size: 28px; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 12px; flex-shrink: 0;
     }
-    .meta-step .step-title { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-    .meta-step .step-desc { font-size: 11px; color: var(--gray); line-height: 1.5; max-width: 160px; }
+    .meta-step .step-title { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .meta-step .step-desc { font-size: 15px; color: var(--gray); line-height: 1.5; max-width: 224px; }
 
     /* ─── Practice sessions ─── */
     .practice-sessions {
@@ -433,11 +433,11 @@
     }
     .session-card.visible { opacity: 1; transform: translateY(0); }
     .session-card .s-num {
-      font-size: 32px; font-weight: 800; color: var(--burgundy);
+      font-size: 45px; font-weight: 800; color: var(--burgundy);
       line-height: 1; margin-bottom: 4px;
     }
-    .session-card .s-title { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
-    .session-card .s-desc { font-size: 11px; color: var(--gray); line-height: 1.55; }
+    .session-card .s-title { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
+    .session-card .s-desc { font-size: 15px; color: var(--gray); line-height: 1.55; }
 
     /* ─── Conclusion recap ─── */
     .conclusion-grid {
@@ -453,9 +453,9 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .concl-card.visible { opacity: 1; transform: translateY(0); }
-    .concl-card .c-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--burgundy); text-transform: uppercase; }
-    .concl-card .c-name { font-size: clamp(10px, 1vw, 13px); font-weight: 700; color: var(--dark); }
-    .concl-card .c-desc { font-size: 10px; color: var(--gray); line-height: 1.4; margin-top: 3px; }
+    .concl-card .c-num { font-size: 13px; font-weight: 700; letter-spacing: 3px; color: var(--burgundy); text-transform: uppercase; }
+    .concl-card .c-name { font-size: clamp(14px, 1.4vw, 18px); font-weight: 700; color: var(--dark); }
+    .concl-card .c-desc { font-size: 14px; color: var(--gray); line-height: 1.4; margin-top: 4px; }
 
     /* ─── Navigation ─── */
     #nav {
@@ -469,13 +469,13 @@
       background: none; border: 1px solid rgba(255,255,255,0.35);
       color: white; width: 34px; height: 34px;
       border-radius: 50%; cursor: pointer;
-      font-size: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 22px; display: flex; align-items: center; justify-content: center;
       transition: background 0.2s, border-color 0.2s;
     }
     .nav-btn:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.7); }
     .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
     #slide-counter {
-      color: rgba(255,255,255,0.85); font-size: 12px; font-family: 'Open Sans', sans-serif;
+      color: rgba(255,255,255,0.85); font-size: 17px; font-family: 'Open Sans', sans-serif;
       min-width: 60px; text-align: center;
     }
 
@@ -500,7 +500,7 @@
 
     /* Small note */
     .note {
-      font-size: 10px; color: var(--gray); font-style: italic;
+      font-size: 14px; color: var(--gray); font-style: italic;
       margin-top: auto; padding-top: 8px;
     }
 
@@ -508,7 +508,7 @@
     .emph-box {
       background: var(--burgundy); color: var(--white);
       border-radius: 10px; padding: 18px 22px;
-      font-size: clamp(13px, 1.3vw, 17px); font-weight: 600;
+      font-size: clamp(18px, 1.82vw, 24px); font-weight: 600;
       line-height: 1.6; text-align: center;
     }
 
@@ -516,9 +516,9 @@
     .cynefin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .cynefin-card {
       border-radius: 8px; padding: 12px 14px;
-      font-size: 11px; color: var(--dark); line-height: 1.5;
+      font-size: 15px; color: var(--dark); line-height: 1.5;
     }
-    .cynefin-card .c-domain { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .cynefin-card .c-domain { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
     .c-obvious  { background: #D5F5E3; border-left: 4px solid #1E8449; }
     .c-obvious  .c-domain { color: #1E8449; }
     .c-complex  { background: #FEF9E7; border-left: 4px solid #D4AC0D; }
@@ -535,9 +535,9 @@
       padding: 16px; border-top: 4px solid var(--burgundy);
     }
     .team-box.bad { border-top-color: var(--red); }
-    .team-box h4 { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .team-box h4 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
     .team-box.bad h4 { color: var(--red); }
-    .team-box .tl { font-size: 11px; color: var(--gray); line-height: 1.55; }
+    .team-box .tl { font-size: 15px; color: var(--gray); line-height: 1.55; }
 
     /* Scroll text fix */
     .content-body { overflow: auto; }
@@ -689,7 +689,7 @@
       <hr class="content-rule"/>
     </div>
     <div class="content-body" style="flex-direction:column; gap:16px;">
-      <div style="font-size:clamp(11px,1.1vw,14px); color:var(--dark); line-height:1.6; max-width:680px;">
+      <div style="font-size:clamp(15px,1.54vw,20px); color:var(--dark); line-height:1.6; max-width:952px;">
         Une User Story est <strong>une description d'un changement de comportement du système du point de vue de l'utilisateur.</strong>
         Pour qu'elle soit bonne, elle doit respecter les critères <span class="kw-b">INVEST</span> :
       </div>
@@ -748,7 +748,7 @@
               <div class="layer-bar layer-biz" data-di="1">Logique Métier (Business Logic)</div>
               <div class="layer-bar layer-data" data-di="2">Base de données / API</div>
             </div>
-            <p style="font-size:11px; color:var(--gray); margin-top:8px; line-height:1.5;">
+            <p style="font-size:15px; color:var(--gray); margin-top:11px; line-height:1.5;">
               Chaque couche est développée séparément → aucune valeur livrable avant la fin du tout.
               Feedback utilisateur impossible en cours de sprint.
             </p>
@@ -788,7 +788,7 @@
                 <div class="v-slice-label">Tranche 4</div>
               </div>
             </div>
-            <p style="font-size:11px; color:var(--dark); margin-top:8px; line-height:1.5;">
+            <p style="font-size:15px; color:var(--dark); margin-top:11px; line-height:1.5;">
               Chaque tranche traverse toutes les couches → valeur livrable à chaque story.
               Feedback utilisateur immédiat possible.
             </p>
@@ -817,7 +817,7 @@
       <div class="team-compare">
         <div class="team-box">
           <h4>✅ Feature Teams</h4>
-          <ul class="check-list" style="font-size:11px;">
+          <ul class="check-list" style="font-size:15px;">
             <li>Livrent des <em>tranches verticales complètes</em> de bout en bout</li>
             <li>Ownership d'un produit ou sous-produit entier</li>
             <li>Valeur visible à chaque sprint, sans coordination inter-équipes</li>
@@ -826,7 +826,7 @@
         </div>
         <div class="team-box bad">
           <h4>⚠ Component Teams</h4>
-          <ul class="check-list" style="font-size:11px;">
+          <ul class="check-list" style="font-size:15px;">
             <li>Organisées par couche architecturale (UI, API, BDD…)</li>
             <li>Nécessitent une <em>coordination inter-équipes</em> pour chaque feature</li>
             <li>La valeur n'émerge qu'une fois toutes les équipes synchronisées</li>
@@ -1296,7 +1296,7 @@
         <div class="concl-card" data-delay="7"><div class="c-num">Pattern 8</div><div class="c-name">⚡ Différer la Performance</div><div class="c-desc">Fonctionnel avant optimal</div></div>
         <div class="concl-card" data-delay="8"><div class="c-num">Pattern 9</div><div class="c-name">🔬 Spike d'Investigation</div><div class="c-desc">Explorer time-boxé avant d'implémenter (dernier recours)</div></div>
       </div>
-      <div class="emph-box" style="font-size:clamp(11px,1.1vw,14px);">
+      <div class="emph-box" style="font-size:clamp(15px,1.54vw,20px);">
         Le découpage est une compétence. Avec <strong>2-3 sessions de pratique structurée</strong>, votre équipe peut livrer de la valeur plus vite, obtenir des feedbacks plus tôt, et devenir <strong>plus prévisible</strong>.
       </div>
     </div>
