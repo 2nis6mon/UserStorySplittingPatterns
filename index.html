@@ -63,7 +63,6 @@
       display: flex; align-items: center; gap: 8px;
       z-index: 10;
     }
-    .logo-icon svg { width: 28px; height: 28px; }
     .logo-text { line-height: 1.1; }
     .logo-text .logo-top { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--dark); text-transform: uppercase; }
     .logo-text .logo-bot { font-size: 18px; font-weight: 700; color: var(--dark); }
@@ -101,7 +100,6 @@
       position: absolute; bottom: 28px; left: 32px;
       display: flex; align-items: center; gap: 8px;
     }
-    .title-logo-bl svg { width: 30px; height: 30px; }
     .title-logo-bl .logo-text .logo-top,
     .title-logo-bl .logo-text .logo-bot { color: rgba(255,255,255,0.85); }
 
@@ -203,8 +201,9 @@
     .check-list li {
       font-size: clamp(15px, 1.61vw, 20px);
       color: var(--dark); line-height: 1.55;
-      display: flex; gap: 10px;
+      display: flex; gap: 10px; align-items: flex-start;
     }
+    .check-list li span { flex: 1; }
     .check-list li::before {
       content: '✓'; color: var(--red); font-weight: 700;
       flex-shrink: 0; margin-top: 1px;
@@ -318,10 +317,12 @@
       font-size: clamp(14px, 1.47vw, 18px);
       line-height: 1.5;
       color: var(--dark);
+    }
+    .story-card.split {
       opacity: 0; transform: translateX(10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
-    .story-card.visible { opacity: 1; transform: translateX(0); }
+    .story-card.split.visible { opacity: 1; transform: translateX(0); }
     .story-card strong { font-weight: 700; color: #7B5800; }
     .story-card.split {
       background: #F0FFF4;
@@ -577,11 +578,6 @@
     </div>
     <!-- Logo bottom-left -->
     <div class="title-logo-bl">
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
-        <path d="M20 10 L14 20 L20 18 L26 20 Z" fill="rgba(255,255,255,0.8)"/>
-        <path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(255,255,255,0.5)"/>
-      </svg>
       <div class="logo-text">
         <div class="logo-top">Groupement</div>
         <div class="logo-bot">Mousquetaires</div>
@@ -596,13 +592,6 @@
     </div>
     <div class="section-right">
       <div class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/>
-            <path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/>
-            <path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/>
-          </svg>
-        </div>
         <div class="logo-text">
           <div class="logo-top">Groupement</div>
           <div class="logo-bot">Mousquetaires</div>
@@ -617,7 +606,6 @@
   <!-- ─── 3. CONTENT: Why splitting matters ─── -->
   <div class="slide slide-content" data-slide="3">
     <div class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
       <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
     </div>
     <div class="content-header">
@@ -631,10 +619,10 @@
           <h3>Le problème constaté</h3>
         </div>
         <ul class="check-list">
-          <li>Les équipes créent des stories qui ressemblent à des <em>tâches techniques</em> ou des composants architecturaux</li>
-          <li>Les sprints se terminent sans valeur <em>livrable et visible</em> pour les utilisateurs</li>
-          <li>Les stories trop grosses rendent la priorisation difficile et le planning imprévisible</li>
-          <li>Les feedbacks arrivent <em>trop tard</em> dans le cycle de développement</li>
+          <li><span>Les équipes créent des stories qui ressemblent à des <em>tâches techniques</em> ou des composants architecturaux</span></li>
+          <li><span>Les sprints se terminent sans valeur <em>livrable et visible</em> pour les utilisateurs</span></li>
+          <li><span>Les stories trop grosses rendent la priorisation difficile et le planning imprévisible</span></li>
+          <li><span>Les feedbacks arrivent <em>trop tard</em> dans le cycle de développement</span></li>
         </ul>
         <div style="margin-top:18px;">
           <div class="section-heading">
@@ -652,11 +640,11 @@
           <h3>Les bénéfices d'un bon découpage</h3>
         </div>
         <ul class="check-list">
-          <li><strong>Feedback fréquent :</strong> valeur livrée à chaque sprint, retours utilisateurs rapides</li>
-          <li><strong>Valeur explicite :</strong> les équipes ont de meilleures conversations sur ce qui compte vraiment</li>
-          <li><strong>Prédictibilité :</strong> des stories petites et bien découpées rendent les sprints plus prévisibles</li>
-          <li><strong>Flexibilité produit :</strong> le Product Owner peut prioriser plus finement et déprioriser l'inutile</li>
-          <li><strong>Réduction du risque :</strong> on détecte les problèmes tôt sur de petits incréments</li>
+          <li><span><strong>Feedback fréquent :</strong> valeur livrée à chaque sprint, retours utilisateurs rapides</span></li>
+          <li><span><strong>Valeur explicite :</strong> les équipes ont de meilleures conversations sur ce qui compte vraiment</span></li>
+          <li><span><strong>Prédictibilité :</strong> des stories petites et bien découpées rendent les sprints plus prévisibles</span></li>
+          <li><span><strong>Flexibilité produit :</strong> le Product Owner peut prioriser plus finement et déprioriser l'inutile</span></li>
+          <li><span><strong>Réduction du risque :</strong> on détecte les problèmes tôt sur de petits incréments</span></li>
         </ul>
       </div>
     </div>
@@ -669,7 +657,6 @@
     </div>
     <div class="section-right">
       <div class="logo">
-        <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
       <div class="section-label">Partie 2</div>
@@ -681,7 +668,6 @@
   <!-- ─── 5. CONTENT: INVEST criteria ─── -->
   <div class="slide slide-content" data-slide="5">
     <div class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
       <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
     </div>
     <div class="content-header">
@@ -731,7 +717,6 @@
   <!-- ─── 6. CONTENT: Vertical slices AVANT/APRÈS ─── -->
   <div class="slide slide-content" data-slide="6">
     <div class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
       <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
     </div>
     <div class="content-header">
@@ -803,49 +788,6 @@
     </div>
   </div>
 
-  <!-- ─── 7. CONTENT: À l'échelle ─── -->
-  <div class="slide slide-content" data-slide="7">
-    <div class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
-      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
-    </div>
-    <div class="content-header">
-      <div class="content-title">Tranches verticales et <em>échelle</em> : Feature Teams vs Component Teams</div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:18px;">
-      <div class="team-compare">
-        <div class="team-box">
-          <h4>✅ Feature Teams</h4>
-          <ul class="check-list" style="font-size:15px;">
-            <li>Livrent des <em>tranches verticales complètes</em> de bout en bout</li>
-            <li>Ownership d'un produit ou sous-produit entier</li>
-            <li>Valeur visible à chaque sprint, sans coordination inter-équipes</li>
-            <li>Idéales pour activer le découpage de stories efficacement</li>
-          </ul>
-        </div>
-        <div class="team-box bad">
-          <h4>⚠ Component Teams</h4>
-          <ul class="check-list" style="font-size:15px;">
-            <li>Organisées par couche architecturale (UI, API, BDD…)</li>
-            <li>Nécessitent une <em>coordination inter-équipes</em> pour chaque feature</li>
-            <li>La valeur n'émerge qu'une fois toutes les équipes synchronisées</li>
-            <li>Rendent le découpage vertical plus complexe à pratiquer</li>
-          </ul>
-        </div>
-      </div>
-      <div class="when-to-use">
-        <strong>⚡ Mise en garde sur la taille des équipes :</strong> Ajouter des personnes et des équipes augmente la charge de coordination de façon <em>exponentielle</em>. À partir d'un certain seuil, chaque nouveau membre réduit la productivité globale plutôt que de l'augmenter.
-      </div>
-      <div class="cynefin-grid" style="margin-top:4px;">
-        <div class="cynefin-card c-obvious"><div class="c-domain">Obvious (Simple)</div>Construire directement ou prioriser les stories les plus précieuses</div>
-        <div class="cynefin-card c-complic"><div class="c-domain">Complicated</div>Prioriser les stories les plus précieuses <em>et</em> les plus risquées en premier</div>
-        <div class="cynefin-card c-complex"><div class="c-domain">Complex</div>Ne pas tout énumérer — construire 1-2 stories pour apprendre, puis identifier la suite</div>
-        <div class="cynefin-card c-chaotic"><div class="c-domain">Chaotic</div>Se concentrer sur le problème immédiat, stabiliser d'abord</div>
-      </div>
-    </div>
-  </div>
-
   <!-- ─── 8. SECTION: L'Organigramme ─── -->
   <div class="slide slide-section" data-slide="8">
     <div class="section-left">
@@ -853,7 +795,6 @@
     </div>
     <div class="section-right">
       <div class="logo">
-        <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
       <div class="section-label">Partie 3</div>
@@ -865,7 +806,6 @@
   <!-- ─── 9. CONTENT: Flowchart overview ─── -->
   <div class="slide slide-content" data-slide="9">
     <div class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
       <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
     </div>
     <div class="content-header">
@@ -887,307 +827,9 @@
     </div>
   </div>
 
-  <!-- ─── 10. Pattern 1: Workflow Steps ─── -->
-  <div class="slide slide-content" data-slide="10">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🔄 Pattern 1</span> <em>Étapes du Workflow</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story décrit un processus end-to-end avec plusieurs étapes distinctes qui peuvent chacune apporter de la valeur indépendamment.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p1">
-          <div class="avant-header">✗ AVANT — Story trop large</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant que rédacteur</div>
-              <strong>Je veux publier un article</strong> avec un processus de révision complet incluant la révision éditoriale, juridique, la vue staging et le déploiement en production
-              <br/><br/>→ <em style="color:var(--red);">Impossible à livrer en 1 sprint</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p1">
-          <div class="apres-header">✓ APRÈS — Stories découpées par étape</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Story 1 :</strong> Publier directement sans révision</div>
-            <div class="story-card split" data-di="1">✅ <strong>Story 2 :</strong> Ajouter une étape de révision éditoriale</div>
-            <div class="story-card split" data-di="2">✅ <strong>Story 3 :</strong> Ajouter une révision juridique</div>
-            <div class="story-card split" data-di="3">✅ <strong>Story 4 :</strong> Vue de staging avant publication</div>
-            <div class="story-card split" data-di="4">✅ <strong>Story 5 :</strong> Déploiement programmé en production</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 11. Pattern 2: CRUD ─── -->
-  <div class="slide slide-content" data-slide="11">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">⚙️ Pattern 2</span> <em>Opérations CRUD</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story utilise des mots comme <em>"gérer"</em>, <em>"administrer"</em> ou <em>"maintenir"</em> — ils cachent souvent plusieurs opérations distinctes (Créer, Lire, Modifier, Supprimer).</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p2">
-          <div class="avant-header">✗ AVANT — Verbe "gérer" = piège</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant qu'utilisateur</div>
-              <strong>Je veux gérer mon compte</strong> afin de contrôler mes informations personnelles
-              <br/><br/>→ <em style="color:var(--red);">"Gérer" = 4 opérations cachées non estimables</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p2">
-          <div class="apres-header">✓ APRÈS — Une opération = une story</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Créer :</strong> S'inscrire et créer mon compte</div>
-            <div class="story-card split" data-di="1">✅ <strong>Lire :</strong> Consulter mes informations de compte</div>
-            <div class="story-card split" data-di="2">✅ <strong>Modifier :</strong> Mettre à jour mes paramètres</div>
-            <div class="story-card split" data-di="3">✅ <strong>Supprimer :</strong> Résilier et supprimer mon compte</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 12. Pattern 3: Business Rules ─── -->
-  <div class="slide slide-content" data-slide="12">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">📋 Pattern 3</span> <em>Variations de Règles Métier</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story contient plusieurs <em>règles métier alternatives</em> dans ses critères d'acceptation. Chaque variation peut être un incrément de valeur distinct.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p3">
-          <div class="avant-header">✗ AVANT — Toutes les règles en même temps</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant que voyageur</div>
-              <strong>Je veux rechercher des vols avec des dates flexibles</strong> : par plage de dates, par weekend, par ± X jours autour d'une date spécifique, ou par mois complet
-              <br/><br/>→ <em style="color:var(--red);">4 règles métier = effort imprévisible</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p3">
-          <div class="apres-header">✓ APRÈS — Une règle métier = une story</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Règle 1 :</strong> Recherche par plage de dates (du/au)</div>
-            <div class="story-card split" data-di="1">✅ <strong>Règle 2 :</strong> Recherche uniquement les weekends</div>
-            <div class="story-card split" data-di="2">✅ <strong>Règle 3 :</strong> Recherche ± X jours autour d'une date</div>
-            <div class="story-card split" data-di="3">✅ <strong>Règle 4 :</strong> Recherche sur un mois complet</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 13. Pattern 4: Data Variations ─── -->
-  <div class="slide slide-content" data-slide="13">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🗃️ Pattern 4</span> <em>Variations de Données</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La complexité vient de la <em>diversité ou du volume de données</em> à gérer. On commence avec le type de données le plus simple, et on ajoute les cas complexes progressivement.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p4">
-          <div class="avant-header">✗ AVANT — Toutes les données d'un coup</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant qu'utilisateur</div>
-              <strong>Je veux effectuer une recherche géographique complète</strong> : par département, commune, arrondissement, quartier, ou code postal
-              <br/><br/>→ <em style="color:var(--red);">5 types de données = complexité et effort inestimable</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p4">
-          <div class="apres-header">✓ APRÈS — Données simples → complexes</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Sprint 1 :</strong> Recherche par département uniquement</div>
-            <div class="story-card split" data-di="1">✅ <strong>Sprint 2 :</strong> Ajouter la recherche par commune</div>
-            <div class="story-card split" data-di="2">✅ <strong>Sprint 3 :</strong> Ajouter la recherche par arrondissement</div>
-            <div class="story-card split" data-di="3">✅ <strong>Sprint 4 :</strong> Affiner avec quartier et code postal</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 14. Pattern 5: Data Entry Methods ─── -->
-  <div class="slide slide-content" data-slide="14">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🖊️ Pattern 5</span> <em>Méthodes de Saisie</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> Une interface de saisie <em>élaborée ou interactive</em> (datepicker, autocomplétion, carte interactive…) ajoute de la complexité UI indépendamment de la logique métier sous-jacente.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p5">
-          <div class="avant-header">✗ AVANT — Fonctionnalité + UI complexe ensemble</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant qu'utilisateur</div>
-              <strong>Je veux sélectionner une date de livraison</strong> avec un calendrier interactif permettant de visualiser les disponibilités en temps réel, avec sélection de plage et blocage des jours fériés
-              <br/><br/>→ <em style="color:var(--red);">Calendrier riche = 3-4x plus d'effort UI</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p5">
-          <div class="apres-header">✓ APRÈS — Logique métier d'abord, UI ensuite</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Story 1 :</strong> Sélectionner une date via un champ texte simple (JJ/MM/AAAA)</div>
-            <div class="story-card split" data-di="1">✅ <strong>Story 2 :</strong> Remplacer par un datepicker calendrier basique</div>
-            <div class="story-card split" data-di="2">✅ <strong>Story 3 :</strong> Afficher les disponibilités en temps réel</div>
-            <div class="story-card split" data-di="3">✅ <strong>Story 4 :</strong> Bloquer les jours fériés et indisponibles</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 15. Pattern 6: Major Effort ─── -->
-  <div class="slide slide-content" data-slide="15">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">💪 Pattern 6</span> <em>Effort Concentré</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'effort de développement se concentre dans le <em>premier cas implémenté</em>. Les cas suivants utilisent la même infrastructure et coûtent beaucoup moins cher — on peut les différer.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p6">
-          <div class="avant-header">✗ AVANT — Tous les cas au même sprint</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant que client</div>
-              <strong>Je veux payer avec VISA, MasterCard, American Express ou Diners Club</strong> pour finaliser mes achats en ligne
-              <br/><br/>→ <em style="color:var(--red);">Développer 4 intégrations en parallèle = risque et délai</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p6">
-          <div class="apres-header">✓ APRÈS — 1 cas difficile + les variantes</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Story 1 :</strong> Payer par carte VISA (infrastructure complète mise en place)</div>
-            <div class="story-card split" data-di="1">✅ <strong>Story 2 :</strong> Ajouter MasterCard (réutilise l'infrastructure)</div>
-            <div class="story-card split" data-di="2">✅ <strong>Story 3 :</strong> Ajouter American Express</div>
-            <div class="story-card split" data-di="3">✅ <strong>Story 4 :</strong> Ajouter Diners Club</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 16. Pattern 7: Simple/Complex ─── -->
-  <div class="slide slide-content" data-slide="16">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🎯 Pattern 7</span> <em>Simple / Complexe</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story mélange un <em>cœur fonctionnel simple</em> et des <em>options avancées optionnelles</em>. On isole d'abord le cœur, puis chaque option devient sa propre story différable.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p7">
-          <div class="avant-header">✗ AVANT — Fonctionnalité surchargée</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant que voyageur</div>
-              <strong>Je veux rechercher des vols</strong> avec filtres par nombre d'escales, aéroports proches, dates flexibles ±3 jours, compagnies préférées et bagages inclus
-              <br/><br/>→ <em style="color:var(--red);">6 options avancées = story impossible à estimer</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p7">
-          <div class="apres-header">✓ APRÈS — Cœur simple + options différées</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Cœur :</strong> Rechercher des vols par origine, destination et date</div>
-            <div class="story-card split" data-di="1">✅ <strong>Option 1 :</strong> Filtrer par nombre d'escales maximum</div>
-            <div class="story-card split" data-di="2">✅ <strong>Option 2 :</strong> Inclure les aéroports proches</div>
-            <div class="story-card split" data-di="3">✅ <strong>Option 3 :</strong> Activer la flexibilité de dates ± jours</div>
-            <div class="story-card split" data-di="4">✅ <strong>Option 4 :</strong> Filtrer par compagnies et bagages</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 17. Pattern 8: Defer Performance ─── -->
-  <div class="slide slide-content" data-slide="17">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">⚡ Pattern 8</span> <em>Différer la Performance</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story inclut des exigences de <em>performance ou de rapidité</em>. On sépare "ça fonctionne" de "ça fonctionne vite" — on valide d'abord la logique, on optimise ensuite avec des données réelles.</div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p8">
-          <div class="avant-header">✗ AVANT — Fonctionnel + performant en même temps</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant qu'utilisateur</div>
-              <strong>Je veux que le rapport de ventes se génère en moins de 2 secondes</strong> même avec 10 millions d'enregistrements
-              <br/><br/>→ <em style="color:var(--red);">Optimiser sans données réelles = sur-engineering prématuré</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p8">
-          <div class="apres-header">✓ APRÈS — Fonctionnel d'abord, optimisation ensuite</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">✅ <strong>Story 1 :</strong> Générer le rapport de ventes (peut prendre 30 sec en dev)</div>
-            <div class="story-card split" data-di="1">✅ <strong>Story 2 :</strong> Optimiser les requêtes pour passer sous 10 secondes</div>
-            <div class="story-card split" data-di="2">✅ <strong>Story 3 :</strong> Ajouter du cache pour atteindre &lt; 2 secondes en production</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 18. Pattern 9: Spike ─── -->
-  <div class="slide slide-content" data-slide="18">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
-    <div class="content-header">
-      <div class="content-title"><span class="pattern-badge">🔬 Pattern 9</span> <em>Spike d'Investigation</em></div>
-      <hr class="content-rule"/>
-    </div>
-    <div class="content-body" style="flex-direction:column; gap:12px;">
-      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'implémentation est tellement <em>floue ou inconnue</em> qu'on ne peut pas estimer. On fait d'abord une exploration time-boxée. <span class="kw">Dernier recours — tenter les autres patterns d'abord.</span></div>
-      <div class="avant-apres">
-        <div class="avant-box" id="av-p9">
-          <div class="avant-header">✗ AVANT — Implémentation floue</div>
-          <div class="avant-body">
-            <div class="story-card">
-              <div class="story-role">En tant que développeur</div>
-              <strong>Je veux intégrer l'API de paiement du nouveau partenaire</strong> — mais on ne connaît pas du tout la documentation, les contraintes de sécurité ni les modèles de données
-              <br/><br/>→ <em style="color:var(--red);">Inestimable = risque sprint entier bloqué</em>
-            </div>
-          </div>
-        </div>
-        <div class="apres-box" id="ap-p9">
-          <div class="apres-header">✓ APRÈS — Spike puis implémentation</div>
-          <div class="apres-body">
-            <div class="story-card split" data-di="0">🔬 <strong>Spike (2 jours max) :</strong> Explorer l'API — documenter les contraintes, authentification, et modèles de données</div>
-            <div class="story-card split" data-di="1">✅ <strong>Story 1 :</strong> Intégrer l'authentification OAuth du partenaire (basée sur spike)</div>
-            <div class="story-card split" data-di="2">✅ <strong>Story 2 :</strong> Implémenter le flux de paiement principal</div>
-            <div class="story-card split" data-di="3">✅ <strong>Story 3 :</strong> Gérer les cas d'erreur et remboursements</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ─── 19. CONTENT: Méta-Pattern ─── -->
   <div class="slide slide-content" data-slide="19">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
       <div class="content-title">Le <em>Méta-Pattern</em> : Trouver la complexité & Réduire les variations</div>
       <hr class="content-rule"/>
@@ -1224,6 +866,322 @@
     </div>
   </div>
 
+  <!-- ─── 10. Pattern 1: Workflow Steps ─── -->
+  <div class="slide slide-content" data-slide="10">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">🔄 Pattern 1</span> <em>Étapes du Workflow</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story décrit un processus end-to-end avec plusieurs étapes distinctes qui peuvent chacune apporter de la valeur indépendamment.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p1">
+          <div class="avant-header">✗ AVANT — Story trop large</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — trop large</div>
+              <strong>En tant que</strong> rédacteur,<br/>
+              <strong>je veux</strong> publier un article avec révision éditoriale, juridique, vue staging et déploiement en production,<br/>
+              <strong>afin de</strong> le diffuser à nos lecteurs en toute conformité.<br/>
+              <br/>→ <em style="color:var(--red);">Impossible à livrer en 1 sprint</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p1">
+          <div class="apres-header">✓ APRÈS — Stories découpées par étape</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> publier directement <strong>afin de</strong> valider le workflow minimal</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> soumettre à révision éditoriale <strong>afin d'</strong>assurer la qualité du contenu</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> ajouter une révision juridique <strong>afin de</strong> garantir la conformité</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> prévisualiser en staging <strong>afin de</strong> valider le rendu avant publication</div>
+            <div class="story-card split" data-di="4">✅ <strong>En tant que</strong> rédacteur, <strong>je veux</strong> programmer le déploiement <strong>afin de</strong> choisir la date de diffusion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 11. Pattern 2: CRUD ─── -->
+  <div class="slide slide-content" data-slide="11">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">⚙️ Pattern 2</span> <em>Opérations CRUD</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story utilise des mots comme <em>"gérer"</em>, <em>"administrer"</em> ou <em>"maintenir"</em> — ils cachent souvent plusieurs opérations distinctes (Créer, Lire, Modifier, Supprimer).</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p2">
+          <div class="avant-header">✗ AVANT — Verbe "gérer" = piège</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — verbe piège</div>
+              <strong>En tant qu'</strong>utilisateur,<br/>
+              <strong>je veux</strong> gérer mon compte,<br/>
+              <strong>afin de</strong> contrôler mes informations personnelles.<br/>
+              <br/>→ <em style="color:var(--red);">"Gérer" = 4 opérations cachées non estimables</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p2">
+          <div class="apres-header">✓ APRÈS — Une opération = une story</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> créer mon compte <strong>afin de</strong> commencer à utiliser le service</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> consulter mes informations <strong>afin de</strong> vérifier mes données</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> modifier mes paramètres <strong>afin de</strong> maintenir mes données à jour</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> supprimer mon compte <strong>afin de</strong> résilier le service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 12. Pattern 3: Business Rules ─── -->
+  <div class="slide slide-content" data-slide="12">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">📋 Pattern 3</span> <em>Variations de Règles Métier</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story contient plusieurs <em>règles métier alternatives</em> dans ses critères d'acceptation. Chaque variation peut être un incrément de valeur distinct.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p3">
+          <div class="avant-header">✗ AVANT — Toutes les règles en même temps</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — règles multiples</div>
+              <strong>En tant que</strong> voyageur,<br/>
+              <strong>je veux</strong> rechercher des vols avec dates flexibles (plage, weekend, ±X jours, mois complet),<br/>
+              <strong>afin de</strong> trouver les meilleures disponibilités et tarifs.<br/>
+              <br/>→ <em style="color:var(--red);">4 règles métier = effort imprévisible</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p3">
+          <div class="apres-header">✓ APRÈS — Une règle métier = une story</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> rechercher par plage de dates <strong>afin de</strong> comparer les prix sur un intervalle</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> filtrer les weekends uniquement <strong>afin de</strong> planifier des escapades courtes</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> rechercher ± X jours autour d'une date <strong>afin de</strong> trouver des tarifs flexibles</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> parcourir un mois complet <strong>afin de</strong> repérer les meilleures opportunités</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 13. Pattern 4: Data Variations ─── -->
+  <div class="slide slide-content" data-slide="13">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">🗃️ Pattern 4</span> <em>Variations de Données</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La complexité vient de la <em>diversité ou du volume de données</em> à gérer. On commence avec le type de données le plus simple, et on ajoute les cas complexes progressivement.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p4">
+          <div class="avant-header">✗ AVANT — Toutes les données d'un coup</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — données multiples</div>
+              <strong>En tant qu'</strong>utilisateur,<br/>
+              <strong>je veux</strong> effectuer une recherche géographique (département, commune, arrondissement, quartier, code postal),<br/>
+              <strong>afin de</strong> trouver des offres dans ma zone.<br/>
+              <br/>→ <em style="color:var(--red);">5 types de données = complexité inestimable</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p4">
+          <div class="apres-header">✓ APRÈS — Données simples → complexes</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> rechercher par département <strong>afin de</strong> cibler une grande zone géographique</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> affiner par commune <strong>afin de</strong> préciser ma zone de recherche</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> filtrer par arrondissement <strong>afin de</strong> cibler un secteur urbain précis</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> rechercher par quartier ou code postal <strong>afin de</strong> trouver des offres très localisées</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 14. Pattern 5: Data Entry Methods ─── -->
+  <div class="slide slide-content" data-slide="14">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">🖊️ Pattern 5</span> <em>Méthodes de Saisie</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> Une interface de saisie <em>élaborée ou interactive</em> (datepicker, autocomplétion, carte interactive…) ajoute de la complexité UI indépendamment de la logique métier sous-jacente.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p5">
+          <div class="avant-header">✗ AVANT — Fonctionnalité + UI complexe ensemble</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — UI complexe mêlée</div>
+              <strong>En tant qu'</strong>utilisateur,<br/>
+              <strong>je veux</strong> sélectionner une date de livraison via un calendrier interactif avec disponibilités temps réel et jours fériés bloqués,<br/>
+              <strong>afin de</strong> choisir le créneau qui me convient.<br/>
+              <br/>→ <em style="color:var(--red);">Calendrier riche = 3-4x plus d'effort UI</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p5">
+          <div class="apres-header">✓ APRÈS — Logique métier d'abord, UI ensuite</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> saisir une date en texte libre (JJ/MM/AAAA) <strong>afin de</strong> choisir un créneau de livraison</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> utiliser un datepicker basique <strong>afin de</strong> sélectionner ma date sans erreur de format</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> voir les disponibilités en temps réel <strong>afin de</strong> choisir parmi les créneaux libres</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> que les jours fériés soient bloqués <strong>afin d'</strong>éviter de choisir une date impossible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 15. Pattern 6: Major Effort ─── -->
+  <div class="slide slide-content" data-slide="15">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">💪 Pattern 6</span> <em>Effort Concentré</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'effort de développement se concentre dans le <em>premier cas implémenté</em>. Les cas suivants utilisent la même infrastructure et coûtent beaucoup moins cher — on peut les différer.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p6">
+          <div class="avant-header">✗ AVANT — Tous les cas au même sprint</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — effort concentré</div>
+              <strong>En tant que</strong> client,<br/>
+              <strong>je veux</strong> payer avec VISA, MasterCard, American Express ou Diners Club,<br/>
+              <strong>afin de</strong> finaliser mes achats en ligne avec ma carte préférée.<br/>
+              <br/>→ <em style="color:var(--red);">4 intégrations en parallèle = risque et délai</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p6">
+          <div class="apres-header">✓ APRÈS — 1 cas difficile + les variantes</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par VISA <strong>afin de</strong> finaliser mon achat (pose l'infrastructure complète)</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par MasterCard <strong>afin d'</strong>avoir une alternative VISA</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par American Express <strong>afin d'</strong>utiliser ma carte professionnelle</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer par Diners Club <strong>afin d'</strong>avoir toutes les options de paiement</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 16. Pattern 7: Simple/Complex ─── -->
+  <div class="slide slide-content" data-slide="16">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">🎯 Pattern 7</span> <em>Simple / Complexe</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story mélange un <em>cœur fonctionnel simple</em> et des <em>options avancées optionnelles</em>. On isole d'abord le cœur, puis chaque option devient sa propre story différable.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p7">
+          <div class="avant-header">✗ AVANT — Fonctionnalité surchargée</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — surchargée</div>
+              <strong>En tant que</strong> voyageur,<br/>
+              <strong>je veux</strong> rechercher des vols avec filtres (escales, aéroports proches, dates ±3j, compagnies, bagages),<br/>
+              <strong>afin de</strong> planifier mon voyage selon mes préférences.<br/>
+              <br/>→ <em style="color:var(--red);">6 options avancées = story impossible à estimer</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p7">
+          <div class="apres-header">✓ APRÈS — Cœur simple + options différées</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> rechercher par origine, destination et date <strong>afin de</strong> trouver des vols disponibles</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> filtrer par nombre d'escales <strong>afin de</strong> choisir l'itinéraire le plus direct</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> inclure les aéroports proches <strong>afin d'</strong>élargir mes options de départ</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> activer la flexibilité ± jours <strong>afin de</strong> trouver les meilleurs tarifs</div>
+            <div class="story-card split" data-di="4">✅ <strong>En tant que</strong> voyageur, <strong>je veux</strong> filtrer par compagnies et bagages <strong>afin de</strong> respecter mes préférences</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 17. Pattern 8: Defer Performance ─── -->
+  <div class="slide slide-content" data-slide="17">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">⚡ Pattern 8</span> <em>Différer la Performance</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> La story inclut des exigences de <em>performance ou de rapidité</em>. On sépare "ça fonctionne" de "ça fonctionne vite" — on valide d'abord la logique, on optimise ensuite avec des données réelles.</div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p8">
+          <div class="avant-header">✗ AVANT — Fonctionnel + performant en même temps</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — perf prématurée</div>
+              <strong>En tant qu'</strong>utilisateur,<br/>
+              <strong>je veux</strong> que le rapport de ventes se génère en moins de 2 secondes (même avec 10M d'enregistrements),<br/>
+              <strong>afin d'</strong>analyser les performances commerciales sans attente.<br/>
+              <br/>→ <em style="color:var(--red);">Optimiser sans données réelles = sur-engineering prématuré</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p8">
+          <div class="apres-header">✓ APRÈS — Fonctionnel d'abord, optimisation ensuite</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> générer le rapport de ventes <strong>afin d'</strong>analyser les données (performance non contrainte en v1)</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> que le rapport s'affiche en moins de 10 secondes <strong>afin de</strong> ne pas interrompre mon flux de travail</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant qu'</strong>utilisateur, <strong>je veux</strong> un rapport en moins de 2 secondes <strong>afin d'</strong>obtenir des réponses instantanées en production</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 18. Pattern 9: Spike ─── -->
+  <div class="slide slide-content" data-slide="18">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header">
+      <div class="content-title"><span class="pattern-badge">🔬 Pattern 9</span> <em>Spike d'Investigation</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="content-body" style="flex-direction:column; gap:12px;">
+      <div class="when-to-use"><strong>Quand l'utiliser :</strong> L'implémentation est tellement <em>floue ou inconnue</em> qu'on ne peut pas estimer. On fait d'abord une exploration time-boxée. <span class="kw">Dernier recours — tenter les autres patterns d'abord.</span></div>
+      <div class="avant-apres">
+        <div class="avant-box" id="av-p9">
+          <div class="avant-header">✗ AVANT — Implémentation floue</div>
+          <div class="avant-body">
+            <div class="story-card">
+              <div class="story-role">User Story — implémentation floue</div>
+              <strong>En tant que</strong> développeur,<br/>
+              <strong>je veux</strong> intégrer l'API de paiement du nouveau partenaire (documentation, sécurité et modèles de données inconnus),<br/>
+              <strong>afin de</strong> proposer ce moyen de paiement à nos clients.<br/>
+              <br/>→ <em style="color:var(--red);">Inestimable = risque sprint entier bloqué</em>
+            </div>
+          </div>
+        </div>
+        <div class="apres-box" id="ap-p9">
+          <div class="apres-header">✓ APRÈS — Spike puis implémentation</div>
+          <div class="apres-body">
+            <div class="story-card split" data-di="0">🔬 <strong>En tant que</strong> développeur, <strong>je veux</strong> explorer l'API (2j max) <strong>afin de</strong> documenter les contraintes et rendre la story estimable</div>
+            <div class="story-card split" data-di="1">✅ <strong>En tant que</strong> développeur, <strong>je veux</strong> intégrer l'authentification OAuth <strong>afin de</strong> sécuriser la connexion avec le partenaire</div>
+            <div class="story-card split" data-di="2">✅ <strong>En tant que</strong> client, <strong>je veux</strong> payer via le nouveau partenaire <strong>afin de</strong> bénéficier de ce mode de règlement</div>
+            <div class="story-card split" data-di="3">✅ <strong>En tant que</strong> client, <strong>je veux</strong> que les erreurs de paiement soient gérées <strong>afin d'</strong>être informé en cas de problème</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 20. SECTION: S'améliorer ─── -->
   <div class="slide slide-section" data-slide="20">
     <div class="section-left">
@@ -1231,7 +1189,6 @@
     </div>
     <div class="section-right">
       <div class="logo">
-        <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div>
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
       <div class="section-label">Partie 4</div>
@@ -1242,7 +1199,7 @@
 
   <!-- ─── 21. CONTENT: Practice ─── -->
   <div class="slide slide-content" data-slide="21">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
       <div class="content-title">S'améliorer dans le découpage : <em>La méthode en 2-3 semaines</em></div>
       <hr class="content-rule"/>
@@ -1279,7 +1236,7 @@
 
   <!-- ─── 22. CONCLUSION ─── -->
   <div class="slide slide-content" data-slide="22">
-    <div class="logo"><div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 14 L36 30 L20 38 L4 30 L4 14 Z" fill="rgba(125,16,40,0.12)" stroke="var(--burgundy)" stroke-width="1.5"/><path d="M20 10 L14 20 L20 18 L26 20 Z" fill="var(--burgundy)"/><path d="M14 20 L14 28 L20 25 L26 28 L26 20 L20 18 Z" fill="rgba(125,16,40,0.5)"/></svg></div><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
       <div class="content-title">Récapitulatif : <em>Les 9 Patterns de découpage</em></div>
       <hr class="content-rule"/>
@@ -1307,7 +1264,7 @@
 <!-- Navigation -->
 <div id="nav">
   <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">&#8592;</button>
-  <span id="slide-counter">1 / 22</span>
+  <span id="slide-counter">1 / 21</span>
   <button class="nav-btn" id="btn-next" onclick="navigate(1)">&#8594;</button>
 </div>
 
