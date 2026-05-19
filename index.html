@@ -542,6 +542,66 @@
 
     /* Scroll text fix */
     .content-body { overflow: auto; }
+
+    /* ─── TOC Button & Panel ─── */
+    #toc-btn {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 44px; height: 44px;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white; border-radius: 50%;
+      cursor: pointer; z-index: 100;
+      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    #toc-btn:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.7); }
+
+    #toc-panel {
+      position: fixed;
+      bottom: 78px; right: 24px;
+      width: 300px; max-height: 68vh;
+      background: rgba(18,18,18,0.94); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 12px;
+      overflow-y: auto;
+      z-index: 99;
+      padding: 6px 0;
+      transform-origin: bottom right;
+      transform: scale(0.88) translateY(8px); opacity: 0;
+      pointer-events: none;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    #toc-panel.open {
+      transform: scale(1) translateY(0); opacity: 1;
+      pointer-events: all;
+    }
+    #toc-panel::-webkit-scrollbar { width: 4px; }
+    #toc-panel::-webkit-scrollbar-track { background: transparent; }
+    #toc-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+    .toc-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .toc-item:hover { background: rgba(255,255,255,0.07); }
+    .toc-item.toc-active { background: rgba(125,16,40,0.28); border-left-color: var(--burgundy); }
+    .toc-item.toc-section { background: rgba(255,255,255,0.04); }
+    .toc-num {
+      font-size: 11px; color: rgba(255,255,255,0.35);
+      min-width: 20px; text-align: right; flex-shrink: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .toc-title {
+      font-size: 13px; color: rgba(255,255,255,0.78);
+      line-height: 1.35; font-family: 'Open Sans', sans-serif;
+    }
+    .toc-item.toc-section .toc-title { font-weight: 700; color: #fff; }
   </style>
 </head>
 <body>
@@ -1264,6 +1324,12 @@
   <button class="nav-btn" id="btn-next" onclick="navigate(1)">&#8594;</button>
 </div>
 
+<!-- TOC Button -->
+<button id="toc-btn" onclick="toggleToc()" title="Index des slides">&#9776;</button>
+
+<!-- TOC Panel -->
+<div id="toc-panel"></div>
+
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
   const total = slides.length;
@@ -1397,6 +1463,107 @@
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
   }, { passive: true });
+
+  // ─── Direct jump (for TOC) ───
+  function goTo(index) {
+    if (animating || index === current) { closeToc(); return; }
+    closeToc();
+    const dir = index > current ? 1 : -1;
+    animating = true;
+
+    const currentSlide = slides[current];
+    const nextSlide = slides[index];
+
+    resetAnimations(nextSlide);
+    currentSlide.classList.add('exit');
+    currentSlide.classList.remove('active');
+
+    nextSlide.style.transform = dir > 0 ? 'translateX(60px)' : 'translateX(-60px)';
+    nextSlide.style.opacity = '0';
+    nextSlide.classList.add('active');
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextSlide.style.transform = '';
+        nextSlide.style.opacity = '';
+        nextSlide.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      });
+    });
+
+    setTimeout(() => {
+      currentSlide.classList.remove('exit');
+      currentSlide.style.transform = '';
+      currentSlide.style.opacity = '';
+      animating = false;
+      current = index;
+      updateProgress();
+      triggerSlideAnimations(slides[current]);
+      buildToc();
+    }, 480);
+  }
+
+  // ─── TOC ───
+  let tocOpen = false;
+
+  function getSlideTitle(slideEl) {
+    if (slideEl.classList.contains('slide-title')) {
+      return '🏠 ' + (slideEl.querySelector('.title-main') || { textContent: 'Titre' }).textContent.replace(/\s+/g, ' ').trim();
+    }
+    if (slideEl.classList.contains('slide-section')) {
+      const label = slideEl.querySelector('.section-label');
+      const title = slideEl.querySelector('.section-title');
+      return (label ? label.textContent.trim() + ' — ' : '') + (title ? title.textContent.replace(/\s+/g, ' ').trim() : '');
+    }
+    const ct = slideEl.querySelector('.content-title');
+    if (ct) return ct.textContent.replace(/\s+/g, ' ').trim();
+    return 'Slide';
+  }
+
+  function buildToc() {
+    const panel = document.getElementById('toc-panel');
+    panel.innerHTML = '';
+    slides.forEach((slide, idx) => {
+      const item = document.createElement('div');
+      item.className = 'toc-item' +
+        (slide.classList.contains('slide-section') || slide.classList.contains('slide-title') ? ' toc-section' : '') +
+        (idx === current ? ' toc-active' : '');
+
+      const num = document.createElement('span');
+      num.className = 'toc-num';
+      num.textContent = idx + 1;
+
+      const title = document.createElement('span');
+      title.className = 'toc-title';
+      title.textContent = getSlideTitle(slide);
+
+      item.appendChild(num);
+      item.appendChild(title);
+      item.addEventListener('click', () => goTo(idx));
+      panel.appendChild(item);
+    });
+  }
+
+  function toggleToc() {
+    tocOpen = !tocOpen;
+    if (tocOpen) {
+      buildToc();
+      document.getElementById('toc-panel').classList.add('open');
+    } else {
+      document.getElementById('toc-panel').classList.remove('open');
+    }
+  }
+
+  function closeToc() {
+    tocOpen = false;
+    document.getElementById('toc-panel').classList.remove('open');
+  }
+
+  // Close TOC when clicking outside
+  document.addEventListener('click', (e) => {
+    if (tocOpen && !e.target.closest('#toc-panel') && !e.target.closest('#toc-btn')) {
+      closeToc();
+    }
+  });
 
   // Init
   updateProgress();
