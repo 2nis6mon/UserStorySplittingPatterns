@@ -1,0 +1,447 @@
+================================================================
+FORMATION : USER STORY SPLITTING PATTERNS
+Groupement Mousquetaires — Formation Agile 2026
+================================================================
+
+Maîtriser l'art de découper les User Stories pour livrer de la
+valeur plus vite, mieux, et de façon plus prévisible.
+
+================================================================
+PARTIE 1 — POURQUOI DÉCOUPER LES USER STORIES ?
+================================================================
+
+SLIDE : Le problème des équipes agiles
+---------------------------------------
+Le problème constaté :
+- Les équipes créent des stories qui ressemblent à des tâches
+  techniques ou des composants architecturaux
+- Les sprints se terminent sans valeur livrable et visible pour
+  les utilisateurs
+- Les stories trop grosses rendent la priorisation difficile et
+  le planning imprévisible
+- Les feedbacks arrivent trop tard dans le cycle de développement
+
+La bonne nouvelle :
+Le découpage de stories est une compétence qui s'apprend en
+quelques heures de pratique structurée.
+
+Les bénéfices d'un bon découpage :
+- Feedback fréquent : valeur livrée à chaque sprint, retours
+  utilisateurs rapides
+- Valeur explicite : les équipes ont de meilleures conversations
+  sur ce qui compte vraiment
+- Prédictibilité : des stories petites et bien découpées rendent
+  les sprints plus prévisibles
+- Flexibilité produit : le Product Owner peut prioriser plus
+  finement et déprioriser l'inutile
+- Réduction du risque : on détecte les problèmes tôt sur de
+  petits incréments
+
+================================================================
+PARTIE 2 — QU'EST-CE QU'UNE BONNE USER STORY ?
+================================================================
+
+SLIDE : Les critères INVEST
+-----------------------------
+Une User Story est une description d'un changement de comportement
+du système du point de vue de l'utilisateur.
+Pour qu'elle soit bonne, elle doit respecter les critères INVEST :
+
+I — Independent
+   Suffisamment autonome pour être priorisée et développée
+   séparément des autres
+
+N — Negotiable
+   Les détails restent ouverts à la collaboration — ce n'est pas
+   un contrat figé
+
+V — Valuable
+   Apporte un incrément de valeur visible pour les utilisateurs
+   ou le métier
+
+E — Estimable
+   Suffisamment définie pour que l'équipe puisse l'estimer en effort
+
+S — Small
+   6 à 10 stories doivent tenir dans un sprint — si c'est trop
+   grand, découpez !
+
+T — Testable
+   Des critères d'acceptation concrets existent pour valider
+   la story
+
+
+SLIDE : Tranches verticales — Découper par couche vs Tranches de valeur
+------------------------------------------------------------------------
+AVANT — Découpage par couche technique :
+  - Interface Utilisateur (UI)
+  - Logique Métier (Business Logic)
+  - Base de données / API
+  → Chaque couche est développée séparément → aucune valeur
+    livrable avant la fin du tout. Feedback utilisateur impossible
+    en cours de sprint.
+  Étiquettes : Valeur tardive · Risque élevé · Feedback impossible
+
+APRÈS — Tranches verticales de valeur :
+  - Chaque tranche traverse toutes les couches (UI + Métier + Data)
+  → Valeur livrable à chaque story. Feedback utilisateur immédiat
+    possible.
+  Étiquettes : Valeur continue · Risque réduit · Feedback rapide
+
+================================================================
+PARTIE 3 — L'ORGANIGRAMME DE DÉCOUPAGE
+================================================================
+
+Les 9 patterns :
+  🔄 Pattern 1 — Étapes du Workflow
+     Diviser un processus end-to-end en étapes séquentielles
+     livrables indépendamment
+
+  ⚙️  Pattern 2 — Opérations CRUD
+     Séparer les opérations Créer / Modifier / Supprimer / Vider
+
+  📋 Pattern 3 — Règles Métier
+     Isoler chaque variation de règle promotionnelle dans sa
+     propre story
+
+  🗃️  Pattern 4 — Variations de Données
+     Commencer par la catégorie de données la plus simple,
+     enrichir progressivement
+
+  📱 Pattern 5 — Variations d'Interface
+     Décliner la fonctionnalité par plateforme : Web, iOS, Android
+
+  🎯 Pattern 6 — Simple / Complexe
+     Version simple immédiatement utile, enrichissement progressif
+
+  💪 Pattern 7 — Effort Concentré
+     Le cas difficile pose l'infrastructure — les variantes
+     réutilisent et coûtent moins
+
+  ⚡ Pattern 8 — Différer la Performance
+     Fonctionnel avant optimal — la perf s'optimise après validation
+
+  🔬 Pattern 9 — Spike d'Investigation
+     Exploration time-boxée quand la faisabilité est inconnue
+     (dernier recours)
+
+
+────────────────────────────────────────────────────────────────
+MÉTA-PATTERN : Trouver la complexité & Réduire les variations
+────────────────────────────────────────────────────────────────
+Tous les 9 patterns suivent la même logique fondamentale :
+identifier la complexité, cataloguer les variations, et réduire
+à une seule tranche complète.
+
+Étape 1 — Identifier la complexité
+  Où se trouve la vraie difficulté ? Ce n'est pas toujours évident
+  au premier regard.
+
+Étape 2 — Cataloguer les variations
+  Lister tous les cas : règles métier, types de données,
+  opérations, options UI…
+
+Étape 3 — Réduire à une tranche
+  Garder une seule variation qui traverse toute la complexité —
+  livrer cette tranche d'abord.
+
+Étape 4 — Différer le reste
+  Les autres variations deviennent des stories séparées,
+  priorisables indépendamment.
+
+Critère de bon découpage : choisir le découpage qui permet soit
+de déprioritiser des fonctionnalités à faible valeur, soit de
+produire des stories plus équilibrées en taille — les deux donnent
+plus de flexibilité au Product Owner.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 1 — Étapes du Workflow
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La story décrit un processus end-to-end avec
+plusieurs étapes distinctes (commande, paiement, livraison…) qui
+peuvent chacune apporter de la valeur indépendamment.
+
+AVANT — Story trop large :
+  En tant que client,
+  je veux passer une commande complète,
+  afin de faire mes courses en ligne sans aller au magasin.
+  → Cache 6 étapes : Recherche · Panier · Créneau · Paiement ·
+    Confirmation · Suivi
+
+APRÈS — Une étape = une story :
+  ✅ En tant que client, je veux ajouter des produits à mon panier
+     afin de préparer mes courses.
+  ✅ En tant que client, je veux choisir un créneau de livraison
+     afin de recevoir mes courses au bon moment.
+  ✅ En tant que client, je veux payer ma commande en ligne
+     afin de finaliser mon achat.
+  ✅ En tant que client, je veux recevoir une confirmation de
+     commande afin d'être rassuré que ma commande est enregistrée.
+  ✅ En tant que client, je veux suivre l'état de ma commande
+     afin de savoir quand elle arrivera.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 2 — Opérations CRUD
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La story utilise des mots comme "gérer" ou
+"administrer" — ils cachent plusieurs opérations distinctes.
+Chaque opération (Ajouter, Modifier, Supprimer…) peut être
+livrée séparément.
+
+AVANT — "Gérer" = piège :
+  En tant que client,
+  je veux gérer mon panier,
+  afin de modifier mes achats avant validation.
+  → "Gérer" = 4 opérations cachées non estimables
+
+APRÈS — Une opération = une story :
+  ✅ En tant que client, je veux ajouter un produit au panier
+     afin de préparer ma commande.
+  ✅ En tant que client, je veux modifier la quantité d'un produit
+     afin d'ajuster mes achats.
+  ✅ En tant que client, je veux supprimer un produit du panier
+     afin de retirer un achat inutile.
+  ✅ En tant que client, je veux vider entièrement mon panier
+     afin de recommencer mes achats.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 3 — Règles Métier
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La story contient plusieurs règles métier
+alternatives dans ses critères d'acceptation. Chaque type de
+promotion ou règle de calcul peut être un incrément de valeur
+distinct.
+
+AVANT — Toutes les règles en même temps :
+  En tant que client,
+  je veux utiliser des promotions,
+  afin de payer moins cher mes courses.
+  → 4 règles promo : Code · Catalogue auto · Fidélité · 2+1 offert
+
+APRÈS — Une règle promo = une story :
+  ✅ En tant que client, je veux appliquer un code promo
+     afin d'obtenir une réduction sur ma commande.
+  ✅ En tant que client, je veux bénéficier automatiquement des
+     promotions catalogue afin de ne pas oublier les réductions.
+  ✅ En tant que client, je veux utiliser mes points fidélité
+     afin de réduire le montant de ma commande.
+  ✅ En tant que client, je veux bénéficier d'offres "2 achetés =
+     1 offert" afin d'économiser sur certains produits.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 4 — Variations de Données
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La complexité vient de la diversité des
+catégories de données à gérer. On commence avec la catégorie
+la plus simple (alimentaire de base) et on ajoute les types
+progressivement.
+
+AVANT — Toutes les catégories d'un coup :
+  En tant que client,
+  je veux rechercher tous les produits du supermarché,
+  afin de trouver rapidement ce que je veux acheter.
+  → 4 catégories : Alimentaire · Frais · Non-alimentaire · Boissons
+
+APRÈS — Une catégorie = une story :
+  ✅ En tant que client, je veux rechercher des produits
+     alimentaires afin de trouver mes courses quotidiennes.
+  ✅ En tant que client, je veux rechercher des produits frais
+     afin de trouver des fruits, légumes et viandes.
+  ✅ En tant que client, je veux rechercher des produits d'hygiène
+     et d'entretien afin de compléter mes achats.
+  ✅ En tant que client, je veux rechercher des boissons
+     afin de préparer mes achats pour la semaine.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 5 — Variations d'Interface
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La même fonctionnalité doit être disponible
+sur plusieurs plateformes ou interfaces (Web, iOS, Android).
+Chaque canal peut être livré comme un incrément indépendant.
+
+AVANT — Toutes les interfaces ensemble :
+  En tant que client,
+  je veux consulter mes commandes sur Web, iOS et Android,
+  afin d'accéder à mon historique partout.
+  → 3 interfaces = 3 équipes / 3 efforts distincts non estimables
+    ensemble
+
+APRÈS — Une interface = une story :
+  ✅ En tant que client Web, je veux consulter mon historique de
+     commandes afin de retrouver mes anciens achats.
+  ✅ En tant que client iOS, je veux consulter mon historique de
+     commandes afin de retrouver mes anciens achats.
+  ✅ En tant que client Android, je veux consulter mon historique
+     de commandes afin de retrouver mes anciens achats.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 6 — Simple / Complexe
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La story peut commencer avec une version simple
+immédiatement utile, puis être enrichie progressivement avec plus
+de sophistication technique ou métier.
+
+AVANT — Personnalisation maximale d'emblée :
+  En tant que client,
+  je veux recevoir des recommandations personnalisées,
+  afin de découvrir des produits adaptés à mes habitudes.
+  → IA, données, modèles ML = effort imprévisible dès le départ
+
+APRÈS — Simple d'abord, enrichissement progressif :
+  ✅ En tant que client, je veux voir les produits les plus achetés
+     afin d'obtenir des suggestions simples.
+  ✅ En tant que client, je veux voir des recommandations liées à
+     mes achats précédents afin de gagner du temps.
+  ✅ En tant que client, je veux recevoir des recommandations IA
+     selon mes habitudes afin de découvrir des produits pertinents.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 7 — Effort Concentré
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : L'effort de développement se concentre dans
+le premier cas implémenté. Les cas suivants réutilisent la même
+infrastructure et coûtent beaucoup moins cher — on peut les
+différer.
+
+AVANT — Tous les modes de paiement ensemble :
+  En tant que client,
+  je veux payer avec plusieurs moyens de paiement,
+  afin de choisir celui qui me convient.
+  → 4 intégrations en parallèle = risque et délai
+
+APRÈS — 1 cas difficile + variantes :
+  ✅ En tant que client, je veux payer par carte bancaire afin de
+     finaliser ma commande rapidement. (pose l'infrastructure)
+  ✅ En tant que client iOS, je veux payer avec Apple Pay afin de
+     payer plus rapidement.
+  ✅ En tant que client Android, je veux payer avec Google Pay afin
+     de payer plus rapidement.
+  ✅ En tant que client, je veux payer en plusieurs fois afin
+     d'étaler mes dépenses.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 8 — Différer la Performance
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La story inclut des exigences de performance
+ou de rapidité. On sépare "ça fonctionne" de "ça fonctionne vite"
+— on valide d'abord la logique, on optimise ensuite avec des
+données réelles.
+
+AVANT — Fonctionnel + instantané ensemble :
+  En tant que client,
+  je veux que la recherche produit affiche des résultats
+  instantanément,
+  afin de trouver rapidement mes articles.
+  → Optimiser sans données réelles = sur-engineering prématuré
+
+APRÈS — Fonctionnel d'abord, perf ensuite :
+  ✅ En tant que client, je veux rechercher des produits afin de
+     trouver les articles disponibles. (perf non contrainte)
+  ✅ En tant que client, je veux obtenir les résultats en moins
+     d'une seconde afin d'avoir une expérience fluide.
+  ✅ En tant que client, je veux voir des suggestions pendant ma
+     saisie afin de gagner du temps.
+
+
+────────────────────────────────────────────────────────────────
+PATTERN 9 — Spike d'Investigation
+────────────────────────────────────────────────────────────────
+Quand l'utiliser : La faisabilité est tellement incertaine qu'on
+ne peut pas estimer. On fait d'abord une exploration time-boxée
+pour lever les inconnues.
+DERNIER RECOURS — tenter les autres patterns d'abord.
+
+AVANT — Faisabilité inconnue :
+  En tant que client,
+  je veux recevoir des recommandations ultra-personnalisées en
+  temps réel,
+  afin d'avoir une expérience d'achat intelligente.
+  → IA ? · Temps réel ? · Données RGPD ? · Faisabilité mobile ? ·
+    Architecture ?
+
+APRÈS — Spike puis implémentation :
+  🔬 En tant qu'équipe produit, nous voulons évaluer les solutions
+     de moteur de recommandation afin de choisir une architecture
+     adaptée. (time-box : 3 jours)
+  ✅ En tant que client, je veux voir les produits populaires
+     afin d'obtenir des suggestions simples. (MVP)
+  ✅ En tant que client, je veux voir des recommandations selon mes
+     achats précédents afin de retrouver mes habitudes.
+
+================================================================
+PARTIE 4 — S'AMÉLIORER DANS LE DÉCOUPAGE
+================================================================
+
+SLIDE : La méthode en 2-3 semaines
+-------------------------------------
+
+Session 01 — Session de démarrage
+  Réunir des profils métier et technique ensemble. Revoir des
+  features récentes sur lesquelles le découpage avait été
+  difficile. Marquer ce qui aurait pu être découpé différemment.
+
+Session 02 — Session d'application
+  Prendre des stories du backlog actuel. Appliquer l'organigramme
+  pattern par pattern. Identifier plusieurs découpages possibles
+  pour chaque story — pas qu'un seul.
+
+Session 03 — Session de discussion
+  Débattre de quels patterns apparaissent le plus souvent dans
+  votre domaine. Résister à l'envie de transformer la session en
+  backlog refinement — c'est de la pratique, pas de la production.
+
+Pièges à éviter :
+- Ne pas sauter la pratique sous prétexte qu'elle "ne produit pas
+  de backlog" — c'est précisément ce qui développe le plus la
+  compétence
+- Ne pas faire la session seul côté tech ou seul côté métier —
+  la diversité de perspectives est essentielle
+- Ne pas se limiter à un seul découpage possible par story —
+  explorer plusieurs options renforce la fluidité
+
+================================================================
+RÉCAPITULATIF — LES 9 PATTERNS
+================================================================
+
+Pattern 1 — Étapes du Workflow
+  Passer commande = Panier + Créneau + Paiement + Confirmation +
+  Suivi
+
+Pattern 2 — Opérations CRUD
+  "Gérer le panier" = Ajouter + Modifier + Supprimer + Vider
+
+Pattern 3 — Règles Métier
+  Une règle promo = une story (code, auto, fidélité, 2+1)
+
+Pattern 4 — Variations de Données
+  Alimentaire → Frais → Non-alimentaire → Boissons
+
+Pattern 5 — Variations d'Interface
+  Une plateforme = une story (Web / iOS / Android)
+
+Pattern 6 — Simple / Complexe
+  Populaires → Historique → IA personnalisée
+
+Pattern 7 — Effort Concentré
+  Carte bancaire (infra) puis Apple Pay / Google Pay / Plusieurs
+  fois
+
+Pattern 8 — Différer la Performance
+  Recherche fonctionnelle → < 1 sec → Suggestions temps réel
+
+Pattern 9 — Spike d'Investigation
+  Évaluer le moteur de reco avant d'implémenter (dernier recours)
+
+----------------------------------------------------------------
+Le découpage est une compétence. Avec 2-3 sessions de pratique
+structurée, votre équipe peut livrer de la valeur plus vite,
+obtenir des feedbacks plus tôt, et devenir plus prévisible.
+================================================================
