@@ -602,6 +602,51 @@
       line-height: 1.35; font-family: 'Open Sans', sans-serif;
     }
     .toc-item.toc-section .toc-title { font-weight: 700; color: #fff; }
+
+    /* ─── Vrai ou Faux Activity ─── */
+    .activity-badge {
+      display: inline-block;
+      background: var(--burgundy); color: white;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .activity-instructions {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      background: var(--beige); border-radius: 10px;
+      padding: 10px 18px; margin-bottom: 16px;
+      font-size: clamp(13px, 1.2vw, 15px);
+    }
+    .vf-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; flex: 1;
+    }
+    .vf-card {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 10px; padding: 14px 16px;
+      cursor: pointer;
+      transition: border-color 0.22s, background 0.22s, transform 0.18s, box-shadow 0.18s;
+      display: flex; flex-direction: column; gap: 8px;
+      user-select: none;
+    }
+    .vf-card:hover:not(.vf-revealed) {
+      border-color: var(--burgundy); transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(125,16,40,0.12);
+    }
+    .vf-statement {
+      font-size: clamp(13px, 1.25vw, 15px); line-height: 1.5; flex: 1;
+    }
+    .vf-reveal-hint {
+      font-size: 11px; color: var(--gray); text-align: center; opacity: 0.6;
+    }
+    .vf-card.vf-revealed .vf-reveal-hint { display: none; }
+    .vf-answer {
+      display: none; font-size: clamp(12px, 1.1vw, 13px); line-height: 1.45;
+      border-top: 1px solid var(--beige-dark); padding-top: 8px; margin-top: 2px;
+    }
+    .vf-card.vf-revealed .vf-answer { display: block; }
+    .vf-card.vf-true  { background: #F0FFF4; border-color: var(--green); }
+    .vf-card.vf-false { background: #FFF5F5; border-color: var(--red); }
   </style>
 </head>
 <body>
@@ -645,7 +690,56 @@
     </div>
   </div>
 
-  <!-- ─── 2. SECTION: Pourquoi découper ? ─── -->
+  <!-- ─── 2. ACTIVITY: C1 — Vrai ou Faux debout ─── -->
+  <div class="slide slide-content" data-slide="2">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">🔗 Connexions · 12 min</span>
+      <div class="content-title" style="margin-top:6px">Vrai ou Faux — <em>debout !</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>🧍 <strong>Debout</strong> si vous pensez que c'est <strong>VRAI</strong></span>
+      <span>💺 <strong>Assis</strong> si vous pensez que c'est <strong>FAUX</strong></span>
+      <span>👆 Cliquez sur la carte pour révéler la réponse</span>
+    </div>
+    <div class="vf-grid">
+      <div class="vf-card" onclick="revealVF(this, false, 'Une story doit tenir en un seul sprint. Si elle dépasse, c\'est le signal qu\'elle est trop grosse et doit être découpée.')">
+        <div class="vf-statement">Une User Story peut s'étaler sur <em>plusieurs sprints</em> si l'équipe est d'accord.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, true, 'S = Small : la story doit être assez petite pour être complétée dans un seul sprint. C\'est un critère non négociable d\'INVEST.')">
+        <div class="vf-statement">Dans <strong>INVEST</strong>, le « S » de <em>Small</em> signifie que la story doit tenir en un seul sprint.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, false, 'Découper par couche (front/back/BDD) produit des tranches horizontales. Une tranche verticale traverse toutes les couches et livre de la valeur directe à l\'utilisateur.')">
+        <div class="vf-statement">Découper par couche technique <em>(front / back / BDD)</em> produit des tranches verticales de valeur.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, false, 'Une story sans critères d\'acceptation n\'est pas Prête. Les critères définissent ce que «Done» signifie et permettent de tester la livraison.')">
+        <div class="vf-statement">Une story <em>sans critères d'acceptation</em> peut quand même être considérée comme « Prête » (Ready).</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, true, 'Le découpage est une responsabilité partagée. L\'équipe de dev a une vision technique précieuse pour identifier les bons points de découpe.')">
+        <div class="vf-statement">L'équipe de développement peut et doit proposer de <em>découper</em> une story qu'elle juge trop grosse.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, false, 'Un Spike = investigation. Son résultat est de la connaissance, pas du code livrable. Il aide l\'équipe à estimer et à choisir une approche avant de s\'engager.')">
+        <div class="vf-statement">Le <em>Pattern Spike</em> produit du code livrable en production à la fin du sprint.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 3. SECTION: Pourquoi découper ? ─── -->
   <div class="slide slide-section" data-slide="2">
     <div class="section-left">
       <div class="section-number">1</div>
@@ -1824,6 +1918,13 @@
     document.getElementById('quiz-badge').textContent = '🎯 Score : ' + quizScore + ' / ' + quizAnswered.size;
     if (document.getElementById('results-slide') &&
         slides[current] === document.getElementById('results-slide')) updateResults();
+  }
+
+  function revealVF(card, isTrue, explanation) {
+    if (card.classList.contains('vf-revealed')) return;
+    card.classList.add('vf-revealed', isTrue ? 'vf-true' : 'vf-false');
+    const answer = card.querySelector('.vf-answer');
+    answer.innerHTML = (isTrue ? '✅ <strong>VRAI</strong>' : '❌ <strong>FAUX</strong>') + ' — <em>' + explanation + '</em>';
   }
 
   function updateResults() {
