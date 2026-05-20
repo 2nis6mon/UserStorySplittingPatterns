@@ -1,0 +1,14 @@
+{
+  "name": "user-story-splitting-live",
+  "version": "1.0.0",
+  "description": "Live facilitation for User Story Splitting Patterns training",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.4",
+    "qrcode": "^1.5.3"
+  }
+}

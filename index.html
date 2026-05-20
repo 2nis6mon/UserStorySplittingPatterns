@@ -129,7 +129,7 @@
     .section-number::after {
       content: '';
       display: block;
-      width: 60px; height: 5px;
+      width: 100%; height: 5px;
       background: var(--white);
       margin-top: 12px; border-radius: 3px;
     }
@@ -542,6 +542,218 @@
 
     /* Scroll text fix */
     .content-body { overflow: auto; }
+
+    /* ─── TOC Button & Panel ─── */
+    #toc-btn {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 44px; height: 44px;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white; border-radius: 50%;
+      cursor: pointer; z-index: 100;
+      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    #toc-btn:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.7); }
+
+    #toc-panel {
+      position: fixed;
+      bottom: 78px; right: 24px;
+      width: 300px; max-height: 68vh;
+      background: rgba(18,18,18,0.94); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 12px;
+      overflow-y: auto;
+      z-index: 99;
+      padding: 6px 0;
+      transform-origin: bottom right;
+      transform: scale(0.88) translateY(8px); opacity: 0;
+      pointer-events: none;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    #toc-panel.open {
+      transform: scale(1) translateY(0); opacity: 1;
+      pointer-events: all;
+    }
+    #toc-panel::-webkit-scrollbar { width: 4px; }
+    #toc-panel::-webkit-scrollbar-track { background: transparent; }
+    #toc-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+    .toc-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .toc-item:hover { background: rgba(255,255,255,0.07); }
+    .toc-item.toc-active { background: rgba(125,16,40,0.28); border-left-color: var(--burgundy); }
+    .toc-item.toc-section { background: rgba(255,255,255,0.04); }
+    .toc-num {
+      font-size: 11px; color: rgba(255,255,255,0.35);
+      min-width: 20px; text-align: right; flex-shrink: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .toc-title {
+      font-size: 13px; color: rgba(255,255,255,0.78);
+      line-height: 1.35; font-family: 'Open Sans', sans-serif;
+    }
+    .toc-item.toc-section .toc-title { font-weight: 700; color: #fff; }
+
+    /* ─── Vrai ou Faux Activity ─── */
+    .activity-badge {
+      display: inline-block;
+      background: var(--burgundy); color: white;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .activity-instructions {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      background: var(--beige); border-radius: 10px;
+      padding: 10px 18px; margin-bottom: 16px;
+      font-size: clamp(13px, 1.2vw, 15px);
+    }
+    .vf-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; flex: 1;
+    }
+    .vf-card {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 10px; padding: 14px 16px;
+      cursor: pointer;
+      transition: border-color 0.22s, background 0.22s, transform 0.18s, box-shadow 0.18s;
+      display: flex; flex-direction: column; gap: 8px;
+      user-select: none;
+    }
+    .vf-card:hover:not(.vf-revealed) {
+      border-color: var(--burgundy); transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(125,16,40,0.12);
+    }
+    .vf-statement {
+      font-size: clamp(13px, 1.25vw, 15px); line-height: 1.5; flex: 1;
+    }
+    .vf-reveal-hint {
+      font-size: 11px; color: var(--gray); text-align: center; opacity: 0.6;
+    }
+    .vf-card.vf-revealed .vf-reveal-hint { display: none; }
+    .vf-answer {
+      display: none; font-size: clamp(12px, 1.1vw, 13px); line-height: 1.45;
+      border-top: 1px solid var(--beige-dark); padding-top: 8px; margin-top: 2px;
+    }
+    .vf-card.vf-revealed .vf-answer { display: block; }
+    .vf-card.vf-true  { background: #F0FFF4; border-color: var(--green); }
+    .vf-card.vf-false { background: #FFF5F5; border-color: var(--red); }
+
+    /* ─── TBR Phase tags on section slides ─── */
+    .tbr-phase-tag {
+      display: inline-flex; align-items: center;
+      background: var(--burgundy); color: white;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 12px; letter-spacing: 0.6px;
+      margin-bottom: 10px; font-family: 'Open Sans', sans-serif; font-weight: 700;
+    }
+
+    /* ─── C3 Triage activity ─── */
+    .triage-grid {
+      display: flex; flex-direction: column; gap: 10px; flex: 1;
+    }
+    .triage-card {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 10px; padding: 12px 16px;
+      cursor: pointer;
+      transition: border-color 0.22s, background 0.22s, transform 0.18s;
+      display: flex; flex-direction: column; gap: 6px;
+      user-select: none;
+    }
+    .triage-card:hover:not(.triage-revealed) {
+      border-color: var(--burgundy); transform: translateY(-1px);
+    }
+    .triage-header { display: flex; align-items: flex-start; gap: 12px; }
+    .triage-num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--beige-dark); color: var(--burgundy);
+      font-weight: 700; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .triage-statement { font-size: clamp(13px, 1.3vw, 15px); line-height: 1.45; flex: 1; }
+    .triage-reveal-hint { font-size: 11px; color: var(--gray); text-align: center; opacity: 0.6; }
+    .triage-card.triage-revealed .triage-reveal-hint { display: none; }
+    .triage-answer {
+      display: none; font-size: clamp(12px, 1.1vw, 13px); line-height: 1.4;
+      border-top: 1px solid var(--beige-dark); padding-top: 8px; padding-left: 38px;
+    }
+    .triage-card.triage-revealed .triage-answer { display: block; }
+    .triage-card.triage-ok { background: #F0FFF4; border-color: var(--green); }
+    .triage-card.triage-ko { background: #FFF5F5; border-color: var(--red); }
+
+    /* ─── C3 Atelier mi-parcours ─── */
+    .atelier-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1;
+    }
+    .atelier-card {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 12px; padding: 16px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .atelier-story {
+      background: var(--beige); border-radius: 8px; padding: 12px 14px;
+      font-size: clamp(13px, 1.25vw, 15px); line-height: 1.5; flex: 1;
+      font-style: italic;
+    }
+    .atelier-question {
+      font-size: clamp(12px, 1.15vw, 14px); font-weight: 600;
+      color: var(--burgundy);
+    }
+    .atelier-btn {
+      background: var(--beige-dark); border: none; border-radius: 8px;
+      padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 600;
+      transition: background 0.18s; text-align: left;
+    }
+    .atelier-btn:hover { background: #d4c5b0; }
+    .atelier-suggestion {
+      display: none; font-size: 13px; line-height: 1.45;
+      border-top: 1px solid var(--beige-dark); padding-top: 10px;
+    }
+    .atelier-suggestion.show { display: block; }
+    .atelier-note {
+      background: #FFF9E6; border-left: 3px solid #D4A017;
+      border-radius: 0 8px 8px 0; padding: 10px 14px;
+      font-size: clamp(12px, 1.1vw, 13px); color: var(--gray); line-height: 1.4;
+    }
+
+    /* ─── C4 Conclusions ─── */
+    .c4-stems {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; flex: 1;
+    }
+    .c4-stem {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 12px; padding: 16px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .c4-stem-num {
+      font-size: 11px; font-weight: 700; color: var(--burgundy);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .c4-stem-prompt {
+      font-size: clamp(13px, 1.3vw, 15px); line-height: 1.5; flex: 1;
+    }
+    .c4-stem-blank {
+      border-bottom: 2px dashed var(--beige-dark); padding: 6px 4px;
+      font-size: 13px; color: var(--gray); background: var(--beige);
+      border-radius: 4px; min-height: 28px;
+    }
+    .c4-action {
+      background: var(--burgundy); color: white;
+      border-radius: 12px; padding: 14px 20px;
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 4px;
+    }
+    .c4-action-icon { font-size: 22px; flex-shrink: 0; }
+    .c4-action-text { font-size: clamp(13px, 1.3vw, 15px); line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -585,7 +797,58 @@
     </div>
   </div>
 
-  <!-- ─── 2. SECTION: Pourquoi découper ? ─── -->
+  <!-- ─── 2. ACTIVITY: C1 — Vrai ou Faux debout ─── -->
+  <div class="slide slide-content" data-slide="2">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="activity-badge">🔗 C1 Connexions · 12 min</span>
+      </div>
+      <div class="content-title" style="margin-top:6px">Vrai ou Faux — <em>debout !</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>🧍 <strong>Debout</strong> si vous pensez que c'est <strong>VRAI</strong></span>
+      <span>💺 <strong>Assis</strong> si vous pensez que c'est <strong>FAUX</strong></span>
+      <span>👆 Cliquez sur la carte pour révéler la réponse</span>
+    </div>
+    <div class="vf-grid">
+      <div class="vf-card" onclick="revealVF(this, false, 'Une story doit tenir en un seul sprint. Si elle dépasse, c\'est le signal qu\'elle est trop grosse et doit être découpée.')">
+        <div class="vf-statement">Une User Story peut s'étaler sur <em>plusieurs sprints</em> si l'équipe est d'accord.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, true, 'S = Small : la story doit être assez petite pour être complétée dans un seul sprint. C\'est un critère non négociable d\'INVEST.')">
+        <div class="vf-statement">Dans <strong>INVEST</strong>, le « S » de <em>Small</em> signifie que la story doit tenir en un seul sprint.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, false, 'Découper par couche (front/back/BDD) produit des tranches horizontales. Une tranche verticale traverse toutes les couches et livre de la valeur directe à l\'utilisateur.')">
+        <div class="vf-statement">Découper par couche technique <em>(front / back / BDD)</em> produit des tranches verticales de valeur.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, false, 'Une story sans critères d\'acceptation n\'est pas Prête. Les critères définissent ce que «Done» signifie et permettent de tester la livraison.')">
+        <div class="vf-statement">Une story <em>sans critères d'acceptation</em> peut quand même être considérée comme « Prête » (Ready).</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, true, 'Le découpage est une responsabilité partagée. L\'équipe de dev a une vision technique précieuse pour identifier les bons points de découpe.')">
+        <div class="vf-statement">L'équipe de développement peut et doit proposer de <em>découper</em> une story qu'elle juge trop grosse.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+      <div class="vf-card" onclick="revealVF(this, false, 'Un Spike = investigation. Son résultat est de la connaissance, pas du code livrable. Il aide l\'équipe à estimer et à choisir une approche avant de s\'engager.')">
+        <div class="vf-statement">Le <em>Pattern Spike</em> produit du code livrable en production à la fin du sprint.</div>
+        <div class="vf-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="vf-answer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 3. SECTION: Pourquoi découper ? ─── -->
   <div class="slide slide-section" data-slide="2">
     <div class="section-left">
       <div class="section-number">1</div>
@@ -597,6 +860,7 @@
           <div class="logo-bot">Mousquetaires</div>
         </div>
       </div>
+      <div class="tbr-phase-tag">C2 · Concepts</div>
       <div class="section-label">Partie 1</div>
       <div class="section-title">Pourquoi<br/><em>découper</em> les<br/>User Stories ?</div>
       <div class="section-desc">Le défi que rencontrent toutes les équipes agiles — et pourquoi c'est une compétence qui s'apprend.</div>
@@ -659,6 +923,7 @@
       <div class="logo">
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
+      <div class="tbr-phase-tag">C2 · Concepts</div>
       <div class="section-label">Partie 2</div>
       <div class="section-title">Qu'est-ce qu'une<br/><em>bonne</em><br/>User Story ?</div>
       <div class="section-desc">La définition, les critères INVEST, et pourquoi les tranches verticales sont essentielles.</div>
@@ -788,6 +1053,49 @@
     </div>
   </div>
 
+  <!-- ─── C3 ACTIVITY: Triage Tranche ─── -->
+  <div class="slide slide-content" data-slide="7c">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">✂️ C3 Pratique · 5 min</span>
+      <div class="content-title" style="margin-top:6px">Tranche <em>verticale</em> ou horizontale ?</div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>👥 En binôme · 2 min de réflexion</span>
+      <span>🗣️ Tour de table : chacun justifie son choix</span>
+      <span>👆 Cliquez pour révéler</span>
+    </div>
+    <div class="triage-grid">
+      <div class="triage-card" onclick="revealTriage(this, false, '❌ Horizontale — Couche technique pure. Aucune valeur livrable pour l\'utilisateur. Le résultat est un composant qui attend les autres couches pour fonctionner.')">
+        <div class="triage-header">
+          <div class="triage-num">A</div>
+          <div class="triage-statement">« Cette semaine, l'équipe implémente <em>la couche base de données</em> du module de commandes (schémas, migrations, requêtes). »</div>
+        </div>
+        <div class="triage-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="triage-answer"></div>
+      </div>
+      <div class="triage-card" onclick="revealTriage(this, true, '✅ Verticale — Traverse toutes les couches (UI + métier + données). Un client peut réellement ajouter un produit à son panier : valeur livrable, feedback possible.')">
+        <div class="triage-header">
+          <div class="triage-num">B</div>
+          <div class="triage-statement">« En tant que <em>client</em>, je veux ajouter un produit alimentaire à mon panier afin de préparer mes courses en ligne. »</div>
+        </div>
+        <div class="triage-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="triage-answer"></div>
+      </div>
+      <div class="triage-card" onclick="revealTriage(this, false, '❌ Horizontale — UI isolée sans back-end. L\'utilisateur ne peut rien faire avec ce formulaire tant que le back-end n\'est pas livré. Valeur = 0 avant intégration complète.')">
+        <div class="triage-header">
+          <div class="triage-num">C</div>
+          <div class="triage-statement">« L'équipe <em>front</em> développe le formulaire de paiement (design, composants React). Le back-end de paiement est prévu pour le sprint prochain. »</div>
+        </div>
+        <div class="triage-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="triage-answer"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 8. SECTION: L'Organigramme ─── -->
   <div class="slide slide-section" data-slide="8">
     <div class="section-left">
@@ -797,6 +1105,7 @@
       <div class="logo">
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
+      <div class="tbr-phase-tag">C2 · Concepts</div>
       <div class="section-label">Partie 3</div>
       <div class="section-title">L'Organigramme<br/>de <em>Découpage</em></div>
       <div class="section-desc">9 patterns pour découper n'importe quelle User Story, avec un méta-pattern qui les unifie tous.</div>
@@ -1041,6 +1350,47 @@
     </div>
   </div>
 
+  <!-- ─── C3 ACTIVITY: Atelier mi-parcours ─── -->
+  <div class="slide slide-content" data-slide="14b">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">🛠️ C3 Atelier · 10 min</span>
+      <div class="content-title" style="margin-top:6px">Application : <em>Quel pattern choisiriez-vous ?</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>👥 En trinôme · 5 min de discussion</span>
+      <span>🎯 Pas de réponse unique — justifiez votre choix</span>
+      <span>🗣️ Partage collectif ensuite</span>
+    </div>
+    <div class="atelier-grid">
+      <div class="atelier-card">
+        <div class="atelier-question">Story A — Quel(s) pattern(s) ?</div>
+        <div class="atelier-story">« En tant que <strong>chef de rayon</strong>, je veux gérer les promotions hebdomadaires de mon rayon afin d'attirer les clients et d'écouler les produits en fin de vie. »</div>
+        <div class="atelier-note">💡 Contexte : créer, modifier, désactiver des promos — promotions flash · promotions catalogue · offres 2+1 · codes fidélité</div>
+        <button class="atelier-btn" onclick="showAtelier(this)">💡 Voir la suggestion</button>
+        <div class="atelier-suggestion">
+          <strong>Pattern 2 (CRUD)</strong> en premier : "gérer" cache 4 opérations distinctes (créer / modifier / désactiver / archiver une promo). <br/>
+          <strong>+ Pattern 3 (Règles Métier)</strong> ensuite : chaque type de promotion est une règle indépendante (flash, catalogue, 2+1, fidélité).<br/>
+          <em>Discussion : quelle dimension découper en priorité selon la valeur métier attendue ?</em>
+        </div>
+      </div>
+      <div class="atelier-card">
+        <div class="atelier-question">Story B — Quel(s) pattern(s) ?</div>
+        <div class="atelier-story">« En tant que <strong>responsable logistique</strong>, je veux être notifié quand le stock d'un produit est critique afin d'anticiper les ruptures et de déclencher les réapprovisionnements. »</div>
+        <div class="atelier-note">💡 Contexte : seuils différents selon catégorie (frais, sec, boissons) — canaux de notification (email, SMS, tableau de bord) — escalade si non traité</div>
+        <button class="atelier-btn" onclick="showAtelier(this)">💡 Voir la suggestion</button>
+        <div class="atelier-suggestion">
+          <strong>Pattern 1 (Workflow)</strong> : détecter seuil → créer alerte → notifier → escalade si non traité. Chaque étape est une story indépendante.<br/>
+          <strong>ou Pattern 3 (Règles Métier)</strong> : si le seuil varie selon la catégorie produit, chaque règle de seuil est une story.<br/>
+          <em>Discussion : commencer par le workflow ou par la catégorie la plus critique ?</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 15. Pattern 6: Major Effort ─── -->
   <div class="slide slide-content" data-slide="15">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
@@ -1187,6 +1537,7 @@
       <div class="logo">
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
+      <div class="tbr-phase-tag">C3 · Pratique Continue</div>
       <div class="section-label">Partie 4</div>
       <div class="section-title">S'<em>améliorer</em><br/>dans le<br/>découpage</div>
       <div class="section-desc">Comment développer cette compétence en équipe en quelques heures de pratique structurée.</div>
@@ -1230,10 +1581,230 @@
     </div>
   </div>
 
+
+  <!-- ─── SECTION 5: Quiz ─── -->
+  <div class="slide slide-section" data-slide="22">
+    <div class="section-left"><div class="section-number">5</div></div>
+    <div class="section-right">
+      <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+      <div class="tbr-phase-tag">C3 · Quiz Auto-Corrigé</div>
+      <div class="section-label">Partie 5</div>
+      <div class="section-title">Quiz :<br/><em>Testez vos</em><br/>connaissances</div>
+      <div class="section-desc">9 scénarios tirés de votre contexte. Pour chaque situation, identifiez le bon pattern de découpage.</div>
+    </div>
+  </div>
+
+  <!-- Q1 : Workflow -->
+  <div class="slide slide-content quiz-slide" data-slide="23">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q1 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que client, je veux effectuer un retour de commande afin d'être remboursé des articles non conformes. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,1)" data-correct="false"><span class="opt-label">A</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,1)"  data-correct="true" ><span class="opt-label">B</span>Pattern 1 — Étapes du Workflow</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,1)" data-correct="false"><span class="opt-label">C</span>Pattern 3 — Règles Métier</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,1)" data-correct="false"><span class="opt-label">D</span>Pattern 5 — Variations d'Interface</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 1 — Étapes du Workflow.</strong> Un retour suit des étapes séquentielles : déclarer → choisir le mode → déposer le colis → valider la réception → rembourser. Chaque étape peut être livrée indépendamment.</div>
+    </div>
+  </div>
+
+  <!-- Q2 : CRUD -->
+  <div class="slide slide-content quiz-slide" data-slide="24">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q2 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant qu'employé back-office, je veux administrer le catalogue produits afin que les informations soient à jour en magasin. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,true,2)"  data-correct="true" ><span class="opt-label">A</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,2)" data-correct="false"><span class="opt-label">B</span>Pattern 1 — Étapes du Workflow</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,2)" data-correct="false"><span class="opt-label">C</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,2)" data-correct="false"><span class="opt-label">D</span>Pattern 7 — Effort Concentré</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 2 — Opérations CRUD.</strong> "Administrer" est un signal CRUD classique : Créer un produit / Modifier ses informations / Désactiver une référence / Archiver. Chaque opération est une story indépendante.</div>
+    </div>
+  </div>
+
+  <!-- Q3 : Business Rules -->
+  <div class="slide slide-content quiz-slide" data-slide="25">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q3 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que client professionnel, je veux bénéficier d'un tarif adapté à ma situation afin de maîtriser mon budget d'achats. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : tarif standard · tarif volume · tarif grand compte · tarif fidélité</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,3)" data-correct="false"><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,3)" data-correct="false"><span class="opt-label">B</span>Pattern 7 — Effort Concentré</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,3)"  data-correct="true" ><span class="opt-label">C</span>Pattern 3 — Règles Métier</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,3)" data-correct="false"><span class="opt-label">D</span>Pattern 2 — Opérations CRUD</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 3 — Règles Métier.</strong> Chaque règle tarifaire est une variation métier distincte (standard, volume, grand compte, fidélité). Elles n'ont pas de dépendances entre elles et peuvent être livrées séparément.</div>
+    </div>
+  </div>
+
+  <!-- Q4 : Data Variations -->
+  <div class="slide slide-content quiz-slide" data-slide="26">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q4 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que directeur de magasin, je veux consulter les ventes afin d'analyser les performances et ajuster mes commandes fournisseurs. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : par rayon · par marque · par période · par magasin · comparaison N-1</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,4)" data-correct="false"><span class="opt-label">A</span>Pattern 8 — Différer la Performance</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,4)"  data-correct="true" ><span class="opt-label">B</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,4)" data-correct="false"><span class="opt-label">C</span>Pattern 1 — Étapes du Workflow</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,4)" data-correct="false"><span class="opt-label">D</span>Pattern 3 — Règles Métier</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 4 — Variations de Données.</strong> La complexité vient des types de données à afficher. On commence par un seul type (par rayon), puis on enrichit progressivement : par marque, par période, par magasin…</div>
+    </div>
+  </div>
+
+  <!-- Q5 : Interface Variations -->
+  <div class="slide slide-content quiz-slide" data-slide="27">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q5 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que préparateur de commandes, je veux accéder à ma liste de picking afin de préparer les commandes click &amp; collect efficacement. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : tablette entrepôt · scanner code-barres · poste fixe · application mobile</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,5)" data-correct="false"><span class="opt-label">A</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,5)" data-correct="false"><span class="opt-label">B</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,5)" data-correct="false"><span class="opt-label">C</span>Pattern 7 — Effort Concentré</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,5)"  data-correct="true" ><span class="opt-label">D</span>Pattern 5 — Variations d'Interface</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 5 — Variations d'Interface.</strong> La même fonctionnalité (liste de picking) doit être déclinée sur 4 interfaces matérielles différentes. Chaque canal peut être livré comme un incrément indépendant.</div>
+    </div>
+  </div>
+
+  <!-- Q6 : Simple/Complex -->
+  <div class="slide slide-content quiz-slide" data-slide="28">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q6 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que client, je veux recevoir des suggestions de remplacement pour les produits indisponibles afin de compléter ma commande sans rupture. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : même rayon → produits les plus achetés → IA prédictive basée sur l'historique</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,true,6)"  data-correct="true" ><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,6)" data-correct="false"><span class="opt-label">B</span>Pattern 9 — Spike d'Investigation</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,6)" data-correct="false"><span class="opt-label">C</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,6)" data-correct="false"><span class="opt-label">D</span>Pattern 3 — Règles Métier</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 6 — Simple / Complexe.</strong> On commence par une version utile immédiatement (même rayon), puis on enrichit progressivement (les + achetés, puis IA prédictive). La fonctionnalité est connue, seule sa sophistication augmente.</div>
+    </div>
+  </div>
+
+  <!-- Q7 : Major Effort -->
+  <div class="slide slide-content quiz-slide" data-slide="29">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q7 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que responsable des achats, je veux passer commande chez nos fournisseurs via API REST, EDI et formulaire web afin d'intégrer tous nos systèmes d'achat. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,7)" data-correct="false"><span class="opt-label">A</span>Pattern 5 — Variations d'Interface</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,7)" data-correct="false"><span class="opt-label">B</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,7)"  data-correct="true" ><span class="opt-label">C</span>Pattern 7 — Effort Concentré</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,7)" data-correct="false"><span class="opt-label">D</span>Pattern 1 — Étapes du Workflow</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 7 — Effort Concentré.</strong> L'API REST est le cas difficile qui pose toute l'infrastructure d'intégration. EDI et formulaire web réutilisent cette base et coûtent beaucoup moins cher ensuite.</div>
+    </div>
+  </div>
+
+  <!-- Q8 : Defer Performance -->
+  <div class="slide slide-content quiz-slide" data-slide="30">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q8 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que directeur des achats, je veux que le tableau de bord fournisseurs se charge en moins de 2 secondes avec 3 ans d'historique afin de prendre des décisions rapidement. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,8)" data-correct="false"><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,8)" data-correct="false"><span class="opt-label">B</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,8)" data-correct="false"><span class="opt-label">C</span>Pattern 9 — Spike d'Investigation</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,8)"  data-correct="true" ><span class="opt-label">D</span>Pattern 8 — Différer la Performance</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 8 — Différer la Performance.</strong> Séparer "ça fonctionne" (tableau de bord) de "ça fonctionne en &lt; 2s" (optimisation). On valide d'abord la logique métier, puis on optimise avec des données de production réelles.</div>
+    </div>
+  </div>
+
+  <!-- Q9 : Spike -->
+  <div class="slide slide-content quiz-slide" data-slide="31">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q9 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que responsable digital, je veux permettre aux clients de scanner un produit en magasin avec leur téléphone pour obtenir des infos nutritionnelles et des alternatives. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : reconnaissance d'image ? · API code-barres ? · données ML ? · RGPD ? · perf mobile ?</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,9)" data-correct="false"><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,9)"  data-correct="true" ><span class="opt-label">B</span>Pattern 9 — Spike d'Investigation</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,9)" data-correct="false"><span class="opt-label">C</span>Pattern 5 — Variations d'Interface</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,9)" data-correct="false"><span class="opt-label">D</span>Pattern 8 — Différer la Performance</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 9 — Spike d'Investigation.</strong> La faisabilité est inconnue sur plusieurs dimensions simultanées (reconnaissance d'image, ML, données, RGPD, perf mobile). Un spike time-boxé est nécessaire avant toute estimation.</div>
+    </div>
+  </div>
+
+  <!-- Résultats -->
+  <div class="slide slide-content quiz-slide" data-slide="32" id="results-slide">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title">Quiz : <em>Vos résultats</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:16px;">
+      <div style="display:flex; gap:20px; align-items:stretch;">
+        <div class="results-score-box" id="score-box" style="flex:0 0 190px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px;">Score</div>
+          <div class="results-score-num"><span id="final-score">–</span></div>
+          <div class="results-score-label">/ 9 questions</div>
+          <div class="results-rating" id="results-rating">–</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:8px;justify-content:center;">
+          <div style="font-size:clamp(13px,1.33vw,16px);color:var(--dark);font-weight:600;margin-bottom:2px;">Récapitulatif par pattern :</div>
+          <div class="quiz-recap-grid">
+            <div class="recap-item" id="recap-1"><span class="recap-check">⬜</span><span>P1 — Étapes du Workflow</span></div>
+            <div class="recap-item" id="recap-2"><span class="recap-check">⬜</span><span>P2 — Opérations CRUD</span></div>
+            <div class="recap-item" id="recap-3"><span class="recap-check">⬜</span><span>P3 — Règles Métier</span></div>
+            <div class="recap-item" id="recap-4"><span class="recap-check">⬜</span><span>P4 — Variations de Données</span></div>
+            <div class="recap-item" id="recap-5"><span class="recap-check">⬜</span><span>P5 — Variations d'Interface</span></div>
+            <div class="recap-item" id="recap-6"><span class="recap-check">⬜</span><span>P6 — Simple / Complexe</span></div>
+            <div class="recap-item" id="recap-7"><span class="recap-check">⬜</span><span>P7 — Effort Concentré</span></div>
+            <div class="recap-item" id="recap-8"><span class="recap-check">⬜</span><span>P8 — Différer la Performance</span></div>
+            <div class="recap-item" id="recap-9"><span class="recap-check">⬜</span><span>P9 — Spike d'Investigation</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 22. CONCLUSION ─── -->
   <div class="slide slide-content" data-slide="22">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
+      <div style="margin-bottom:4px;"><span class="activity-badge" style="background:var(--orange);">🔄 Transition C3 → C4</span></div>
       <div class="content-title">Récapitulatif : <em>Les 9 Patterns de découpage</em></div>
       <hr class="content-rule"/>
     </div>
@@ -1255,14 +1826,63 @@
     </div>
   </div>
 
+
+  <!-- ─── C4 CONCLUSIONS ─── -->
+  <div class="slide slide-content" data-slide="c4">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">🎯 C4 Conclusions · 10 min</span>
+      <div class="content-title" style="margin-top:6px">Votre <em>plan de match</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>✍️ 3 min individuel — complétez les phrases</span>
+      <span>🗣️ Tour de table — partagez UNE phrase</span>
+    </div>
+    <div class="c4-stems">
+      <div class="c4-stem">
+        <div class="c4-stem-num">Phrase 1</div>
+        <div class="c4-stem-prompt">Le pattern que je veux <em>tester en premier</em> avec mon équipe est…</div>
+        <div class="c4-stem-blank"></div>
+        <div style="font-size:12px;color:var(--gray);margin-top:4px;">…parce que je vois ce problème dans nos stories en ce moment.</div>
+      </div>
+      <div class="c4-stem">
+        <div class="c4-stem-num">Phrase 2</div>
+        <div class="c4-stem-prompt">La prochaine story trop grosse que je rencontre, je vais proposer de la découper en…</div>
+        <div class="c4-stem-blank"></div>
+        <div style="font-size:12px;color:var(--gray);margin-top:4px;">…en utilisant le Méta-Pattern : identifier · cataloguer · réduire · différer.</div>
+      </div>
+      <div class="c4-stem">
+        <div class="c4-stem-num">Phrase 3</div>
+        <div class="c4-stem-prompt">Notre prochain pas <em>concret en équipe</em> pour développer cette compétence est…</div>
+        <div class="c4-stem-blank"></div>
+        <div style="font-size:12px;color:var(--gray);margin-top:4px;">…organiser une session de pratique dans les 14 prochains jours.</div>
+      </div>
+    </div>
+    <div class="c4-action">
+      <div class="c4-action-icon">📅</div>
+      <div class="c4-action-text"><strong>Engagez-vous maintenant :</strong> ouvrez votre agenda et bloquez 1h dans les 14 prochains jours pour une session de découpage en équipe (profils métier + tech ensemble).</div>
+    </div>
+  </div>
+
 </div><!-- #presentation -->
 
 <!-- Navigation -->
 <div id="nav">
   <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">&#8592;</button>
-  <span id="slide-counter">1 / 21</span>
+  <span id="slide-counter">1 / 32</span>
   <button class="nav-btn" id="btn-next" onclick="navigate(1)">&#8594;</button>
 </div>
+
+<!-- TOC Button -->
+<button id="toc-btn" onclick="toggleToc()" title="Index des slides">&#9776;</button>
+
+<!-- TOC Panel -->
+<div id="toc-panel"></div>
+
+<div id="quiz-badge">🎯 Score : 0 / 0</div>
 
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
@@ -1276,6 +1896,8 @@
     document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
     document.getElementById('btn-prev').disabled = current === 0;
     document.getElementById('btn-next').disabled = current === total - 1;
+    const badge = document.getElementById('quiz-badge');
+    if (badge) badge.classList.toggle('show', slides[current].classList.contains('quiz-slide'));
   }
 
   function triggerSlideAnimations(slideEl) {
@@ -1337,10 +1959,20 @@
       const delay = parseInt(c.dataset.delay || i) * 80;
       setTimeout(() => c.classList.add('visible'), delay + 100);
     });
+
+    // Results slide
+    if (slideEl.id === 'results-slide') {
+      updateResults();
+      const box = slideEl.querySelector('.results-score-box');
+      if (box) setTimeout(() => box.classList.add('visible'), 100);
+      slideEl.querySelectorAll('.recap-item').forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 60 + 400);
+      });
+    }
   }
 
   function resetAnimations(slideEl) {
-    slideEl.querySelectorAll('.invest-card, .pattern-card, .avant-box, .apres-box, .layer-bar, .v-slice, .story-card, .meta-step, .session-card, .concl-card').forEach(el => {
+    slideEl.querySelectorAll('.invest-card, .pattern-card, .avant-box, .apres-box, .layer-bar, .v-slice, .story-card, .meta-step, .session-card, .concl-card, .results-score-box, .recap-item').forEach(el => {
       el.classList.remove('visible');
     });
   }
@@ -1398,9 +2030,227 @@
     if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
   }, { passive: true });
 
+  // ─── Direct jump (for TOC) ───
+  function goTo(index) {
+    if (animating || index === current) { closeToc(); return; }
+    closeToc();
+    const dir = index > current ? 1 : -1;
+    animating = true;
+
+    const currentSlide = slides[current];
+    const nextSlide = slides[index];
+
+    resetAnimations(nextSlide);
+    currentSlide.classList.add('exit');
+    currentSlide.classList.remove('active');
+
+    nextSlide.style.transform = dir > 0 ? 'translateX(60px)' : 'translateX(-60px)';
+    nextSlide.style.opacity = '0';
+    nextSlide.classList.add('active');
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextSlide.style.transform = '';
+        nextSlide.style.opacity = '';
+        nextSlide.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      });
+    });
+
+    setTimeout(() => {
+      currentSlide.classList.remove('exit');
+      currentSlide.style.transform = '';
+      currentSlide.style.opacity = '';
+      animating = false;
+      current = index;
+      updateProgress();
+      triggerSlideAnimations(slides[current]);
+      buildToc();
+    }, 480);
+  }
+
+  // ─── TOC ───
+  let tocOpen = false;
+
+  function getSlideTitle(slideEl) {
+    if (slideEl.classList.contains('slide-title')) {
+      return '🏠 ' + (slideEl.querySelector('.title-main') || { textContent: 'Titre' }).textContent.replace(/\s+/g, ' ').trim();
+    }
+    if (slideEl.classList.contains('slide-section')) {
+      const label = slideEl.querySelector('.section-label');
+      const title = slideEl.querySelector('.section-title');
+      return (label ? label.textContent.trim() + ' — ' : '') + (title ? title.textContent.replace(/\s+/g, ' ').trim() : '');
+    }
+    const ct = slideEl.querySelector('.content-title');
+    if (ct) return ct.textContent.replace(/\s+/g, ' ').trim();
+    return 'Slide';
+  }
+
+  function buildToc() {
+    const panel = document.getElementById('toc-panel');
+    panel.innerHTML = '';
+    slides.forEach((slide, idx) => {
+      const item = document.createElement('div');
+      item.className = 'toc-item' +
+        (slide.classList.contains('slide-section') || slide.classList.contains('slide-title') ? ' toc-section' : '') +
+        (idx === current ? ' toc-active' : '');
+
+      const num = document.createElement('span');
+      num.className = 'toc-num';
+      num.textContent = idx + 1;
+
+      const title = document.createElement('span');
+      title.className = 'toc-title';
+      title.textContent = getSlideTitle(slide);
+
+      item.appendChild(num);
+      item.appendChild(title);
+      item.addEventListener('click', () => goTo(idx));
+      panel.appendChild(item);
+    });
+  }
+
+  function toggleToc() {
+    tocOpen = !tocOpen;
+    if (tocOpen) {
+      buildToc();
+      document.getElementById('toc-panel').classList.add('open');
+    } else {
+      document.getElementById('toc-panel').classList.remove('open');
+    }
+  }
+
+  function closeToc() {
+    tocOpen = false;
+    document.getElementById('toc-panel').classList.remove('open');
+  }
+
+  // Close TOC when clicking outside
+  document.addEventListener('click', (e) => {
+    if (tocOpen && !e.target.closest('#toc-panel') && !e.target.closest('#toc-btn')) {
+      closeToc();
+    }
+  });
+
   // Init
   updateProgress();
   triggerSlideAnimations(slides[0]);
+
+  // ─── Quiz ───
+  let quizScore = 0;
+  const quizAnswered = new Set();
+  const quizResults = {};
+
+  function answerQuiz(btn, isCorrect, qId) {
+    if (quizAnswered.has(qId)) return;
+    quizAnswered.add(qId);
+    quizResults[qId] = isCorrect;
+    const slide = btn.closest('.slide');
+    slide.querySelectorAll('.quiz-btn').forEach(b => b.disabled = true);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      quizScore++;
+    } else {
+      btn.classList.add('wrong');
+      slide.querySelectorAll('.quiz-btn[data-correct="true"]').forEach(b => b.classList.add('correct'));
+    }
+    const expl = slide.querySelector('.quiz-explanation');
+    if (expl) expl.classList.add('show');
+    document.getElementById('quiz-badge').textContent = '🎯 Score : ' + quizScore + ' / ' + quizAnswered.size;
+    if (document.getElementById('results-slide') &&
+        slides[current] === document.getElementById('results-slide')) updateResults();
+  }
+
+  function revealTriage(card, isVertical, explanation) {
+    if (card.classList.contains('triage-revealed')) return;
+    card.classList.add('triage-revealed', isVertical ? 'triage-ok' : 'triage-ko');
+    card.querySelector('.triage-answer').innerHTML = explanation;
+  }
+
+  function showAtelier(btn) {
+    const suggestion = btn.nextElementSibling;
+    if (!suggestion) return;
+    suggestion.classList.add('show');
+    btn.style.display = 'none';
+  }
+
+  function revealVF(card, isTrue, explanation) {
+    if (card.classList.contains('vf-revealed')) return;
+    card.classList.add('vf-revealed', isTrue ? 'vf-true' : 'vf-false');
+    const answer = card.querySelector('.vf-answer');
+    answer.innerHTML = (isTrue ? '✅ <strong>VRAI</strong>' : '❌ <strong>FAUX</strong>') + ' — <em>' + explanation + '</em>';
+  }
+
+  function updateResults() {
+    const el = document.getElementById('final-score');
+    if (!el) return;
+    el.textContent = quizScore;
+    const rating = document.getElementById('results-rating');
+    if (rating) {
+      if (quizScore >= 8)      { rating.textContent = '🏆 Expert !';              rating.style.color = 'var(--green)'; }
+      else if (quizScore >= 6) { rating.textContent = '👍 En bonne voie';          rating.style.color = '#D4A017'; }
+      else if (quizScore >= 4) { rating.textContent = '📖 À consolider';           rating.style.color = 'var(--orange)'; }
+      else                     { rating.textContent = '💪 Continuez à pratiquer';  rating.style.color = 'var(--red)'; }
+    }
+    for (let i = 1; i <= 9; i++) {
+      const item = document.getElementById('recap-' + i);
+      if (!item) continue;
+      const check = item.querySelector('.recap-check');
+      if (quizResults[i] === true)  { check.textContent = '✅'; item.style.borderLeftColor = 'var(--green)'; item.style.background = '#F0FFF4'; }
+      if (quizResults[i] === false) { check.textContent = '❌'; item.style.borderLeftColor = 'var(--red)';   item.style.background = '#FFF5F5'; }
+    }
+  }
+
+  // ─── Trainer mode (live session) ───
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const sessionCode = params.get('s');
+    const trainerToken = params.get('t');
+    if (!params.get('trainer') || !sessionCode || !trainerToken) return;
+
+    // Inject Socket.io dynamically
+    const script = document.createElement('script');
+    script.src = '/socket.io/socket.io.js';
+    script.onload = function() {
+      const socket = io();
+
+      // Session badge
+      const badge = document.createElement('div');
+      badge.id = 'trainer-badge';
+      badge.style.cssText = 'position:fixed;bottom:60px;left:50%;transform:translateX(-50%);background:rgba(125,16,40,0.92);color:#fff;padding:6px 18px;border-radius:20px;font-size:13px;font-family:Open Sans,sans-serif;z-index:9999;pointer-events:none;backdrop-filter:blur(6px);';
+      badge.textContent = 'Session ' + sessionCode + ' · 0 participants';
+      document.body.appendChild(badge);
+
+      // Claim trainer role
+      socket.emit('claim-trainer', { roomCode: sessionCode, trainerToken: trainerToken }, (res) => {
+        if (!res || !res.ok) {
+          badge.textContent = 'Session introuvable';
+          badge.style.background = 'rgba(180,0,0,0.85)';
+        }
+      });
+
+      socket.on('participant-joined', (data) => {
+        badge.textContent = 'Session ' + sessionCode + ' · ' + data.count + ' participant' + (data.count > 1 ? 's' : '');
+      });
+
+      socket.on('participant-left', (data) => {
+        badge.textContent = 'Session ' + sessionCode + ' · ' + data.count + ' participant' + (data.count > 1 ? 's' : '');
+      });
+
+      // Patch navigate/goTo to broadcast slide changes
+      const _origNavigate = navigate;
+      window.navigate = function(dir) {
+        _origNavigate(dir);
+        setTimeout(() => socket.emit('trainer-navigate', { index: current }), 520);
+      };
+
+      const _origGoTo = goTo;
+      window.goTo = function(index) {
+        _origGoTo(index);
+        setTimeout(() => socket.emit('trainer-navigate', { index: index }), 520);
+      };
+    };
+    document.head.appendChild(script);
+  })();
 </script>
 </body>
 </html>

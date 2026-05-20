@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Formateur — US Splitting Live</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --burg:#7D1028;--burg2:#a31535;--beige:#EDE5D8;--orange:#E05A1E;
+    --green:#22c55e;--red:#ef4444;--blue:#3b82f6;--yellow:#f59e0b;
+    --bg:#0f1117;--surface:#1a1f2e;--surface2:#232940;--border:#2e3650;
+    --text:#f1f5f9;--muted:#94a3b8;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+  /* Header */
+  #hdr{background:var(--burg);display:flex;align-items:center;justify-content:space-between;padding:10px 20px;flex-shrink:0}
+  #hdr h1{font-size:16px;font-weight:700;color:#fff}
+  #session-info{display:flex;align-items:center;gap:12px}
+  .code-badge{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);border-radius:8px;padding:4px 14px;font-size:20px;font-weight:800;letter-spacing:4px;color:#fff;font-family:monospace}
+  .pcount{background:rgba(255,255,255,0.15);border-radius:20px;padding:3px 12px;font-size:13px;color:#fff}
+  .btn-presentation{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px}
+  .btn-presentation:hover{background:rgba(255,255,255,0.25)}
+
+  /* Main layout */
+  #main{display:grid;grid-template-columns:220px 1fr 280px;flex:1;overflow:hidden;gap:0}
+
+  /* Panel base */
+  .panel{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;display:flex;flex-direction:column}
+  .panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);padding:14px 14px 8px;flex-shrink:0;border-bottom:1px solid var(--border)}
+
+  /* Participants panel */
+  #p-panel{}
+  #p-list{padding:8px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .p-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;background:var(--surface2);font-size:13px}
+  .p-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+  .p-dot.offline{background:var(--muted)}
+  .p-name{flex:1}
+  .p-score{font-size:12px;color:var(--muted);font-weight:700}
+  #p-empty{padding:20px 14px;color:var(--muted);font-size:13px;text-align:center}
+
+  /* Center panel */
+  #c-panel{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+
+  /* Slide nav */
+  #slide-nav{padding:16px;border-bottom:1px solid var(--border);flex-shrink:0}
+  #slide-type-badge{display:inline-block;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;letter-spacing:0.5px;margin-bottom:8px}
+  .badge-content{background:#1e3a5f;color:#93c5fd}
+  .badge-activity{background:#4a1020;color:#fca5a5}
+  .badge-quiz{background:#1a3a1a;color:#86efac}
+  .badge-results{background:#3a3a0a;color:#fde68a}
+  #slide-title-text{font-size:17px;font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.3}
+  .slide-counter-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+  #slide-progress{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+  #slide-progress-bar{height:100%;background:var(--burg);border-radius:3px;transition:width 0.3s}
+  #slide-num{font-size:12px;color:var(--muted);white-space:nowrap}
+  .nav-btns{display:flex;gap:8px}
+  .nav-btn{flex:1;padding:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:8px;cursor:pointer;font-size:14px;transition:background 0.15s}
+  .nav-btn:hover{background:var(--border)}
+  .nav-btn:disabled{opacity:0.35;cursor:default}
+  #next-btn{background:var(--burg);border-color:var(--burg);font-weight:700}
+  #next-btn:hover:not(:disabled){background:var(--burg2)}
+
+  /* QR + URL */
+  #qr-section{padding:16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;flex-shrink:0}
+  #qr-img{width:100px;height:100px;border-radius:8px;background:white;flex-shrink:0}
+  #qr-info{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+  #qr-info h3{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+  #join-url{font-size:11px;color:var(--blue);word-break:break-all;line-height:1.4}
+  .copy-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer}
+  .copy-btn:hover{background:var(--border)}
+
+  /* Slides TOC */
+  #toc-section{flex:1;overflow-y:auto}
+  .toc-item{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:12px;border-left:3px solid transparent;transition:background 0.12s}
+  .toc-item:hover{background:var(--surface2)}
+  .toc-item.active{border-left-color:var(--burg);background:rgba(125,16,40,0.2)}
+  .toc-num{color:var(--muted);min-width:22px;text-align:right;flex-shrink:0}
+  .toc-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+  .toc-dot.dot-activity{background:#fca5a5}
+  .toc-dot.dot-quiz{background:#86efac}
+  .toc-dot.dot-content{background:var(--border)}
+  .toc-dot.dot-results{background:var(--yellow)}
+
+  /* Right panel: activity controls */
+  #a-panel{border-right:none;padding:12px;gap:10px;display:flex;flex-direction:column}
+  .activity-section{background:var(--surface2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .a-header{padding:10px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+  .a-body{padding:12px}
+  .a-btn{width:100%;padding:9px 12px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:700;margin-bottom:6px;transition:opacity 0.15s}
+  .a-btn:last-child{margin-bottom:0}
+  .a-btn:hover{opacity:0.85}
+  .a-btn:disabled{opacity:0.35;cursor:default}
+  .btn-primary{background:var(--burg);color:#fff}
+  .btn-success{background:#16a34a;color:#fff}
+  .btn-warning{background:var(--orange);color:#fff}
+  .btn-neutral{background:var(--surface);border:1px solid var(--border);color:var(--text)}
+  .a-row{display:flex;gap:6px;margin-bottom:6px}
+  .a-row .a-btn{margin-bottom:0}
+
+  /* Statement selector */
+  .stmt-btn{width:100%;padding:7px 10px;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:6px;cursor:pointer;font-size:12px;text-align:left;margin-bottom:4px;transition:background 0.12s}
+  .stmt-btn:hover{background:var(--border)}
+  .stmt-btn.active{background:rgba(125,16,40,0.3);border-color:var(--burg)}
+
+  /* Votes display */
+  #votes-panel{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px}
+  .votes-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px}
+  .vote-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .vote-label{font-size:12px;font-weight:700;min-width:28px}
+  .vote-bar-bg{flex:1;height:18px;background:var(--surface);border-radius:4px;overflow:hidden}
+  .vote-bar-fill{height:100%;border-radius:4px;transition:width 0.4s ease;min-width:4px}
+  .vote-count{font-size:12px;color:var(--muted);min-width:28px;text-align:right}
+  .bar-vrai{background:var(--green)}
+  .bar-faux{background:var(--red)}
+  .bar-v{background:#3b82f6}
+  .bar-h{background:var(--orange)}
+  .bar-a{background:#a78bfa}
+  .bar-b{background:#34d399}
+  .bar-c{background:#fb923c}
+  .bar-d{background:#60a5fa}
+
+  /* Timer */
+  #timer-display{text-align:center;font-size:40px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--text);margin:6px 0}
+  #timer-display.warning{color:var(--orange)}
+  #timer-display.danger{color:var(--red);animation:pulse 0.5s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+
+  /* C4 responses */
+  #c4-list{max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+  .c4-response{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px}
+  .c4-rname{font-weight:700;color:var(--burg);font-size:11px;margin-bottom:4px}
+
+  /* Loading */
+  #loading{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:999}
+  #loading p{color:var(--muted);font-size:14px}
+  .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--burg);border-radius:50%;animation:spin 0.8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #setup-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:420px;width:90%;text-align:center}
+  #setup-form h2{font-size:22px;font-weight:800;margin-bottom:8px}
+  #setup-form p{color:var(--muted);font-size:14px;margin-bottom:24px}
+  .setup-btn{background:var(--burg);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:opacity 0.15s}
+  .setup-btn:hover{opacity:0.85}
+  .reconnect-form{margin-top:16px;border-top:1px solid var(--border);padding-top:16px}
+  .reconnect-form input{width:100%;padding:10px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;margin-bottom:8px;outline:none}
+  .reconnect-form input:focus{border-color:var(--burg)}
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <div id="setup-form">
+    <h2>🎓 Formateur</h2>
+    <p>User Story Splitting · Live Facilitation</p>
+    <button class="setup-btn" id="create-btn">Créer une nouvelle session</button>
+    <div class="reconnect-form">
+      <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Reconnecter à une session existante</p>
+      <input id="rc-code" placeholder="Code de session (ex: ABC12)" maxlength="5" style="text-transform:uppercase"/>
+      <input id="rc-token" placeholder="Token formateur" maxlength="8" style="text-transform:uppercase"/>
+      <button class="setup-btn" id="reconnect-btn" style="background:var(--surface2);border:1px solid var(--border);color:var(--text)">Reconnecter</button>
+    </div>
+  </div>
+</div>
+
+<div id="hdr" style="display:none">
+  <h1>🎓 Tableau de bord Formateur</h1>
+  <div id="session-info">
+    <span class="pcount"><span id="pcount-num">0</span> participant(s)</span>
+    <div class="code-badge" id="room-code-display">-----</div>
+    <a id="pres-link" href="#" target="_blank" class="btn-presentation">🖥️ Ouvrir la présentation</a>
+  </div>
+</div>
+
+<div id="main" style="display:none">
+  <!-- Left: participants -->
+  <div class="panel" id="p-panel">
+    <div class="panel-title">👥 Participants</div>
+    <div id="p-list">
+      <div id="p-empty">En attente de participants...</div>
+    </div>
+  </div>
+
+  <!-- Center: slide nav + QR + TOC -->
+  <div id="c-panel" class="panel">
+    <div id="slide-nav">
+      <div id="slide-type-badge" class="badge-content">CONTENU</div>
+      <div id="slide-title-text">—</div>
+      <div class="slide-counter-row">
+        <div id="slide-progress"><div id="slide-progress-bar" style="width:3%"></div></div>
+        <div id="slide-num">1 / 36</div>
+      </div>
+      <div class="nav-btns">
+        <button class="nav-btn" id="prev-btn" disabled onclick="trainerNav(-1)">◀ Précédent</button>
+        <button class="nav-btn" id="next-btn" onclick="trainerNav(1)">Suivant ▶</button>
+      </div>
+    </div>
+    <div id="qr-section">
+      <img id="qr-img" alt="QR"/>
+      <div id="qr-info">
+        <h3>Lien participants</h3>
+        <div id="join-url">Génération...</div>
+        <button class="copy-btn" onclick="copyURL()">Copier le lien</button>
+      </div>
+    </div>
+    <div id="toc-section"></div>
+  </div>
+
+  <!-- Right: activity controls -->
+  <div class="panel" id="a-panel">
+
+    <!-- Timer -->
+    <div class="activity-section">
+      <div class="a-header">⏱️ Timer<span id="timer-display" style="font-size:18px;font-weight:800;color:var(--text)">—</span></div>
+      <div class="a-body">
+        <div class="a-row">
+          <button class="a-btn btn-neutral" onclick="doTimer(30)">30s</button>
+          <button class="a-btn btn-neutral" onclick="doTimer(60)">60s</button>
+          <button class="a-btn btn-neutral" onclick="doTimer(120)">2m</button>
+          <button class="a-btn btn-neutral" style="color:var(--red)" onclick="stopTimer()">■</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VF controls -->
+    <div class="activity-section" id="ctrl-vf">
+      <div class="a-header">🔗 Vrai ou Faux (C1)</div>
+      <div class="a-body">
+        <div id="vf-stmts"></div>
+        <button class="a-btn btn-success" id="vf-reveal-btn" disabled onclick="doVFReveal()">✅ Révéler la réponse</button>
+      </div>
+    </div>
+
+    <!-- Triage controls -->
+    <div class="activity-section" id="ctrl-triage">
+      <div class="a-header">✂️ Triage Tranche (C3)</div>
+      <div class="a-body">
+        <div id="triage-items"></div>
+        <button class="a-btn btn-success" id="triage-reveal-btn" disabled onclick="doTriageReveal()">✅ Révéler la réponse</button>
+      </div>
+    </div>
+
+    <!-- Quiz controls -->
+    <div class="activity-section" id="ctrl-quiz">
+      <div class="a-header">📝 Quiz <span id="quiz-q-label" style="font-weight:400;color:var(--muted);font-size:11px"></span></div>
+      <div class="a-body">
+        <button class="a-btn btn-success" id="quiz-reveal-btn" onclick="doQuizReveal()">✅ Révéler la réponse</button>
+      </div>
+    </div>
+
+    <!-- Matching -->
+    <div class="activity-section">
+      <div class="a-header">🧩 Matching Patterns (C4)</div>
+      <div class="a-body">
+        <button class="a-btn btn-warning" id="matching-launch-btn" onclick="launchMatching()">🚀 Lancer le puzzle</button>
+        <div id="matching-results" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
+      </div>
+    </div>
+
+    <!-- C4 responses -->
+    <div class="activity-section" id="ctrl-c4">
+      <div class="a-header">🎯 C4 — Réponses participants</div>
+      <div class="a-body">
+        <div id="c4-list"><p style="font-size:12px;color:var(--muted)">En attente...</p></div>
+      </div>
+    </div>
+
+    <!-- Live votes -->
+    <div id="votes-panel">
+      <div class="votes-title">📊 Votes en temps réel</div>
+      <div id="votes-display"><p style="font-size:12px;color:var(--muted)">Aucune activité en cours</p></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const socket = io();
+let sessionCode = '';
+let trainerToken = '';
+let currentSlide = 0;
+let totalSlides = 36;
+let currentVFIndex = -1;
+let currentTriageIndex = -1;
+let currentQId = null;
+let timerInterval = null;
+
+// ── Setup ──
+document.getElementById('create-btn').addEventListener('click', () => {
+  socket.emit('create-session', (res) => {
+    if (!res.success) { alert('Erreur: ' + res.error); return; }
+    sessionCode = res.roomCode;
+    trainerToken = res.trainerToken;
+    initTrainer();
+  });
+});
+
+document.getElementById('reconnect-btn').addEventListener('click', () => {
+  const code = document.getElementById('rc-code').value.trim().toUpperCase();
+  const token = document.getElementById('rc-token').value.trim().toUpperCase();
+  if (!code || !token) return;
+  socket.emit('claim-trainer', { roomCode: code, trainerToken: token }, (res) => {
+    if (!res.success) { alert('Erreur: ' + (res.error || 'Connexion échouée')); return; }
+    sessionCode = code;
+    trainerToken = token;
+    currentSlide = res.currentSlide;
+    totalSlides = res.totalSlides;
+    initTrainer();
+    updateSlideUI(res.currentSlide, res.slideInfo);
+    updateParticipants(res.participants);
+  });
+});
+
+function initTrainer() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('hdr').style.display = 'flex';
+  document.getElementById('main').style.display = 'grid';
+  document.getElementById('room-code-display').textContent = sessionCode;
+  document.getElementById('pres-link').href = `/?trainer=1&s=${sessionCode}&t=${trainerToken}`;
+
+  loadQR();
+  buildTOC();
+  buildVFControls();
+  buildTriageControls();
+}
+
+async function loadQR() {
+  try {
+    const r = await fetch(`/api/qr/${sessionCode}`);
+    const { qr, url } = await r.json();
+    document.getElementById('qr-img').src = qr;
+    document.getElementById('join-url').textContent = url;
+  } catch(e) {
+    document.getElementById('join-url').textContent = `http://[votre-ip]:3000/live/join/${sessionCode}`;
+  }
+}
+
+function copyURL() {
+  const url = document.getElementById('join-url').textContent;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ Copié !';
+    setTimeout(() => btn.textContent = 'Copier le lien', 1500);
+  });
+}
+
+// ── Navigation ──
+function trainerNav(dir) {
+  socket.emit('trainer-navigate', dir);
+}
+
+function trainerGoto(idx) {
+  socket.emit('trainer-goto', idx);
+}
+
+socket.on('slide-changed', ({ slide, slideInfo, extra }) => {
+  currentSlide = slide;
+  updateSlideUI(slide, slideInfo, extra);
+});
+
+function updateSlideUI(slide, info, extra) {
+  if (!info) return;
+  currentSlide = slide;
+
+  const types = { 'content':'CONTENU','vf-activity':'ACTIVITÉ — VF','triage-activity':'ACTIVITÉ — TRIAGE','atelier-activity':'ACTIVITÉ — ATELIER','quiz-activity':'QUIZ','results':'RÉSULTATS','c4-activity':'ACTIVITÉ — C4' };
+  const badgeClass = { 'content':'badge-content','quiz-activity':'badge-quiz','results':'badge-results' };
+  const badge = document.getElementById('slide-type-badge');
+  badge.textContent = types[info.type] || info.type;
+  badge.className = badgeClass[info.type] || 'badge-activity';
+
+  document.getElementById('slide-title-text').textContent = info.title;
+  document.getElementById('slide-num').textContent = `${slide + 1} / ${totalSlides}`;
+  document.getElementById('slide-progress-bar').style.width = `${((slide + 1) / totalSlides) * 100}%`;
+  document.getElementById('prev-btn').disabled = slide === 0;
+  document.getElementById('next-btn').disabled = slide === totalSlides - 1;
+
+  // Update TOC
+  document.querySelectorAll('.toc-item').forEach((el, i) => el.classList.toggle('active', i === slide));
+
+  // Update activity panel context
+  if (info.type === 'quiz-activity' && extra?.question) {
+    currentQId = info.qId;
+    document.getElementById('quiz-q-label').textContent = `Q${info.qId}/9`;
+    clearVotesDisplay();
+  }
+
+  // Reset votes panel for new activity
+  if (info.type === 'vf-activity') clearVotesDisplay();
+  if (info.type === 'triage-activity') clearVotesDisplay();
+}
+
+function clearVotesDisplay() {
+  document.getElementById('votes-display').innerHTML = '<p style="font-size:12px;color:var(--muted)">Aucun vote pour l\'instant</p>';
+}
+
+// ── Participants ──
+socket.on('participant-joined', ({ count, participants }) => {
+  document.getElementById('pcount-num').textContent = count;
+  updateParticipants(participants);
+});
+socket.on('participant-left', ({ count, participants }) => {
+  document.getElementById('pcount-num').textContent = count;
+  updateParticipants(participants);
+});
+
+function updateParticipants(list) {
+  const el = document.getElementById('p-list');
+  if (!list || list.length === 0) {
+    el.innerHTML = '<div id="p-empty">En attente de participants...</div>';
+    return;
+  }
+  el.innerHTML = list.map(p => `
+    <div class="p-item">
+      <div class="p-dot${p.connected ? '' : ' offline'}"></div>
+      <span class="p-name">${esc(p.name)}</span>
+      <span class="p-score">${p.score || 0}pt</span>
+    </div>`).join('');
+}
+
+// ── TOC ──
+function buildTOC() {
+  // Wait — totalSlides comes from server; for now use SLIDE_MANIFEST
+  // We'll rebuild once we have it
+  const toc = document.getElementById('toc-section');
+  toc.innerHTML = '';
+  // Request from server if needed — but for simplicity embed manifest in trainer
+  if (!window.MANIFEST) return;
+  window.MANIFEST.forEach((s, i) => {
+    const dotClass = s.type === 'content' ? 'dot-content' : s.type.includes('quiz') ? 'dot-quiz' : s.type === 'results' ? 'dot-results' : 'dot-activity';
+    const div = document.createElement('div');
+    div.className = 'toc-item' + (i === currentSlide ? ' active' : '');
+    div.innerHTML = `<span class="toc-num">${i+1}</span><div class="toc-dot ${dotClass}"></div><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(s.title)}</span>`;
+    div.addEventListener('click', () => trainerGoto(i));
+    toc.appendChild(div);
+  });
+}
+
+// Embed manifest for TOC
+window.MANIFEST = [
+  {type:'content',title:'User Story Splitting Patterns'},
+  {type:'vf-activity',title:'🔗 C1 — Vrai ou Faux debout'},
+  {type:'content',title:'Partie 1 — Pourquoi découper ?'},
+  {type:'content',title:'Le problème des équipes agiles'},
+  {type:'content',title:'Partie 2 — Bonne User Story ?'},
+  {type:'content',title:'Les critères INVEST'},
+  {type:'content',title:'Tranches verticales vs Valeur'},
+  {type:'triage-activity',title:'✂️ C3 — Triage Tranche'},
+  {type:'content',title:'Partie 3 — Organigramme'},
+  {type:'content',title:'Les 9 patterns — Vue d\'ensemble'},
+  {type:'content',title:'Méta-Pattern'},
+  {type:'content',title:'Pattern 1 — Workflow'},
+  {type:'content',title:'Pattern 2 — CRUD'},
+  {type:'content',title:'Pattern 3 — Règles Métier'},
+  {type:'content',title:'Pattern 4 — Variations de Données'},
+  {type:'content',title:'Pattern 5 — Interface'},
+  {type:'atelier-activity',title:'🛠️ C3 — Atelier mi-parcours'},
+  {type:'content',title:'Pattern 6 — Simple / Complexe'},
+  {type:'content',title:'Pattern 7 — Effort Concentré'},
+  {type:'content',title:'Pattern 8 — Différer la Performance'},
+  {type:'content',title:'Pattern 9 — Spike'},
+  {type:'content',title:'Partie 4 — S\'améliorer'},
+  {type:'content',title:'La méthode en 2-3 semaines'},
+  {type:'content',title:'Récapitulatif — 9 Patterns'},
+  {type:'content',title:'Partie 5 — Quiz'},
+  {type:'quiz-activity',title:'Q1/9 — Retour commande',qId:1},
+  {type:'quiz-activity',title:'Q2/9 — Catalogue produits',qId:2},
+  {type:'quiz-activity',title:'Q3/9 — Tarif adapté',qId:3},
+  {type:'quiz-activity',title:'Q4/9 — Consulter les ventes',qId:4},
+  {type:'quiz-activity',title:'Q5/9 — Liste de picking',qId:5},
+  {type:'quiz-activity',title:'Q6/9 — Suggestions',qId:6},
+  {type:'quiz-activity',title:'Q7/9 — Commander API/EDI',qId:7},
+  {type:'quiz-activity',title:'Q8/9 — Tableau de bord',qId:8},
+  {type:'quiz-activity',title:'Q9/9 — Scanner IA',qId:9},
+  {type:'results',title:'Résultats du Quiz'},
+  {type:'c4-activity',title:'🎯 C4 — Votre plan de match'}
+];
+totalSlides = window.MANIFEST.length;
+setTimeout(buildTOC, 50);
+
+// ── VF Controls ──
+function buildVFControls() {
+  const stmts = [
+    "1. Story sur plusieurs sprints...",
+    "2. INVEST 'S' = Small = 1 sprint",
+    "3. Couche technique = tranche verticale",
+    "4. Story sans critères peut être Prête",
+    "5. L'équipe peut proposer de découper",
+    "6. Spike = code livrable en prod"
+  ];
+  const el = document.getElementById('vf-stmts');
+  el.innerHTML = stmts.map((t, i) => `<button class="stmt-btn" id="vf-s${i}" onclick="showVFStatement(${i})">${esc(t)}</button>`).join('');
+}
+
+function showVFStatement(idx) {
+  currentVFIndex = idx;
+  socket.emit('vf-show-statement', idx);
+  document.querySelectorAll('#vf-stmts .stmt-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.getElementById('vf-reveal-btn').disabled = false;
+  clearVotesDisplay();
+  renderVoteBars('vf', idx, 0, 0, 0);
+}
+
+function doVFReveal() {
+  if (currentVFIndex < 0) return;
+  socket.emit('vf-reveal', currentVFIndex);
+}
+
+socket.on('vf-votes-updated', ({ index, vrai, faux, total }) => {
+  renderVoteBars('vf', index, vrai, faux, total);
+});
+
+socket.on('vf-revealed', ({ index, isTrue, vrai, faux, total }) => {
+  renderVoteBars('vf', index, vrai, faux, total, isTrue ? 'vrai' : 'faux');
+});
+
+// ── Triage Controls ──
+function buildTriageControls() {
+  const items = ['A. Couche BDD du module commandes', 'B. Ajouter produit alimentaire au panier', 'C. Formulaire paiement (front only)'];
+  const el = document.getElementById('triage-items');
+  el.innerHTML = items.map((t, i) => `<button class="stmt-btn" id="tr-s${i}" onclick="showTriageItem(${i})">${esc(t)}</button>`).join('');
+}
+
+function showTriageItem(idx) {
+  currentTriageIndex = idx;
+  socket.emit('triage-show-item', idx);
+  document.querySelectorAll('#triage-items .stmt-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.getElementById('triage-reveal-btn').disabled = false;
+  clearVotesDisplay();
+  renderTirageBars(idx, 0, 0, 0);
+}
+
+function doTriageReveal() {
+  if (currentTriageIndex < 0) return;
+  socket.emit('triage-reveal', currentTriageIndex);
+}
+
+socket.on('triage-votes-updated', ({ itemId, vertical, horizontal, total }) => {
+  renderTirageBars(currentTriageIndex, vertical, horizontal, total);
+});
+
+socket.on('triage-revealed', ({ isVertical, vertical, horizontal, total }) => {
+  renderTirageBars(currentTriageIndex, vertical, horizontal, total, isVertical ? 'vertical' : 'horizontal');
+});
+
+// ── Quiz Controls ──
+function doQuizReveal() {
+  if (!currentQId) return;
+  socket.emit('quiz-reveal', currentQId);
+}
+
+socket.on('quiz-votes-updated', ({ qId, A, B, C, D, total }) => {
+  if (qId !== currentQId) return;
+  renderQuizBars(A, B, C, D, total);
+});
+
+socket.on('quiz-revealed', ({ qId, correct, A, B, C, D, total }) => {
+  if (qId !== currentQId) return;
+  renderQuizBars(A, B, C, D, total, correct);
+});
+
+// ── Matching ──
+function launchMatching() {
+  socket.emit('matching-start');
+}
+socket.on('matching-launched', () => {
+  document.getElementById('matching-launch-btn').textContent = '🧩 Puzzle en cours...';
+  document.getElementById('matching-launch-btn').disabled = true;
+});
+socket.on('matching-submitted', ({ name, correct, total }) => {
+  const el = document.getElementById('matching-results');
+  el.innerHTML += `<div style="margin-bottom:3px"><strong>${esc(name)}</strong> : ${correct}/${total}</div>`;
+});
+
+// ── C4 ──
+socket.on('c4-responses-updated', (responses) => {
+  const el = document.getElementById('c4-list');
+  el.innerHTML = responses.map(r => `
+    <div class="c4-response">
+      <div class="c4-rname">${esc(r.name)}</div>
+      <div>1. ${esc(r.p1 || '—')}</div>
+      <div>2. ${esc(r.p2 || '—')}</div>
+      <div>3. ${esc(r.p3 || '—')}</div>
+    </div>`).join('');
+});
+
+// ── Timer ──
+function doTimer(s) {
+  socket.emit('start-timer', s);
+}
+function stopTimer() {
+  socket.emit('stop-timer');
+  clearTimerDisplay();
+}
+
+socket.on('timer-start', ({ seconds }) => {
+  updateTimerDisplay(seconds);
+});
+socket.on('timer-tick', ({ remaining }) => {
+  updateTimerDisplay(remaining);
+});
+socket.on('timer-end', () => {
+  document.getElementById('timer-display').textContent = '⏰ 0';
+  document.getElementById('timer-display').className = 'danger';
+});
+socket.on('timer-stopped', clearTimerDisplay);
+
+function updateTimerDisplay(s) {
+  const el = document.getElementById('timer-display');
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  el.textContent = m > 0 ? `${m}:${String(sec).padStart(2,'0')}` : `${s}s`;
+  el.className = s <= 5 ? 'danger' : s <= 10 ? 'warning' : '';
+}
+function clearTimerDisplay() {
+  document.getElementById('timer-display').textContent = '—';
+  document.getElementById('timer-display').className = '';
+}
+
+// ── Vote bars rendering ──
+function renderVoteBars(type, idx, vrai, faux, total, correct) {
+  const t = total || 1;
+  document.getElementById('votes-display').innerHTML = `
+    <div class="vote-bar-row">
+      <span class="vote-label" style="color:${correct==='vrai'?'var(--green)':'inherit'}">✅</span>
+      <div class="vote-bar-bg"><div class="vote-bar-fill bar-vrai" style="width:${(vrai/t*100).toFixed(0)}%"></div></div>
+      <span class="vote-count">${vrai}/${total}</span>
+    </div>
+    <div class="vote-bar-row">
+      <span class="vote-label" style="color:${correct==='faux'?'var(--red)':'inherit'}">❌</span>
+      <div class="vote-bar-bg"><div class="vote-bar-fill bar-faux" style="width:${(faux/t*100).toFixed(0)}%"></div></div>
+      <span class="vote-count">${faux}/${total}</span>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:4px">${vrai+faux} / ${total} ont voté</p>`;
+}
+
+function renderTirageBars(idx, v, h, total, correct) {
+  const t = total || 1;
+  document.getElementById('votes-display').innerHTML = `
+    <div class="vote-bar-row">
+      <span class="vote-label" style="font-size:11px;color:${correct==='vertical'?'var(--green)':'inherit'}">Vert.</span>
+      <div class="vote-bar-bg"><div class="vote-bar-fill bar-v" style="width:${(v/t*100).toFixed(0)}%"></div></div>
+      <span class="vote-count">${v}/${total}</span>
+    </div>
+    <div class="vote-bar-row">
+      <span class="vote-label" style="font-size:11px;color:${correct==='horizontal'?'var(--green)':'inherit'}">Horiz.</span>
+      <div class="vote-bar-bg"><div class="vote-bar-fill bar-h" style="width:${(h/t*100).toFixed(0)}%"></div></div>
+      <span class="vote-count">${h}/${total}</span>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:4px">${v+h} / ${total} ont voté</p>`;
+}
+
+function renderQuizBars(A, B, C, D, total, correct) {
+  const t = total || 1;
+  const bars = [{l:'A',v:A,c:'bar-a'},{l:'B',v:B,c:'bar-b'},{l:'C',v:C,c:'bar-c'},{l:'D',v:D,c:'bar-d'}];
+  document.getElementById('votes-display').innerHTML = bars.map(b => `
+    <div class="vote-bar-row">
+      <span class="vote-label" style="color:${correct===b.l?'var(--green)':''};font-weight:${correct===b.l?700:400}">${b.l}${correct===b.l?' ✓':''}</span>
+      <div class="vote-bar-bg"><div class="vote-bar-fill ${b.c}" style="width:${(b.v/t*100).toFixed(0)}%"></div></div>
+      <span class="vote-count">${b.v}/${total}</span>
+    </div>`).join('') + `<p style="font-size:11px;color:var(--muted);margin-top:4px">${A+B+C+D} / ${total} ont répondu</p>`;
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
