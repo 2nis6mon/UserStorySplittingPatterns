@@ -647,6 +647,113 @@
     .vf-card.vf-revealed .vf-answer { display: block; }
     .vf-card.vf-true  { background: #F0FFF4; border-color: var(--green); }
     .vf-card.vf-false { background: #FFF5F5; border-color: var(--red); }
+
+    /* ─── TBR Phase tags on section slides ─── */
+    .tbr-phase-tag {
+      display: inline-flex; align-items: center;
+      background: var(--burgundy); color: white;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 12px; letter-spacing: 0.6px;
+      margin-bottom: 10px; font-family: 'Open Sans', sans-serif; font-weight: 700;
+    }
+
+    /* ─── C3 Triage activity ─── */
+    .triage-grid {
+      display: flex; flex-direction: column; gap: 10px; flex: 1;
+    }
+    .triage-card {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 10px; padding: 12px 16px;
+      cursor: pointer;
+      transition: border-color 0.22s, background 0.22s, transform 0.18s;
+      display: flex; flex-direction: column; gap: 6px;
+      user-select: none;
+    }
+    .triage-card:hover:not(.triage-revealed) {
+      border-color: var(--burgundy); transform: translateY(-1px);
+    }
+    .triage-header { display: flex; align-items: flex-start; gap: 12px; }
+    .triage-num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--beige-dark); color: var(--burgundy);
+      font-weight: 700; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .triage-statement { font-size: clamp(13px, 1.3vw, 15px); line-height: 1.45; flex: 1; }
+    .triage-reveal-hint { font-size: 11px; color: var(--gray); text-align: center; opacity: 0.6; }
+    .triage-card.triage-revealed .triage-reveal-hint { display: none; }
+    .triage-answer {
+      display: none; font-size: clamp(12px, 1.1vw, 13px); line-height: 1.4;
+      border-top: 1px solid var(--beige-dark); padding-top: 8px; padding-left: 38px;
+    }
+    .triage-card.triage-revealed .triage-answer { display: block; }
+    .triage-card.triage-ok { background: #F0FFF4; border-color: var(--green); }
+    .triage-card.triage-ko { background: #FFF5F5; border-color: var(--red); }
+
+    /* ─── C3 Atelier mi-parcours ─── */
+    .atelier-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1;
+    }
+    .atelier-card {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 12px; padding: 16px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .atelier-story {
+      background: var(--beige); border-radius: 8px; padding: 12px 14px;
+      font-size: clamp(13px, 1.25vw, 15px); line-height: 1.5; flex: 1;
+      font-style: italic;
+    }
+    .atelier-question {
+      font-size: clamp(12px, 1.15vw, 14px); font-weight: 600;
+      color: var(--burgundy);
+    }
+    .atelier-btn {
+      background: var(--beige-dark); border: none; border-radius: 8px;
+      padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 600;
+      transition: background 0.18s; text-align: left;
+    }
+    .atelier-btn:hover { background: #d4c5b0; }
+    .atelier-suggestion {
+      display: none; font-size: 13px; line-height: 1.45;
+      border-top: 1px solid var(--beige-dark); padding-top: 10px;
+    }
+    .atelier-suggestion.show { display: block; }
+    .atelier-note {
+      background: #FFF9E6; border-left: 3px solid #D4A017;
+      border-radius: 0 8px 8px 0; padding: 10px 14px;
+      font-size: clamp(12px, 1.1vw, 13px); color: var(--gray); line-height: 1.4;
+    }
+
+    /* ─── C4 Conclusions ─── */
+    .c4-stems {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; flex: 1;
+    }
+    .c4-stem {
+      background: white; border: 2px solid var(--beige-dark);
+      border-radius: 12px; padding: 16px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .c4-stem-num {
+      font-size: 11px; font-weight: 700; color: var(--burgundy);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .c4-stem-prompt {
+      font-size: clamp(13px, 1.3vw, 15px); line-height: 1.5; flex: 1;
+    }
+    .c4-stem-blank {
+      border-bottom: 2px dashed var(--beige-dark); padding: 6px 4px;
+      font-size: 13px; color: var(--gray); background: var(--beige);
+      border-radius: 4px; min-height: 28px;
+    }
+    .c4-action {
+      background: var(--burgundy); color: white;
+      border-radius: 12px; padding: 14px 20px;
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 4px;
+    }
+    .c4-action-icon { font-size: 22px; flex-shrink: 0; }
+    .c4-action-text { font-size: clamp(13px, 1.3vw, 15px); line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -696,7 +803,9 @@
       <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
     </div>
     <div class="content-header">
-      <span class="activity-badge">🔗 Connexions · 12 min</span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="activity-badge">🔗 C1 Connexions · 12 min</span>
+      </div>
       <div class="content-title" style="margin-top:6px">Vrai ou Faux — <em>debout !</em></div>
       <hr class="content-rule"/>
     </div>
@@ -751,6 +860,7 @@
           <div class="logo-bot">Mousquetaires</div>
         </div>
       </div>
+      <div class="tbr-phase-tag">C2 · Concepts</div>
       <div class="section-label">Partie 1</div>
       <div class="section-title">Pourquoi<br/><em>découper</em> les<br/>User Stories ?</div>
       <div class="section-desc">Le défi que rencontrent toutes les équipes agiles — et pourquoi c'est une compétence qui s'apprend.</div>
@@ -813,6 +923,7 @@
       <div class="logo">
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
+      <div class="tbr-phase-tag">C2 · Concepts</div>
       <div class="section-label">Partie 2</div>
       <div class="section-title">Qu'est-ce qu'une<br/><em>bonne</em><br/>User Story ?</div>
       <div class="section-desc">La définition, les critères INVEST, et pourquoi les tranches verticales sont essentielles.</div>
@@ -942,6 +1053,49 @@
     </div>
   </div>
 
+  <!-- ─── C3 ACTIVITY: Triage Tranche ─── -->
+  <div class="slide slide-content" data-slide="7c">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">✂️ C3 Pratique · 5 min</span>
+      <div class="content-title" style="margin-top:6px">Tranche <em>verticale</em> ou horizontale ?</div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>👥 En binôme · 2 min de réflexion</span>
+      <span>🗣️ Tour de table : chacun justifie son choix</span>
+      <span>👆 Cliquez pour révéler</span>
+    </div>
+    <div class="triage-grid">
+      <div class="triage-card" onclick="revealTriage(this, false, '❌ Horizontale — Couche technique pure. Aucune valeur livrable pour l\'utilisateur. Le résultat est un composant qui attend les autres couches pour fonctionner.')">
+        <div class="triage-header">
+          <div class="triage-num">A</div>
+          <div class="triage-statement">« Cette semaine, l'équipe implémente <em>la couche base de données</em> du module de commandes (schémas, migrations, requêtes). »</div>
+        </div>
+        <div class="triage-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="triage-answer"></div>
+      </div>
+      <div class="triage-card" onclick="revealTriage(this, true, '✅ Verticale — Traverse toutes les couches (UI + métier + données). Un client peut réellement ajouter un produit à son panier : valeur livrable, feedback possible.')">
+        <div class="triage-header">
+          <div class="triage-num">B</div>
+          <div class="triage-statement">« En tant que <em>client</em>, je veux ajouter un produit alimentaire à mon panier afin de préparer mes courses en ligne. »</div>
+        </div>
+        <div class="triage-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="triage-answer"></div>
+      </div>
+      <div class="triage-card" onclick="revealTriage(this, false, '❌ Horizontale — UI isolée sans back-end. L\'utilisateur ne peut rien faire avec ce formulaire tant que le back-end n\'est pas livré. Valeur = 0 avant intégration complète.')">
+        <div class="triage-header">
+          <div class="triage-num">C</div>
+          <div class="triage-statement">« L'équipe <em>front</em> développe le formulaire de paiement (design, composants React). Le back-end de paiement est prévu pour le sprint prochain. »</div>
+        </div>
+        <div class="triage-reveal-hint">👆 cliquez pour révéler</div>
+        <div class="triage-answer"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 8. SECTION: L'Organigramme ─── -->
   <div class="slide slide-section" data-slide="8">
     <div class="section-left">
@@ -951,6 +1105,7 @@
       <div class="logo">
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
+      <div class="tbr-phase-tag">C2 · Concepts</div>
       <div class="section-label">Partie 3</div>
       <div class="section-title">L'Organigramme<br/>de <em>Découpage</em></div>
       <div class="section-desc">9 patterns pour découper n'importe quelle User Story, avec un méta-pattern qui les unifie tous.</div>
@@ -1195,6 +1350,47 @@
     </div>
   </div>
 
+  <!-- ─── C3 ACTIVITY: Atelier mi-parcours ─── -->
+  <div class="slide slide-content" data-slide="14b">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">🛠️ C3 Atelier · 10 min</span>
+      <div class="content-title" style="margin-top:6px">Application : <em>Quel pattern choisiriez-vous ?</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>👥 En trinôme · 5 min de discussion</span>
+      <span>🎯 Pas de réponse unique — justifiez votre choix</span>
+      <span>🗣️ Partage collectif ensuite</span>
+    </div>
+    <div class="atelier-grid">
+      <div class="atelier-card">
+        <div class="atelier-question">Story A — Quel(s) pattern(s) ?</div>
+        <div class="atelier-story">« En tant que <strong>chef de rayon</strong>, je veux gérer les promotions hebdomadaires de mon rayon afin d'attirer les clients et d'écouler les produits en fin de vie. »</div>
+        <div class="atelier-note">💡 Contexte : créer, modifier, désactiver des promos — promotions flash · promotions catalogue · offres 2+1 · codes fidélité</div>
+        <button class="atelier-btn" onclick="showAtelier(this)">💡 Voir la suggestion</button>
+        <div class="atelier-suggestion">
+          <strong>Pattern 2 (CRUD)</strong> en premier : "gérer" cache 4 opérations distinctes (créer / modifier / désactiver / archiver une promo). <br/>
+          <strong>+ Pattern 3 (Règles Métier)</strong> ensuite : chaque type de promotion est une règle indépendante (flash, catalogue, 2+1, fidélité).<br/>
+          <em>Discussion : quelle dimension découper en priorité selon la valeur métier attendue ?</em>
+        </div>
+      </div>
+      <div class="atelier-card">
+        <div class="atelier-question">Story B — Quel(s) pattern(s) ?</div>
+        <div class="atelier-story">« En tant que <strong>responsable logistique</strong>, je veux être notifié quand le stock d'un produit est critique afin d'anticiper les ruptures et de déclencher les réapprovisionnements. »</div>
+        <div class="atelier-note">💡 Contexte : seuils différents selon catégorie (frais, sec, boissons) — canaux de notification (email, SMS, tableau de bord) — escalade si non traité</div>
+        <button class="atelier-btn" onclick="showAtelier(this)">💡 Voir la suggestion</button>
+        <div class="atelier-suggestion">
+          <strong>Pattern 1 (Workflow)</strong> : détecter seuil → créer alerte → notifier → escalade si non traité. Chaque étape est une story indépendante.<br/>
+          <strong>ou Pattern 3 (Règles Métier)</strong> : si le seuil varie selon la catégorie produit, chaque règle de seuil est une story.<br/>
+          <em>Discussion : commencer par le workflow ou par la catégorie la plus critique ?</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 15. Pattern 6: Major Effort ─── -->
   <div class="slide slide-content" data-slide="15">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
@@ -1341,6 +1537,7 @@
       <div class="logo">
         <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
       </div>
+      <div class="tbr-phase-tag">C3 · Pratique Continue</div>
       <div class="section-label">Partie 4</div>
       <div class="section-title">S'<em>améliorer</em><br/>dans le<br/>découpage</div>
       <div class="section-desc">Comment développer cette compétence en équipe en quelques heures de pratique structurée.</div>
@@ -1390,6 +1587,7 @@
     <div class="section-left"><div class="section-number">5</div></div>
     <div class="section-right">
       <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+      <div class="tbr-phase-tag">C3 · Quiz Auto-Corrigé</div>
       <div class="section-label">Partie 5</div>
       <div class="section-title">Quiz :<br/><em>Testez vos</em><br/>connaissances</div>
       <div class="section-desc">9 scénarios tirés de votre contexte. Pour chaque situation, identifiez le bon pattern de découpage.</div>
@@ -1606,6 +1804,7 @@
   <div class="slide slide-content" data-slide="22">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
     <div class="content-header">
+      <div style="margin-bottom:4px;"><span class="activity-badge" style="background:var(--orange);">🔄 Transition C3 → C4</span></div>
       <div class="content-title">Récapitulatif : <em>Les 9 Patterns de découpage</em></div>
       <hr class="content-rule"/>
     </div>
@@ -1624,6 +1823,47 @@
       <div class="emph-box" style="font-size:clamp(15px,1.54vw,20px);">
         Le découpage est une compétence. Avec <strong>2-3 sessions de pratique structurée</strong>, votre équipe peut livrer de la valeur plus vite, obtenir des feedbacks plus tôt, et devenir <strong>plus prévisible</strong>.
       </div>
+    </div>
+  </div>
+
+
+  <!-- ─── C4 CONCLUSIONS ─── -->
+  <div class="slide slide-content" data-slide="c4">
+    <div class="logo">
+      <div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div>
+    </div>
+    <div class="content-header">
+      <span class="activity-badge">🎯 C4 Conclusions · 10 min</span>
+      <div class="content-title" style="margin-top:6px">Votre <em>plan de match</em></div>
+      <hr class="content-rule"/>
+    </div>
+    <div class="activity-instructions">
+      <span>✍️ 3 min individuel — complétez les phrases</span>
+      <span>🗣️ Tour de table — partagez UNE phrase</span>
+    </div>
+    <div class="c4-stems">
+      <div class="c4-stem">
+        <div class="c4-stem-num">Phrase 1</div>
+        <div class="c4-stem-prompt">Le pattern que je veux <em>tester en premier</em> avec mon équipe est…</div>
+        <div class="c4-stem-blank"></div>
+        <div style="font-size:12px;color:var(--gray);margin-top:4px;">…parce que je vois ce problème dans nos stories en ce moment.</div>
+      </div>
+      <div class="c4-stem">
+        <div class="c4-stem-num">Phrase 2</div>
+        <div class="c4-stem-prompt">La prochaine story trop grosse que je rencontre, je vais proposer de la découper en…</div>
+        <div class="c4-stem-blank"></div>
+        <div style="font-size:12px;color:var(--gray);margin-top:4px;">…en utilisant le Méta-Pattern : identifier · cataloguer · réduire · différer.</div>
+      </div>
+      <div class="c4-stem">
+        <div class="c4-stem-num">Phrase 3</div>
+        <div class="c4-stem-prompt">Notre prochain pas <em>concret en équipe</em> pour développer cette compétence est…</div>
+        <div class="c4-stem-blank"></div>
+        <div style="font-size:12px;color:var(--gray);margin-top:4px;">…organiser une session de pratique dans les 14 prochains jours.</div>
+      </div>
+    </div>
+    <div class="c4-action">
+      <div class="c4-action-icon">📅</div>
+      <div class="c4-action-text"><strong>Engagez-vous maintenant :</strong> ouvrez votre agenda et bloquez 1h dans les 14 prochains jours pour une session de découpage en équipe (profils métier + tech ensemble).</div>
     </div>
   </div>
 
@@ -1918,6 +2158,19 @@
     document.getElementById('quiz-badge').textContent = '🎯 Score : ' + quizScore + ' / ' + quizAnswered.size;
     if (document.getElementById('results-slide') &&
         slides[current] === document.getElementById('results-slide')) updateResults();
+  }
+
+  function revealTriage(card, isVertical, explanation) {
+    if (card.classList.contains('triage-revealed')) return;
+    card.classList.add('triage-revealed', isVertical ? 'triage-ok' : 'triage-ko');
+    card.querySelector('.triage-answer').innerHTML = explanation;
+  }
+
+  function showAtelier(btn) {
+    const suggestion = btn.nextElementSibling;
+    if (!suggestion) return;
+    suggestion.classList.add('show');
+    btn.style.display = 'none';
   }
 
   function revealVF(card, isTrue, explanation) {
