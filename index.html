@@ -1290,6 +1290,224 @@
     </div>
   </div>
 
+
+  <!-- ─── SECTION 5: Quiz ─── -->
+  <div class="slide slide-section" data-slide="22">
+    <div class="section-left"><div class="section-number">5</div></div>
+    <div class="section-right">
+      <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+      <div class="section-label">Partie 5</div>
+      <div class="section-title">Quiz :<br/><em>Testez vos</em><br/>connaissances</div>
+      <div class="section-desc">9 scénarios tirés de votre contexte. Pour chaque situation, identifiez le bon pattern de découpage.</div>
+    </div>
+  </div>
+
+  <!-- Q1 : Workflow -->
+  <div class="slide slide-content quiz-slide" data-slide="23">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q1 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que client, je veux effectuer un retour de commande afin d'être remboursé des articles non conformes. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,1)" data-correct="false"><span class="opt-label">A</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,1)"  data-correct="true" ><span class="opt-label">B</span>Pattern 1 — Étapes du Workflow</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,1)" data-correct="false"><span class="opt-label">C</span>Pattern 3 — Règles Métier</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,1)" data-correct="false"><span class="opt-label">D</span>Pattern 5 — Variations d'Interface</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 1 — Étapes du Workflow.</strong> Un retour suit des étapes séquentielles : déclarer → choisir le mode → déposer le colis → valider la réception → rembourser. Chaque étape peut être livrée indépendamment.</div>
+    </div>
+  </div>
+
+  <!-- Q2 : CRUD -->
+  <div class="slide slide-content quiz-slide" data-slide="24">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q2 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant qu'employé back-office, je veux administrer le catalogue produits afin que les informations soient à jour en magasin. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,true,2)"  data-correct="true" ><span class="opt-label">A</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,2)" data-correct="false"><span class="opt-label">B</span>Pattern 1 — Étapes du Workflow</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,2)" data-correct="false"><span class="opt-label">C</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,2)" data-correct="false"><span class="opt-label">D</span>Pattern 7 — Effort Concentré</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 2 — Opérations CRUD.</strong> "Administrer" est un signal CRUD classique : Créer un produit / Modifier ses informations / Désactiver une référence / Archiver. Chaque opération est une story indépendante.</div>
+    </div>
+  </div>
+
+  <!-- Q3 : Business Rules -->
+  <div class="slide slide-content quiz-slide" data-slide="25">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q3 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que client professionnel, je veux bénéficier d'un tarif adapté à ma situation afin de maîtriser mon budget d'achats. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : tarif standard · tarif volume · tarif grand compte · tarif fidélité</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,3)" data-correct="false"><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,3)" data-correct="false"><span class="opt-label">B</span>Pattern 7 — Effort Concentré</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,3)"  data-correct="true" ><span class="opt-label">C</span>Pattern 3 — Règles Métier</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,3)" data-correct="false"><span class="opt-label">D</span>Pattern 2 — Opérations CRUD</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 3 — Règles Métier.</strong> Chaque règle tarifaire est une variation métier distincte (standard, volume, grand compte, fidélité). Elles n'ont pas de dépendances entre elles et peuvent être livrées séparément.</div>
+    </div>
+  </div>
+
+  <!-- Q4 : Data Variations -->
+  <div class="slide slide-content quiz-slide" data-slide="26">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q4 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que directeur de magasin, je veux consulter les ventes afin d'analyser les performances et ajuster mes commandes fournisseurs. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : par rayon · par marque · par période · par magasin · comparaison N-1</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,4)" data-correct="false"><span class="opt-label">A</span>Pattern 8 — Différer la Performance</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,4)"  data-correct="true" ><span class="opt-label">B</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,4)" data-correct="false"><span class="opt-label">C</span>Pattern 1 — Étapes du Workflow</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,4)" data-correct="false"><span class="opt-label">D</span>Pattern 3 — Règles Métier</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 4 — Variations de Données.</strong> La complexité vient des types de données à afficher. On commence par un seul type (par rayon), puis on enrichit progressivement : par marque, par période, par magasin…</div>
+    </div>
+  </div>
+
+  <!-- Q5 : Interface Variations -->
+  <div class="slide slide-content quiz-slide" data-slide="27">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q5 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que préparateur de commandes, je veux accéder à ma liste de picking afin de préparer les commandes click &amp; collect efficacement. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : tablette entrepôt · scanner code-barres · poste fixe · application mobile</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,5)" data-correct="false"><span class="opt-label">A</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,5)" data-correct="false"><span class="opt-label">B</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,5)" data-correct="false"><span class="opt-label">C</span>Pattern 7 — Effort Concentré</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,5)"  data-correct="true" ><span class="opt-label">D</span>Pattern 5 — Variations d'Interface</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 5 — Variations d'Interface.</strong> La même fonctionnalité (liste de picking) doit être déclinée sur 4 interfaces matérielles différentes. Chaque canal peut être livré comme un incrément indépendant.</div>
+    </div>
+  </div>
+
+  <!-- Q6 : Simple/Complex -->
+  <div class="slide slide-content quiz-slide" data-slide="28">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q6 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que client, je veux recevoir des suggestions de remplacement pour les produits indisponibles afin de compléter ma commande sans rupture. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : même rayon → produits les plus achetés → IA prédictive basée sur l'historique</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,true,6)"  data-correct="true" ><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,6)" data-correct="false"><span class="opt-label">B</span>Pattern 9 — Spike d'Investigation</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,6)" data-correct="false"><span class="opt-label">C</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,6)" data-correct="false"><span class="opt-label">D</span>Pattern 3 — Règles Métier</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 6 — Simple / Complexe.</strong> On commence par une version utile immédiatement (même rayon), puis on enrichit progressivement (les + achetés, puis IA prédictive). La fonctionnalité est connue, seule sa sophistication augmente.</div>
+    </div>
+  </div>
+
+  <!-- Q7 : Major Effort -->
+  <div class="slide slide-content quiz-slide" data-slide="29">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q7 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que responsable des achats, je veux passer commande chez nos fournisseurs via API REST, EDI et formulaire web afin d'intégrer tous nos systèmes d'achat. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,7)" data-correct="false"><span class="opt-label">A</span>Pattern 5 — Variations d'Interface</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,7)" data-correct="false"><span class="opt-label">B</span>Pattern 2 — Opérations CRUD</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,7)"  data-correct="true" ><span class="opt-label">C</span>Pattern 7 — Effort Concentré</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,7)" data-correct="false"><span class="opt-label">D</span>Pattern 1 — Étapes du Workflow</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 7 — Effort Concentré.</strong> L'API REST est le cas difficile qui pose toute l'infrastructure d'intégration. EDI et formulaire web réutilisent cette base et coûtent beaucoup moins cher ensuite.</div>
+    </div>
+  </div>
+
+  <!-- Q8 : Defer Performance -->
+  <div class="slide slide-content quiz-slide" data-slide="30">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q8 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que directeur des achats, je veux que le tableau de bord fournisseurs se charge en moins de 2 secondes avec 3 ans d'historique afin de prendre des décisions rapidement. »</em>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,8)" data-correct="false"><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,8)" data-correct="false"><span class="opt-label">B</span>Pattern 4 — Variations de Données</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,8)" data-correct="false"><span class="opt-label">C</span>Pattern 9 — Spike d'Investigation</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,8)"  data-correct="true" ><span class="opt-label">D</span>Pattern 8 — Différer la Performance</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 8 — Différer la Performance.</strong> Séparer "ça fonctionne" (tableau de bord) de "ça fonctionne en &lt; 2s" (optimisation). On valide d'abord la logique métier, puis on optimise avec des données de production réelles.</div>
+    </div>
+  </div>
+
+  <!-- Q9 : Spike -->
+  <div class="slide slide-content quiz-slide" data-slide="31">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title"><span class="kw-b">Q9 / 9</span> — <em>Quel pattern appliquer ?</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:14px;">
+      <div class="quiz-scenario"><div class="q-label">Scénario</div>
+        <em>« En tant que responsable digital, je veux permettre aux clients de scanner un produit en magasin avec leur téléphone pour obtenir des infos nutritionnelles et des alternatives. »</em>
+        <div style="font-size:13px;color:var(--gray);margin-top:6px;">Contexte : reconnaissance d'image ? · API code-barres ? · données ML ? · RGPD ? · perf mobile ?</div>
+      </div>
+      <div class="quiz-question">Quel pattern de découpage appliquer ?</div>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="answerQuiz(this,false,9)" data-correct="false"><span class="opt-label">A</span>Pattern 6 — Simple / Complexe</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,true,9)"  data-correct="true" ><span class="opt-label">B</span>Pattern 9 — Spike d'Investigation</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,9)" data-correct="false"><span class="opt-label">C</span>Pattern 5 — Variations d'Interface</button>
+        <button class="quiz-btn" onclick="answerQuiz(this,false,9)" data-correct="false"><span class="opt-label">D</span>Pattern 8 — Différer la Performance</button>
+      </div>
+      <div class="quiz-explanation">✅ <strong>Pattern 9 — Spike d'Investigation.</strong> La faisabilité est inconnue sur plusieurs dimensions simultanées (reconnaissance d'image, ML, données, RGPD, perf mobile). Un spike time-boxé est nécessaire avant toute estimation.</div>
+    </div>
+  </div>
+
+  <!-- Résultats -->
+  <div class="slide slide-content quiz-slide" data-slide="32" id="results-slide">
+    <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
+    <div class="content-header"><div class="content-title">Quiz : <em>Vos résultats</em></div><hr class="content-rule"/></div>
+    <div class="content-body" style="flex-direction:column; gap:16px;">
+      <div style="display:flex; gap:20px; align-items:stretch;">
+        <div class="results-score-box" id="score-box" style="flex:0 0 190px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px;">Score</div>
+          <div class="results-score-num"><span id="final-score">–</span></div>
+          <div class="results-score-label">/ 9 questions</div>
+          <div class="results-rating" id="results-rating">–</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:8px;justify-content:center;">
+          <div style="font-size:clamp(13px,1.33vw,16px);color:var(--dark);font-weight:600;margin-bottom:2px;">Récapitulatif par pattern :</div>
+          <div class="quiz-recap-grid">
+            <div class="recap-item" id="recap-1"><span class="recap-check">⬜</span><span>P1 — Étapes du Workflow</span></div>
+            <div class="recap-item" id="recap-2"><span class="recap-check">⬜</span><span>P2 — Opérations CRUD</span></div>
+            <div class="recap-item" id="recap-3"><span class="recap-check">⬜</span><span>P3 — Règles Métier</span></div>
+            <div class="recap-item" id="recap-4"><span class="recap-check">⬜</span><span>P4 — Variations de Données</span></div>
+            <div class="recap-item" id="recap-5"><span class="recap-check">⬜</span><span>P5 — Variations d'Interface</span></div>
+            <div class="recap-item" id="recap-6"><span class="recap-check">⬜</span><span>P6 — Simple / Complexe</span></div>
+            <div class="recap-item" id="recap-7"><span class="recap-check">⬜</span><span>P7 — Effort Concentré</span></div>
+            <div class="recap-item" id="recap-8"><span class="recap-check">⬜</span><span>P8 — Différer la Performance</span></div>
+            <div class="recap-item" id="recap-9"><span class="recap-check">⬜</span><span>P9 — Spike d'Investigation</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── 22. CONCLUSION ─── -->
   <div class="slide slide-content" data-slide="22">
     <div class="logo"><div class="logo-text"><div class="logo-top">Groupement</div><div class="logo-bot">Mousquetaires</div></div></div>
@@ -1320,7 +1538,7 @@
 <!-- Navigation -->
 <div id="nav">
   <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">&#8592;</button>
-  <span id="slide-counter">1 / 21</span>
+  <span id="slide-counter">1 / 32</span>
   <button class="nav-btn" id="btn-next" onclick="navigate(1)">&#8594;</button>
 </div>
 
@@ -1329,6 +1547,8 @@
 
 <!-- TOC Panel -->
 <div id="toc-panel"></div>
+
+<div id="quiz-badge">🎯 Score : 0 / 0</div>
 
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
@@ -1342,6 +1562,8 @@
     document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
     document.getElementById('btn-prev').disabled = current === 0;
     document.getElementById('btn-next').disabled = current === total - 1;
+    const badge = document.getElementById('quiz-badge');
+    if (badge) badge.classList.toggle('show', slides[current].classList.contains('quiz-slide'));
   }
 
   function triggerSlideAnimations(slideEl) {
@@ -1403,10 +1625,20 @@
       const delay = parseInt(c.dataset.delay || i) * 80;
       setTimeout(() => c.classList.add('visible'), delay + 100);
     });
+
+    // Results slide
+    if (slideEl.id === 'results-slide') {
+      updateResults();
+      const box = slideEl.querySelector('.results-score-box');
+      if (box) setTimeout(() => box.classList.add('visible'), 100);
+      slideEl.querySelectorAll('.recap-item').forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 60 + 400);
+      });
+    }
   }
 
   function resetAnimations(slideEl) {
-    slideEl.querySelectorAll('.invest-card, .pattern-card, .avant-box, .apres-box, .layer-bar, .v-slice, .story-card, .meta-step, .session-card, .concl-card').forEach(el => {
+    slideEl.querySelectorAll('.invest-card, .pattern-card, .avant-box, .apres-box, .layer-bar, .v-slice, .story-card, .meta-step, .session-card, .concl-card, .results-score-box, .recap-item').forEach(el => {
       el.classList.remove('visible');
     });
   }
@@ -1568,6 +1800,51 @@
   // Init
   updateProgress();
   triggerSlideAnimations(slides[0]);
+
+  // ─── Quiz ───
+  let quizScore = 0;
+  const quizAnswered = new Set();
+  const quizResults = {};
+
+  function answerQuiz(btn, isCorrect, qId) {
+    if (quizAnswered.has(qId)) return;
+    quizAnswered.add(qId);
+    quizResults[qId] = isCorrect;
+    const slide = btn.closest('.slide');
+    slide.querySelectorAll('.quiz-btn').forEach(b => b.disabled = true);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      quizScore++;
+    } else {
+      btn.classList.add('wrong');
+      slide.querySelectorAll('.quiz-btn[data-correct="true"]').forEach(b => b.classList.add('correct'));
+    }
+    const expl = slide.querySelector('.quiz-explanation');
+    if (expl) expl.classList.add('show');
+    document.getElementById('quiz-badge').textContent = '🎯 Score : ' + quizScore + ' / ' + quizAnswered.size;
+    if (document.getElementById('results-slide') &&
+        slides[current] === document.getElementById('results-slide')) updateResults();
+  }
+
+  function updateResults() {
+    const el = document.getElementById('final-score');
+    if (!el) return;
+    el.textContent = quizScore;
+    const rating = document.getElementById('results-rating');
+    if (rating) {
+      if (quizScore >= 8)      { rating.textContent = '🏆 Expert !';              rating.style.color = 'var(--green)'; }
+      else if (quizScore >= 6) { rating.textContent = '👍 En bonne voie';          rating.style.color = '#D4A017'; }
+      else if (quizScore >= 4) { rating.textContent = '📖 À consolider';           rating.style.color = 'var(--orange)'; }
+      else                     { rating.textContent = '💪 Continuez à pratiquer';  rating.style.color = 'var(--red)'; }
+    }
+    for (let i = 1; i <= 9; i++) {
+      const item = document.getElementById('recap-' + i);
+      if (!item) continue;
+      const check = item.querySelector('.recap-check');
+      if (quizResults[i] === true)  { check.textContent = '✅'; item.style.borderLeftColor = 'var(--green)'; item.style.background = '#F0FFF4'; }
+      if (quizResults[i] === false) { check.textContent = '❌'; item.style.borderLeftColor = 'var(--red)';   item.style.background = '#FFF5F5'; }
+    }
+  }
 </script>
 </body>
 </html>
